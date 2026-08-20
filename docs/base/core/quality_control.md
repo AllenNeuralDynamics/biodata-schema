@@ -1,6 +1,6 @@
 # Quality control
 
-[Link to code](https://github.com/AllenNeuralDynamics/aind-data-schema/blob/dev/src/aind_data_schema/core/quality_control.py)
+[Link to code](https://github.com/AllenNeuralDynamics/biodata-schema/blob/dev/src/aind_data_schema/core/quality_control.py)
 
 Quality control is a collection of **metrics** evaluated on a data asset.
 

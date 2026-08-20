@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "aind-data-schema"
+name = "biodata-schema"
 description = "A library that defines AIND data schema and validates JSON files."
 license = {text = "MIT"}
 requires-python = ">=3.10,<3.14"
@@ -22,7 +22,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    'aind_data_schema[linters]',
+    'biodata-schema[linters]',
     'pydantic>=2.7, !=2.9.0, !=2.9.1',
     'scipy',
     'dictdiffer',

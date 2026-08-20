@@ -1,13 +1,13 @@
 # Contributor Guidelines
 
-Contributions to `aind-data-schema` must follow certain rules to ensure stability and organization. This document will go through best practices for contributing to this project
+Contributions to `biodata-schema` must follow certain rules to ensure stability and organization. This document will go through best practices for contributing to this project
 
 ## Issues and Feature Requests
 
-Feature requests and bug reports are all welcome as [issues](https://github.com/AllenNeuralDynamics/aind-data-schema/issues). Create a ticket using the provided [templates](https://github.com/AllenNeuralDynamics/aind-metadata-mapper/issues/new/choose) to ensure we have enough information to work with.
+Feature requests and bug reports are all welcome as [issues](https://github.com/AllenNeuralDynamics/biodata-schema/issues). Create a ticket using the provided [templates](https://github.com/AllenNeuralDynamics/aind-metadata-mapper/issues/new/choose) to ensure we have enough information to work with.
 Our team will review, assign, and address the ticket. If the ticket is urgent, you may tag a dedicated engineer in the issue but please refrain from assigning it.
 
-If you have a broader suggestion or a question about how things work, start a new [Discussion](https://github.com/AllenNeuralDynamics/aind-data-schema/discussions)!
+If you have a broader suggestion or a question about how things work, start a new [Discussion](https://github.com/AllenNeuralDynamics/biodata-schema/discussions)!
 
 ## Installation and Development
 
@@ -15,8 +15,8 @@ To develop the software, *clone* the repository and create a new branch for your
 Please do not fork this repository unless you are an external developer.
 
 ```bash
-git clone git@github.com:AllenNeuralDynamics/aind-data-schema.git
-cd aind-data-schema
+git clone git@github.com:AllenNeuralDynamics/biodata-schema.git
+cd biodata-schema
 git checkout -b my-new-feature-branch
 ```
 
@@ -35,11 +35,11 @@ pip install -e .[dev]
 
 ### Upgrades
 
-Starting with the v2.0 release all changes must be accompanied by an [upgrader](https://github.com/AllenNeuralDynamics/aind-metadata-upgrader/) that converts valid metadata from the latest version tag of `aind-data-schema` to valid metadata in the version tag where your changes are introduced. Breaking changes are exempt from this requirement.
+Starting with the v2.0 release all changes must be accompanied by an [upgrader](https://github.com/AllenNeuralDynamics/aind-metadata-upgrader/) that converts valid metadata from the latest version tag of `biodata-schema` to valid metadata in the version tag where your changes are introduced. Breaking changes are exempt from this requirement.
 
 ### Documentation
 
-Documentation is automatically built when you open a PR into the aind-data-schema repository. For **core files, please make sure that you modify the base file**, these are used to construct the source files: i.e. `docs/base/core/acquisition.md` will over-write any changes made to `docs/source/acquisition.md`. 
+Documentation is automatically built when you open a PR into the biodata-schema repository. For **core files, please make sure that you modify the base file**, these are used to construct the source files: i.e. `docs/base/core/acquisition.md` will over-write any changes made to `docs/source/acquisition.md`.
 
 #### Manually build documentation
 
@@ -100,7 +100,7 @@ coverage run -m unittest tests/your_test.py
 
 There are several libraries used to run linters and check documentation. We've included these in the development package. You can run them as described [here](https://github.com/AllenNeuralDynamics/aind-metadata-mapper/blob/main/README.md#linters-and-testing).
 
-- To run tests locally, navigate to AIND-DATA-SCHEMA directory in terminal and run (this will not run any on-line only tests):
+- To run tests locally, navigate to the biodata-schema directory in terminal and run (this will not run any on-line only tests):
 
   ```
   python -m unittest

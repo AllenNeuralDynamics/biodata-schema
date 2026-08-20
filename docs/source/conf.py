@@ -43,7 +43,7 @@ myst_enable_extensions = [
 
 html_theme = "furo"
 html_static_path = ["_static"]
-html_title = "aind-data-schema"
+html_title = "biodata-schema"
 html_favicon = "_static/favicon.ico"
 html_theme_options = {
     "light_logo": "light-logo.svg",

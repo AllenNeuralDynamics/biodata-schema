@@ -20,7 +20,7 @@ wheels = [
 ]
 
 [[package]]
-name = "aind-data-schema"
+name = "biodata-schema"
 source = { editable = "." }
 dependencies = [
     { name = "aind-data-schema-models" },
@@ -75,7 +75,7 @@ viz = [
 
 [package.metadata]
 requires-dist = [
-    { name = "aind-data-schema", extras = ["linters"], marker = "extra == 'dev'" },
+    { name = "biodata-schema", extras = ["linters"], marker = "extra == 'dev'" },
     { name = "aind-data-schema-models", specifier = ">=5.4.1,<6" },
     { name = "aind-flake8-extensions", marker = "extra == 'linters'", specifier = ">=0.6,<0.7" },
     { name = "argparse", marker = "extra == 'dev'" },

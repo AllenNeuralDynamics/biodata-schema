@@ -180,7 +180,7 @@ class Rotation(DataModel):
             from scipy.spatial.transform import Rotation as R
         except ImportError:  # pragma: no cover
             raise ImportError(
-                "Please run `pip install aind-data-schema[transforms]` to "
+                "Please run `pip install biodata-schema[transforms]` to "
                 "install necessary dependencies for Rotation.to_matrix"
             )
 
@@ -256,7 +256,7 @@ class Affine(DataModel):
             import numpy as np
         except ImportError:  # pragma: no cover
             raise ImportError(
-                "Please run `pip install aind-data-schema[transforms]` "
+                "Please run `pip install biodata-schema[transforms]` "
                 "to install necessary dependencies for rotation support"
             )
 

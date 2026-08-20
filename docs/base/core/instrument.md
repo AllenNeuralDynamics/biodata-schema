@@ -1,10 +1,10 @@
 # Instrument
 
-[Link to code](https://github.com/AllenNeuralDynamics/aind-data-schema/blob/dev/src/aind_data_schema/core/instrument.py)
+[Link to code](https://github.com/AllenNeuralDynamics/biodata-schema/blob/dev/src/aind_data_schema/core/instrument.py)
 
 The `instrument.json` collects the components, mostly hardware devices, used to collect data. In general, the instrument schema describes the static state of the data acquisition hardware across sessions. The [Acquisition](acquisition.md) is used to describe the configuration of components for a specific session.
 
-Instrument files are created manually, either through the [metadata-entry app](https://metadata-entry.allenneuraldynamics.org) or by writing python code that uses [aind-data-schema](https://github.com/allenNeuralDynamics/aind-data-schema). In general, your `instrument.json` file should be re-used across every session without changes until a device is added, removed, or moved, or maintenance is performed. The last change to an instrument should be timestamped in the `Instrument.modification_date` field.
+Instrument files are created manually, either through the [metadata-entry app](https://metadata-entry.allenneuraldynamics.org) or by writing python code that uses [biodata-schema](https://github.com/allenNeuralDynamics/biodata-schema). In general, your `instrument.json` file should be re-used across every session without changes until a device is added, removed, or moved, or maintenance is performed. The last change to an instrument should be timestamped in the `Instrument.modification_date` field.
 
 ## Uniqueness
 
@@ -22,11 +22,11 @@ An assembly is a collection of devices that function together and share a single
 
 If you only need to track the `name`, `manufacturer`, `model`, and `serial_number` you can create custom devices using the `Device` class. The `Device.notes` field should be used to provide a description of the device and how it is used.
 
-If you need to specify additional information about a device we will need to add a specific class for it. Open an [issue](https://github.com/AllenNeuralDynamics/aind-data-schema/issues) specifying what kind of information is needed to be tracked and developers will follow up with you.
+If you need to specify additional information about a device we will need to add a specific class for it. Open an [issue](https://github.com/AllenNeuralDynamics/biodata-schema/issues) specifying what kind of information is needed to be tracked and developers will follow up with you.
 
 ### Missing organizations
 
-You can find the full list of [Organizations](aind_data_schema_models/organizations.md) in the `aind-data-schema-models` repository. Some device types are restricted to a subset of this full list to simplify the `metadata-entry` app. Please open an [issue](https://github.com/AllenNeuralDynamics/aind-data-schema/issues) if you need a manufacturer that isn't available in either the main list or one of the subsets.
+You can find the full list of [Organizations](aind_data_schema_models/organizations.md) in the `aind-data-schema-models` repository. Some device types are restricted to a subset of this full list to simplify the `metadata-entry` app. Please open an [issue](https://github.com/AllenNeuralDynamics/biodata-schema/issues) if you need a manufacturer that isn't available in either the main list or one of the subsets.
 
 ## Position
 
@@ -40,9 +40,9 @@ For devices where you know the exact position you need to describe the `Coordina
 
 ## Examples
 
-- [Ephys instrument](https://github.com/AllenNeuralDynamics/aind-data-schema/blob/dev/examples/ephys_instrument.py)
-- [AIBS Smartspim instrument](https://github.com/AllenNeuralDynamics/aind-data-schema/blob/dev/examples/aibs_smartspim.py)
-- [AIND Smartspim instrument](https://github.com/AllenNeuralDynamics/aind-data-schema/blob/dev/examples/aind_smartspim_instrument.py)
-- [Exaspim instrument](https://github.com/AllenNeuralDynamics/aind-data-schema/blob/dev/examples/exaspim_instrument.py)
-- [FIP / Ophys instrument](https://github.com/AllenNeuralDynamics/aind-data-schema/blob/dev/examples/fip_ophys_instrument.py)
-- [Multi-plane ophys instrument](https://github.com/AllenNeuralDynamics/aind-data-schema/blob/dev/examples/multiplane_ophys_instrument.py)
+- [Ephys instrument](https://github.com/AllenNeuralDynamics/biodata-schema/blob/dev/examples/ephys_instrument.py)
+- [AIBS Smartspim instrument](https://github.com/AllenNeuralDynamics/biodata-schema/blob/dev/examples/aibs_smartspim.py)
+- [AIND Smartspim instrument](https://github.com/AllenNeuralDynamics/biodata-schema/blob/dev/examples/aind_smartspim_instrument.py)
+- [Exaspim instrument](https://github.com/AllenNeuralDynamics/biodata-schema/blob/dev/examples/exaspim_instrument.py)
+- [FIP / Ophys instrument](https://github.com/AllenNeuralDynamics/biodata-schema/blob/dev/examples/fip_ophys_instrument.py)
+- [Multi-plane ophys instrument](https://github.com/AllenNeuralDynamics/biodata-schema/blob/dev/examples/multiplane_ophys_instrument.py)

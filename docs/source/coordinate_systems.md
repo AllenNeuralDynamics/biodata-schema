@@ -69,7 +69,7 @@ coordinate_system = CoordinateSystemLibrary.BREGMA_ARI
 coordinate_system_name = CoordinateSystemLibrary.BREGMA_ARI.name
 ```
 
-You can always define your own coordinate system. If you find yourself re-using a coordinate system that isn't available in the library across multiple projects, please request an update to the library by opening an [issue](https://github.com/AllenNeuralDynamics/aind-data-schema/issues).
+You can always define your own coordinate system. If you find yourself re-using a coordinate system that isn't available in the library across multiple projects, please request an update to the library by opening an [issue](https://github.com/AllenNeuralDynamics/biodata-schema/issues).
 
 ## Measured Coordinates
 

@@ -1,4 +1,4 @@
-"""Custom error codes for aind-data-schema"""
+"""Custom error codes for biodata-schema"""
 
 from typing import List
 

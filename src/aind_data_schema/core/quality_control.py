@@ -92,7 +92,7 @@ class QCMetric(DataModel):
 
         This function is for backwards compatibility with v2.2.X where tags were stored as lists of strings.
 
-        Remove this function in aind-data-schema v3.X
+        Remove this function in biodata-schema v3.X
         """
         if "tags" not in self:
             return self
@@ -299,7 +299,7 @@ class QualityControl(DataCoreModel):
     def fix_default_grouping_list(cls, value: dict) -> dict:
         """Convert default grouping from list of strings to list of list of strings if necessary
         This function is for backwards compatibility with v2.2.X where default_grouping was stored as a list of strings.
-        Remove this function in aind-data-schema v3.X
+        Remove this function in biodata-schema v3.X
         """
         if "default_grouping" not in value or "metrics" not in value or len(value["metrics"]) == 0:
             return value

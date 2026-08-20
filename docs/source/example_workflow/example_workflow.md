@@ -57,7 +57,7 @@ First, we'll set up the Python environment and define some shared variables.
 :lines: 1-39
 ```
 
-### How did we know which `aind-data-schema` classes to import?
+### How did we know which `biodata-schema` classes to import?
 
 Our general recommendation for metadata is to navigate the documentation starting from the core class you are working on. So for the data description you would go to that page: [DataDescription](../data_description.md). The import for any object can be read from the URL of the page, core classes are found in the core subfolder `from aind_data_schema.core import DataDescription`.
 
