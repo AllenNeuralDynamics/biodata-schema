@@ -99,7 +99,7 @@ class QCMetric(DataModel):
         tags = self["tags"]
         if isinstance(tags, list):
             warnings.warn("QCMetric 'tags' field is now a dict. Converting from list to dict", DeprecationWarning)
-            self["tags"] = {f"tag_{i+1}": tag for i, tag in enumerate(tags)}
+            self["tags"] = {f"tag_{i + 1}": tag for i, tag in enumerate(tags)}
         return self
 
 

@@ -3,28 +3,32 @@
 import argparse
 import datetime
 
+from aind_data_schema_models.brain_atlas import CCFv3
 from aind_data_schema_models.organizations import Organization
 from aind_data_schema_models.pid_names import PIDName
+from aind_data_schema_models.reagent import FluorophoreType, StainType
 from aind_data_schema_models.registries import Registry
 from aind_data_schema_models.species import Species
-from aind_data_schema_models.reagent import FluorophoreType, StainType
+from aind_data_schema_models.units import VolumeUnit
 
-from aind_data_schema.components.injection_procedures import InjectionDynamics
-from aind_data_schema.components.reagent import FluorescentStain, ProbeReagent, ProteinProbe, Fluorophore
-from aind_data_schema.components.surgery_procedures import Anaesthetic, BrainInjection, Headframe, ProbeImplant
+from aind_data_schema.components.configs import ProbeConfig
+from aind_data_schema.components.coordinates import CoordinateSystemLibrary, Translation
+from aind_data_schema.components.devices import FiberProbe
+from aind_data_schema.components.injection_procedures import InjectionDynamics, InjectionProfile, ViralMaterial
+from aind_data_schema.components.reagent import FluorescentStain, Fluorophore, ProbeReagent, ProteinProbe
+from aind_data_schema.components.surgery_procedures import (
+    Anaesthetic,
+    BrainInjection,
+    Headframe,
+    Perfusion,
+    ProbeImplant,
+)
 from aind_data_schema.core.procedures import (
     Procedures,
     SpecimenProcedure,
     Surgery,
     WaterRestriction,
 )
-from aind_data_schema.components.injection_procedures import ViralMaterial, InjectionProfile
-from aind_data_schema.components.surgery_procedures import Perfusion
-from aind_data_schema.components.configs import ProbeConfig
-from aind_data_schema.components.devices import FiberProbe
-from aind_data_schema_models.units import VolumeUnit
-from aind_data_schema_models.brain_atlas import CCFv3
-from aind_data_schema.components.coordinates import CoordinateSystemLibrary, Translation
 
 t = datetime.datetime(2022, 7, 12, 7, 00, 00)
 t2 = datetime.datetime(2022, 9, 23, 10, 22, 00)

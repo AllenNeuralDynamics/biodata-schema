@@ -443,8 +443,7 @@ class LickSpoutConfig(DeviceConfig):
 
         if self.solution == Liquid.OTHER and not self.notes:
             raise ValueError(
-                "Notes cannot be empty if LickSpoutConfig.solution is Other."
-                "Describe the solution in the notes field."
+                "Notes cannot be empty if LickSpoutConfig.solution is Other.Describe the solution in the notes field."
             )
         return self
 

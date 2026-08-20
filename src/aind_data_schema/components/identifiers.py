@@ -1,16 +1,14 @@
 """Schema for identifiers"""
 
 import re
+import warnings
 from enum import Enum
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Annotated, Dict, List, Optional
 
 from aind_data_schema_models.registries import Registry
-from pydantic import Field, BaseModel, model_validator
-import warnings
+from pydantic import BaseModel, Field, StringConstraints, model_validator
 
-from typing import Annotated
-from pydantic import StringConstraints
 from aind_data_schema.base import DataModel, DiscriminatedList, GenericModel
 
 

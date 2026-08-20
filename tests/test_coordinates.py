@@ -1,9 +1,9 @@
 """Tests for the coordinates module"""
 
-import unittest
 import warnings
 
 import numpy as np
+import pytest
 from aind_data_schema_models.atlas import AtlasName
 from aind_data_schema_models.units import SizeUnit
 from scipy.spatial.transform import Rotation as R
@@ -17,22 +17,22 @@ from aind_data_schema.components.coordinates import (
     Direction,
     Handedness,
     Origin,
+    ReferenceCoordinateSystem,
     Rotation,
     RotationDirection,
     Scale,
-    ReferenceCoordinateSystem,
     Translation,
 )
 
 
-class TestScale(unittest.TestCase):
+class TestScale:
     """Tests for the Scale class"""
 
-    def setUp(self):
+    def setup_method(self):
         """Set up for tests"""
         warnings.simplefilter("ignore", DeprecationWarning)
 
-    def tearDown(self):
+    def teardown_method(self):
         """Tear down after tests"""
         warnings.resetwarnings()
 
@@ -40,7 +40,7 @@ class TestScale(unittest.TestCase):
         """Test to_matrix method with default axis order"""
         scale = Scale(scale=[2, 3, 4])
         expected_matrix = [[2.0, 0.0, 0.0, 0.0], [0.0, 3.0, 0.0, 0.0], [0.0, 0.0, 4.0, 0.0], [0.0, 0.0, 0.0, 1.0]]
-        self.assertEqual(scale.to_matrix(), expected_matrix)
+        assert scale.to_matrix() == expected_matrix
 
     def test_to_matrix_partial_axes(self):
         """Test to_matrix method with partial axes"""
@@ -50,17 +50,17 @@ class TestScale(unittest.TestCase):
             [0.0, 3.0, 0.0],
             [0.0, 0.0, 1.0],
         ]
-        self.assertEqual(scale.to_matrix(), expected_matrix)
+        assert scale.to_matrix() == expected_matrix
 
 
-class TestTranslation(unittest.TestCase):
+class TestTranslation:
     """Tests for the Translation class"""
 
-    def setUp(self):
+    def setup_method(self):
         """Set up for tests"""
         warnings.simplefilter("ignore", DeprecationWarning)
 
-    def tearDown(self):
+    def teardown_method(self):
         """Tear down after tests"""
         warnings.resetwarnings()
 
@@ -68,23 +68,23 @@ class TestTranslation(unittest.TestCase):
         """Test to_matrix method with default axis order"""
         translation = Translation(translation=[2, 3, 4])
         expected_matrix = [[1.0, 0.0, 0.0, 2.0], [0.0, 1.0, 0.0, 3.0], [0.0, 0.0, 1.0, 4.0], [0.0, 0.0, 0.0, 1.0]]
-        self.assertEqual(translation.to_matrix(), expected_matrix)
+        assert translation.to_matrix() == expected_matrix
 
     def test_to_matrix_partial_axes(self):
         """Test to_matrix method with partial axes"""
         translation = Translation(translation=[2, 3])
         expected_matrix = [[1.0, 0.0, 2.0], [0.0, 1.0, 3.0], [0.0, 0.0, 1.0]]
-        self.assertEqual(translation.to_matrix(), expected_matrix)
+        assert translation.to_matrix() == expected_matrix
 
 
-class TestRotation(unittest.TestCase):
+class TestRotation:
     """Tests for the Rotation class"""
 
-    def setUp(self):
+    def setup_method(self):
         """Set up for tests"""
         warnings.simplefilter("ignore", DeprecationWarning)
 
-    def tearDown(self):
+    def teardown_method(self):
         """Tear down after tests"""
         warnings.resetwarnings()
 
@@ -96,8 +96,7 @@ class TestRotation(unittest.TestCase):
         )
         expected_matrix = R.from_euler("xyz", [90, 45, 30], degrees=True).as_matrix().tolist()
         expected_matrix = [row + [0.0] for row in expected_matrix] + [[0.0, 0.0, 0.0, 1.0]]
-        self.maxDiff = None
-        self.assertEqual(rotation.to_matrix(), expected_matrix)
+        assert rotation.to_matrix() == expected_matrix
 
     def test_to_matrix_negative_directions(self):
         """Test to_matrix method with inverted rotation directions"""
@@ -107,7 +106,7 @@ class TestRotation(unittest.TestCase):
         )
         expected_matrix = R.from_euler("xyz", [-90, -45, -30], degrees=True).as_matrix().tolist()
         expected_matrix = [row + [0.0] for row in expected_matrix] + [[0.0, 0.0, 0.0, 1.0]]
-        self.assertEqual(rotation.to_matrix(), expected_matrix)
+        assert rotation.to_matrix() == expected_matrix
 
     def test_to_matrix_partial_axes(self):
         """Test to_matrix method with partial axes"""
@@ -116,7 +115,7 @@ class TestRotation(unittest.TestCase):
         )
         expected_matrix = R.from_euler("xy", [90, 45], degrees=True).as_matrix().tolist()
         expected_matrix = [row + [0.0] for row in expected_matrix] + [[0.0, 0.0, 1.0]]
-        self.assertEqual(rotation.to_matrix(), expected_matrix)
+        assert rotation.to_matrix() == expected_matrix
 
     def test_to_matrix_no_rotation(self):
         """Test to_matrix method with no rotation"""
@@ -130,17 +129,17 @@ class TestRotation(unittest.TestCase):
         )
         expected_matrix = R.from_euler("xyz", [0, 0, 0], degrees=True).as_matrix().tolist()
         expected_matrix = [row + [0.0] for row in expected_matrix] + [[0.0, 0.0, 0.0, 1.0]]
-        self.assertEqual(rotation.to_matrix(), expected_matrix)
+        assert rotation.to_matrix() == expected_matrix
 
 
-class TestAffineWithAffineTransforms(unittest.TestCase):
+class TestAffineWithAffineTransforms:
     """Additional tests for the Affine class with Affine transforms"""
 
-    def setUp(self):
+    def setup_method(self):
         """Set up for tests"""
         warnings.simplefilter("ignore", DeprecationWarning)
 
-    def tearDown(self):
+    def teardown_method(self):
         """Tear down after tests"""
         warnings.resetwarnings()
 
@@ -150,28 +149,28 @@ class TestAffineWithAffineTransforms(unittest.TestCase):
             affine_transform=[[1.0, 0.0, 0.0, 5.0], [0.0, 1.0, 0.0, 6.0], [0.0, 0.0, 1.0, 7.0], [0.0, 0.0, 0.0, 1.0]]
         )
         composed_transform = Affine.compose([affine])
-        self.assertEqual(composed_transform.affine_transform, affine.affine_transform)
+        assert composed_transform.affine_transform == affine.affine_transform
 
     def test_compose_with_single_translation(self):
         """Test compose method with a single Translation"""
         translation = Translation(translation=[2, 3, 4])
         composed_transform = Affine.compose([translation])
         expected_matrix = translation.to_matrix()
-        self.assertEqual(composed_transform.affine_transform, expected_matrix)
+        assert composed_transform.affine_transform == expected_matrix
 
     def test_compose_with_single_rotation(self):
         """Test compose method with a single Rotation"""
         rotation = Rotation(angles=[90, 45, 30])
         composed_transform = Affine.compose([rotation])
         expected_matrix = rotation.to_matrix()
-        self.assertEqual(composed_transform.affine_transform, expected_matrix)
+        assert composed_transform.affine_transform == expected_matrix
 
     def test_compose_with_single_scale(self):
         """Test compose method with a single Scale"""
         scale = Scale(scale=[2, 3, 4])
         composed_transform = Affine.compose([scale])
         expected_matrix = scale.to_matrix()
-        self.assertEqual(composed_transform.affine_transform, expected_matrix)
+        assert composed_transform.affine_transform == expected_matrix
 
     def test_compose_with_affine_and_translation(self):
         """Test compose method with an Affine transform and a Translation"""
@@ -181,7 +180,7 @@ class TestAffineWithAffineTransforms(unittest.TestCase):
         translation = Translation(translation=[2, 3, 4])
         composed_transform = Affine.compose([affine, translation])
         expected_matrix = np.matmul(affine.affine_transform, translation.to_matrix()).tolist()
-        self.assertEqual(composed_transform.affine_transform, expected_matrix)
+        assert composed_transform.affine_transform == expected_matrix
 
     def test_compose_with_affine_and_rotation(self):
         """Test compose method with an Affine transform and a Rotation"""
@@ -191,7 +190,7 @@ class TestAffineWithAffineTransforms(unittest.TestCase):
         rotation = Rotation(angles=[90, 45, 30])
         composed_transform = Affine.compose([affine, rotation])
         expected_matrix = np.matmul(affine.affine_transform, rotation.to_matrix()).tolist()
-        self.assertEqual(composed_transform.affine_transform, expected_matrix)
+        assert composed_transform.affine_transform == expected_matrix
 
     def test_compose_with_affine_and_scale(self):
         """Test compose method with an Affine transform and a Scale"""
@@ -201,7 +200,7 @@ class TestAffineWithAffineTransforms(unittest.TestCase):
         scale = Scale(scale=[2, 3, 4])
         composed_transform = Affine.compose([affine, scale])
         expected_matrix = np.matmul(affine.affine_transform, scale.to_matrix()).tolist()
-        self.assertEqual(composed_transform.affine_transform, expected_matrix)
+        assert composed_transform.affine_transform == expected_matrix
 
     def test_compose_with_multiple_affine_transforms(self):
         """Test compose method with multiple Affine transforms"""
@@ -213,73 +212,72 @@ class TestAffineWithAffineTransforms(unittest.TestCase):
         )
         composed_transform = Affine.compose([affine1, affine2])
         expected_matrix = np.matmul(affine1.affine_transform, affine2.affine_transform).tolist()
-        self.assertEqual(composed_transform.affine_transform, expected_matrix)
+        assert composed_transform.affine_transform == expected_matrix
 
 
-class TestTranslationFrame(unittest.TestCase):
+class TestTranslationFrame:
     """Tests for Translation frame field"""
 
-    def setUp(self):
+    def setup_method(self):
         """Set up for tests"""
         warnings.simplefilter("ignore", DeprecationWarning)
 
-    def tearDown(self):
+    def teardown_method(self):
         """Tear down after tests"""
         warnings.resetwarnings()
 
     def test_default_frame_is_global(self):
         """Test that the default frame is global"""
         t = Translation(translation=[1, 2, 3])
-        self.assertEqual(t.reference_coordinate_system, ReferenceCoordinateSystem.GLOBAL)
+        assert t.reference_coordinate_system == ReferenceCoordinateSystem.GLOBAL
 
     def test_local_frame(self):
         """Test that local frame is stored correctly"""
         t = Translation(translation=[1, 2, 3], reference_coordinate_system=ReferenceCoordinateSystem.LOCAL)
-        self.assertEqual(t.reference_coordinate_system, ReferenceCoordinateSystem.LOCAL)
+        assert t.reference_coordinate_system == ReferenceCoordinateSystem.LOCAL
 
     def test_matrix_unaffected_by_frame(self):
         """Test that the matrix output is the same regardless of frame"""
         t_global = Translation(translation=[1, 2, 3], reference_coordinate_system=ReferenceCoordinateSystem.GLOBAL)
         t_local = Translation(translation=[1, 2, 3], reference_coordinate_system=ReferenceCoordinateSystem.LOCAL)
-        self.assertEqual(t_global.to_matrix(), t_local.to_matrix())
+        assert t_global.to_matrix() == t_local.to_matrix()
 
 
-class TestRotationNewFields(unittest.TestCase):
+class TestRotationNewFields:
     """Tests for new Rotation fields"""
 
-    def setUp(self):
+    def setup_method(self):
         """Set up for tests"""
         warnings.simplefilter("ignore", DeprecationWarning)
 
-    def tearDown(self):
+    def teardown_method(self):
         """Tear down after tests"""
         warnings.resetwarnings()
 
     def test_default_fields(self):
         """Test that default field values are correct"""
         r = Rotation(angles=[45, 0, 0])
-        self.assertEqual(r.reference_coordinate_system, ReferenceCoordinateSystem.GLOBAL)
-        self.assertEqual(r.rotation_direction, RotationDirection.RIGHT_HAND)
-        self.assertEqual(r.pivot, ReferenceCoordinateSystem.GLOBAL)
-        self.assertEqual(r.axis_order, "xyz")
+        assert r.reference_coordinate_system == ReferenceCoordinateSystem.GLOBAL
+        assert r.rotation_direction == RotationDirection.RIGHT_HAND
+        assert r.pivot == ReferenceCoordinateSystem.GLOBAL
+        assert r.axis_order == "xyz"
 
     def test_custom_axis_order(self):
         """Test rotation matrix with a custom axis order"""
         r = Rotation(angles=[45, 30, 15], axis_order="zyx")
-        self.assertEqual(r.axis_order, "zyx")
+        assert r.axis_order == "zyx"
         expected = R.from_euler("zyx", [45, 30, 15], degrees=True).as_matrix().tolist()
         expected = [row + [0.0] for row in expected] + [[0.0, 0.0, 0.0, 1.0]]
-        self.maxDiff = None
-        self.assertEqual(r.to_matrix(), expected)
+        assert r.to_matrix() == expected
 
     def test_axis_order_normalized_to_lowercase(self):
         """Test that axis_order is normalized to lowercase"""
         r = Rotation(angles=[45, 0, 0], axis_order="XYZ")
-        self.assertEqual(r.axis_order, "xyz")
+        assert r.axis_order == "xyz"
 
     def test_invalid_axis_order_raises(self):
         """Test that an invalid axis_order raises an exception"""
-        with self.assertRaises(Exception):
+        with pytest.raises(Exception):
             Rotation(angles=[45, 0, 0], axis_order="abc")
 
     def test_left_hand_rule_negates_angles(self):
@@ -289,9 +287,8 @@ class TestRotationNewFields(unittest.TestCase):
         r_left = Rotation(angles=angles, rotation_direction=RotationDirection.LEFT_HAND)
         expected_left = R.from_euler("xyz", [-30, -45, -60], degrees=True).as_matrix().tolist()
         expected_left = [row + [0.0] for row in expected_left] + [[0.0, 0.0, 0.0, 1.0]]
-        self.maxDiff = None
-        self.assertNotEqual(r_right.to_matrix(), r_left.to_matrix())
-        self.assertEqual(r_left.to_matrix(), expected_left)
+        assert r_right.to_matrix() != r_left.to_matrix()
+        assert r_left.to_matrix() == expected_left
 
     def test_local_frame_differs_from_global(self):
         """Test that local (intrinsic) frame produces a different matrix than global (extrinsic)"""
@@ -302,25 +299,24 @@ class TestRotationNewFields(unittest.TestCase):
         expected_local = R.from_euler("XYZ", angles, degrees=True).as_matrix().tolist()
         expected_global = [row + [0.0] for row in expected_global] + [[0.0, 0.0, 0.0, 1.0]]
         expected_local = [row + [0.0] for row in expected_local] + [[0.0, 0.0, 0.0, 1.0]]
-        self.maxDiff = None
-        self.assertEqual(r_global.to_matrix(), expected_global)
-        self.assertEqual(r_local.to_matrix(), expected_local)
-        self.assertNotEqual(r_global.to_matrix(), r_local.to_matrix())
+        assert r_global.to_matrix() == expected_global
+        assert r_local.to_matrix() == expected_local
+        assert r_global.to_matrix() != r_local.to_matrix()
 
     def test_pivot_field_stored(self):
         """Test that pivot field is stored correctly"""
         r = Rotation(angles=[0, 0, 90], pivot=ReferenceCoordinateSystem.LOCAL)
-        self.assertEqual(r.pivot, ReferenceCoordinateSystem.LOCAL)
+        assert r.pivot == ReferenceCoordinateSystem.LOCAL
 
 
-class TestCoordinateSystemHandedness(unittest.TestCase):
+class TestCoordinateSystemHandedness:
     """Tests for CoordinateSystem handedness field"""
 
-    def setUp(self):
+    def setup_method(self):
         """Set up for tests"""
         warnings.simplefilter("ignore", DeprecationWarning)
 
-    def tearDown(self):
+    def teardown_method(self):
         """Tear down after tests"""
         warnings.resetwarnings()
 
@@ -336,7 +332,7 @@ class TestCoordinateSystemHandedness(unittest.TestCase):
                 Axis(name=AxisName.SI, direction=Direction.SI),
             ],
         )
-        self.assertIsNone(cs.handedness)
+        assert cs.handedness is None
 
     def test_right_handedness(self):
         """Test setting right handedness"""
@@ -351,7 +347,7 @@ class TestCoordinateSystemHandedness(unittest.TestCase):
                 Axis(name=AxisName.SI, direction=Direction.SI),
             ],
         )
-        self.assertEqual(cs.handedness, Handedness.RIGHT)
+        assert cs.handedness == Handedness.RIGHT
 
     def test_left_handedness(self):
         """Test setting left handedness"""
@@ -366,7 +362,7 @@ class TestCoordinateSystemHandedness(unittest.TestCase):
                 Axis(name=AxisName.SI, direction=Direction.SI),
             ],
         )
-        self.assertEqual(cs.handedness, Handedness.LEFT)
+        assert cs.handedness == Handedness.LEFT
 
     def test_compose_with_affine_and_other_transforms(self):
         """Test compose method with an Affine transform and other transforms"""
@@ -381,7 +377,7 @@ class TestCoordinateSystemHandedness(unittest.TestCase):
             affine.affine_transform,
             np.matmul(translation.to_matrix(), np.matmul(rotation.to_matrix(), scale.to_matrix())),
         ).tolist()
-        self.assertEqual(composed_transform.affine_transform, expected_matrix)
+        assert composed_transform.affine_transform == expected_matrix
 
     def test_compose_invalid_sizes(self):
         """Raise error when composing matrices of different sizes"""
@@ -391,12 +387,12 @@ class TestCoordinateSystemHandedness(unittest.TestCase):
         )
         scale = Scale(scale=[2, 3])
         affine_transform = Affine(affine_transform=[])
-        with self.assertRaises(ValueError) as context:
+        with pytest.raises(ValueError) as context:
             affine_transform.compose([rotation, translation, scale])
-        self.assertIn("All transforms must be the same size", str(context.exception))
+        assert "All transforms must be the same size" in str(context.value)
 
 
-class TestMultiplyMatrix(unittest.TestCase):
+class TestMultiplyMatrix:
     """Tests for the multiply_matrix function"""
 
     def test_multiply_identity_matrix(self):
@@ -404,34 +400,34 @@ class TestMultiplyMatrix(unittest.TestCase):
         matrix1 = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
         matrix2 = [[5, 6, 7], [8, 9, 10], [11, 12, 13]]
         expected_result = [[5, 6, 7], [8, 9, 10], [11, 12, 13]]
-        self.assertEqual(np.matmul(matrix1, matrix2).tolist(), expected_result)
+        assert np.matmul(matrix1, matrix2).tolist() == expected_result
 
     def test_multiply_zero_matrix(self):
         """Test multiplying with zero matrix"""
         matrix1 = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
         matrix2 = [[5, 6, 7], [8, 9, 10], [11, 12, 13]]
         expected_result = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-        self.assertEqual(np.matmul(matrix1, matrix2).tolist(), expected_result)
+        assert np.matmul(matrix1, matrix2).tolist() == expected_result
 
     def test_multiply_non_square_matrix(self):
         """Test multiplying non-square matrices"""
         matrix1 = [[1, 2, 3], [4, 5, 6]]
         matrix2 = [[7, 8], [9, 10], [11, 12]]
         expected_result = [[58, 64], [139, 154]]
-        self.assertEqual(np.matmul(matrix1, matrix2).tolist(), expected_result)
+        assert np.matmul(matrix1, matrix2).tolist() == expected_result
 
     def test_multiply_varied_size(self):
         """Test multiplying incompatible matrices"""
         matrix1 = [[1, 2], [3, 4]]
         matrix2 = [[5, 6, 7], [8, 9, 10]]
         expected_result = [[21, 24, 27], [47, 54, 61]]
-        self.assertEqual(np.matmul(matrix1, matrix2).tolist(), expected_result)
+        assert np.matmul(matrix1, matrix2).tolist() == expected_result
 
 
-class TestAtlas(unittest.TestCase):
+class TestAtlas:
     """Tests for the Atlas class"""
 
-    def setUp(self):
+    def setup_method(self):
         """Set up pieces to use for testing"""
         self.axes = [
             Axis(name=AxisName.X, direction=Direction.LR),
@@ -459,28 +455,28 @@ class TestAtlas(unittest.TestCase):
             axes=axes,
             origin=Origin.BREGMA,
         )
-        self.assertIsNotNone(atlas)
+        assert atlas is not None
 
 
-class TestDeprecationWarnings(unittest.TestCase):
+class TestDeprecationWarnings:
     """Tests that deprecation warnings are raised"""
 
     def test_scale_to_matrix_warns(self):
         """Test that Scale.to_matrix raises a DeprecationWarning"""
         scale = Scale(scale=[2, 3, 4])
-        with self.assertWarns(DeprecationWarning):
+        with pytest.warns(DeprecationWarning):
             scale.to_matrix()
 
     def test_translation_to_matrix_warns(self):
         """Test that Translation.to_matrix raises a DeprecationWarning"""
         translation = Translation(translation=[1, 2, 3])
-        with self.assertWarns(DeprecationWarning):
+        with pytest.warns(DeprecationWarning):
             translation.to_matrix()
 
     def test_rotation_to_matrix_warns(self):
         """Test that Rotation.to_matrix raises a DeprecationWarning"""
         rotation = Rotation(angles=[90, 0, 0])
-        with self.assertWarns(DeprecationWarning):
+        with pytest.warns(DeprecationWarning):
             rotation.to_matrix()
 
     def test_affine_to_matrix_warns(self):
@@ -488,18 +484,18 @@ class TestDeprecationWarnings(unittest.TestCase):
         affine = Affine(
             affine_transform=[[1.0, 0.0, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0], [0.0, 0.0, 1.0, 0.0], [0.0, 0.0, 0.0, 1.0]]
         )
-        with self.assertWarns(DeprecationWarning):
+        with pytest.warns(DeprecationWarning):
             affine.to_matrix()
 
     def test_affine_compose_warns(self):
         """Test that Affine.compose raises a DeprecationWarning"""
         translation = Translation(translation=[1, 2, 3])
-        with self.assertWarns(DeprecationWarning):
+        with pytest.warns(DeprecationWarning):
             Affine.compose([translation])
 
     def test_depth_axis_warns(self):
         """Test that constructing a CoordinateSystem with a DEPTH axis raises a DeprecationWarning"""
-        with self.assertWarns(DeprecationWarning):
+        with pytest.warns(DeprecationWarning):
             CoordinateSystem(
                 name="TEST_DEPTH",
                 origin=Origin.BREGMA,
@@ -527,13 +523,14 @@ class TestDeprecationWarnings(unittest.TestCase):
                 ],
             )
         depth_warnings = [x for x in w if "DEPTH" in str(x.message)]
-        self.assertEqual(len(depth_warnings), 0)
+        assert len(depth_warnings) == 0
 
 
-class TestCoordinateSystemMouseAnatomyOrigin(unittest.TestCase):
+class TestCoordinateSystemMouseAnatomyOrigin:
     """Tests for CoordinateSystem with MouseAnatomyModel as origin"""
 
-    def test_mouse_anatomy_origin(self):
+    @pytest.mark.online
+    def test_mouse_anatomy_origin(self):  # pragma: no cover
         """Test that CoordinateSystem accepts a MouseAnatomyModel as origin"""
         from aind_data_schema_models.mouse_anatomy import MouseAnatomy
 
@@ -547,11 +544,7 @@ class TestCoordinateSystemMouseAnatomyOrigin(unittest.TestCase):
                 Axis(name=AxisName.SI, direction=Direction.SI),
             ],
         )
-        self.assertEqual(cs.origin, MouseAnatomy.FRONTONASAL_SUTURE)
+        assert cs.origin == MouseAnatomy.FRONTONASAL_SUTURE
 
         cs_roundtrip = CoordinateSystem.model_validate(cs.model_dump())
-        self.assertEqual(cs_roundtrip.origin, MouseAnatomy.FRONTONASAL_SUTURE)
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert cs_roundtrip.origin == MouseAnatomy.FRONTONASAL_SUTURE

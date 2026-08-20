@@ -20,17 +20,10 @@ cd biodata-schema
 git checkout -b my-new-feature-branch
 ```
 
-It's recommended you work in an isolated virtual environment.
+Install the development environment with [uv](https://docs.astral.sh/uv/):
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # (unix)
-```
-
-Then run the following command in the checked out directory.
-
-```bash
-pip install -e .[dev]
+uv sync --dev
 ```
 
 ### Upgrades
@@ -45,10 +38,10 @@ Documentation is automatically built when you open a PR into the biodata-schema 
 
 To generate the source files for the documentation and model class links, run:
 
-```python
-python src/aind_data_schema/utils/docs/model_generator.py
-python src/aind_data_schema/utils/docs/registries_generator.py
-python src/aind_data_schema/utils/docs/doc_generator.py
+```bash
+uv run python src/aind_data_schema/utils/docs/model_generator.py
+uv run python src/aind_data_schema/utils/docs/registries_generator.py
+uv run python src/aind_data_schema/utils/docs/doc_generator.py
 ```
 
 The front page embeds an interactive React Flow diagram of the `Metadata` schema (`diagram-app/`). Build its JS/CSS bundle once before building the docs (it's git-ignored and only needs rebuilding when `diagram-app/` changes):
@@ -61,7 +54,7 @@ npm --prefix diagram-app run build
 Then to create the documentation html files, run:
 
 ```bash
-sphinx-build -b html docs/source/ docs/build/html
+uv run sphinx-build -b html docs/source/ docs/build/html
 ```
 
 This also (re)generates `docs/source/_static/schema-diagram/schema_diagram.json`, the data the diagram reads at runtime, from the current schema classes.
@@ -77,65 +70,43 @@ Testing is required to open a PR in this repository to ensure robustness and rel
   - For every method in a module, there should be a corresponding unit test.
   - For complicated functions, keep unit test functions small and interpretable.
 - **Test Coverage:** Aim for comprehensive test coverage to validate all critical paths and edge cases within the module. To open a PR, you will need at least 80% coverage. 
-  - Please test your changes using the **coverage** library, which will run the tests and log a coverage report:
+  - Please test your changes using pytest and coverage:
 
     ```bash
-    coverage run -m unittest discover && coverage report
+    uv run pytest --cov=aind_data_schema --cov=tests --cov-report=term-missing
     ```
 
     To open the coverage report in a browser, you can run
 
     ```bash
-    coverage html
+    uv run coverage html
     ```
     and find the report in the htmlcov/index.html.
 
-To run a single unit test file you can use
+To run a single test file you can use
 
 ```bash
-coverage run -m unittest tests/your_test.py
+uv run pytest tests/your_test.py
+```
+
+Tests that require external services are marked `online` and can be run explicitly with:
+
+```bash
+uv run pytest --run-online
 ```
 
 ### Linters
 
-There are several libraries used to run linters and check documentation. We've included these in the development package. You can run them as described [here](https://github.com/AllenNeuralDynamics/aind-metadata-mapper/blob/main/README.md#linters-and-testing).
+Run the test suite and Ruff checks with:
 
-- To run tests locally, navigate to the biodata-schema directory in terminal and run (this will not run any on-line only tests):
+```bash
+uv run pytest
+uv run ruff check .
+uv run ruff format --check .
+uv run codespell src examples tests
+```
 
-  ```
-  python -m unittest
-  ```
-- To test any of the following modules, conda/pip install the relevant package (interrogate, flake8, black, isort), navigate to relevant directory, and run any of the following commands in place of [command]:
-
-  ```
-  [command] -v . 
-  ```
-
-- Use **interrogate** to check that modules, methods, etc. have been documented thoroughly:
-
-  ```
-  interrogate .
-  ```
-  For more information you can run
-  ```interrogate --verbose .```
-
-- Use **flake8** to check that code is up to standards (no unused imports, etc.):
-
-  ```
-  flake8 .
-  ```
-
-- Use **black** to automatically format the code into PEP standards:
-
-  ```
-  black .
-  ```
-
-- Use **isort** to automatically sort import statements:
-  
-  ```
-  isort .
-  ```
+Use `uv run ruff format .` to apply Ruff's formatting.
 **NOTE**: Please note that these linters are automatically run in github actions when a PR is opened. These linters must pass for a PR to merge. 
 
 ### Units

@@ -1,8 +1,8 @@
 """test Imaging"""
 
-import unittest
 from datetime import datetime, timezone
 
+import pytest
 from aind_data_schema_models.modalities import Modality
 from aind_data_schema_models.organizations import Organization
 from pydantic import ValidationError
@@ -17,19 +17,19 @@ from aind_data_schema.core.processing import DataProcess, ProcessName, ProcessSt
 from examples.exaspim_acquisition import acq
 
 
-class ImagingTests(unittest.TestCase):
+class TestImaging:
     """test imaging schemas"""
 
     def test_acquisition_constructor(self):
         """testing Acquisition constructor"""
-        with self.assertRaises(ValidationError):
+        with pytest.raises(ValidationError):
             Acquisition()
 
-        self.assertIsNotNone(acq)
+        assert acq is not None
 
     def test_instrument_constructor(self):
         """testing Instrument constructor"""
-        with self.assertRaises(ValidationError):
+        with pytest.raises(ValidationError):
             Instrument()
 
         laser = Laser(
@@ -66,11 +66,11 @@ class ImagingTests(unittest.TestCase):
             components=[objective, laser, scan_stage],
         )
 
-        self.assertIsNotNone(i)
+        assert i is not None
 
     def test_modality_spim_requires_components(self):
         """testing Modality SPIM requires components"""
-        with self.assertRaises(ValidationError) as e2:
+        with pytest.raises(ValidationError) as e2:
             Instrument(
                 instrument_id="room_exaSPIM1-1_20231004",
                 modalities=[Modality.SPIM],
@@ -79,7 +79,7 @@ class ImagingTests(unittest.TestCase):
                 components=[],
             )
 
-        self.assertIn("modality 'SPIM' requires at least one device", repr(e2.exception))
+        assert "modality 'SPIM' requires at least one device" in repr(e2.value)
 
     def test_registration(self):
         """test the tile models"""
@@ -120,8 +120,4 @@ class ImagingTests(unittest.TestCase):
             ),
         )
 
-        self.assertIsNotNone(t)
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert t is not None

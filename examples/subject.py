@@ -6,8 +6,8 @@ from datetime import datetime, timezone
 from aind_data_schema_models.organizations import Organization
 from aind_data_schema_models.species import Species, Strain
 
+from aind_data_schema.components.subjects import BreedingInfo, Housing, MouseSubject, Sex
 from aind_data_schema.core.subject import Subject
-from aind_data_schema.components.subjects import BreedingInfo, Housing, Sex, MouseSubject
 
 # If a timezone isn't specified, the timezone of the computer running this
 # script will be used as default

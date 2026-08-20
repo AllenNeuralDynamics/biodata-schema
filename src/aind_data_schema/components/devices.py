@@ -1,11 +1,11 @@
 """schema for various Devices"""
 
+import logging
+import warnings
 from datetime import date
 from decimal import Decimal
 from enum import Enum
-import logging
 from typing import List, Literal, Optional
-import warnings
 
 from aind_data_schema_models.coordinates import AnatomicalRelative
 from aind_data_schema_models.devices import (

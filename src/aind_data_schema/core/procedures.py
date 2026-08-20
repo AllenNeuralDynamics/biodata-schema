@@ -11,10 +11,10 @@ from aind_data_schema.components.injection_procedures import Injection
 from aind_data_schema.components.specimen_procedures import SpecimenProcedure
 from aind_data_schema.components.subject_procedures import (
     GenericSubjectProcedure,
+    NonSurgicalInjection,
     Surgery,
     TrainingProtocol,
     WaterRestriction,
-    NonSurgicalInjection,
 )
 from aind_data_schema.utils.merge import merge_coordinate_systems, merge_notes
 from aind_data_schema.utils.validators import subject_specimen_id_compatibility

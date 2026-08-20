@@ -3,17 +3,17 @@
 import argparse
 from datetime import date, datetime, timezone
 
+from aind_data_schema_models.coordinates import AnatomicalRelative
 from aind_data_schema_models.modalities import Modality
 from aind_data_schema_models.units import FrequencyUnit, PowerUnit
 
 import aind_data_schema.components.devices as d
 import aind_data_schema.core.instrument as r
 from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.identifiers import Software
 from aind_data_schema.components.coordinates import CoordinateSystemLibrary
-from aind_data_schema.components.measurements import Calibration
-from aind_data_schema_models.coordinates import AnatomicalRelative
 from aind_data_schema.components.devices import Computer
+from aind_data_schema.components.identifiers import Software
+from aind_data_schema.components.measurements import Calibration
 
 bonsai_software = Software(name="Bonsai", version="2.5")
 

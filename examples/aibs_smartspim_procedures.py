@@ -5,10 +5,10 @@ from datetime import date
 
 from aind_data_schema_models.organizations import Organization
 
-from aind_data_schema.core import procedures
 from aind_data_schema.components.coordinates import CoordinateSystemLibrary
 from aind_data_schema.components.reagent import Reagent
 from aind_data_schema.components.subject_procedures import Perfusion
+from aind_data_schema.core import procedures
 
 experimenters = ["John Smith"]
 specimen_id = "651286"

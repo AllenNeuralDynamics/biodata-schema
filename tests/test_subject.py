@@ -1,9 +1,9 @@
 """tests for Subject"""
 
 import datetime
-import unittest
 
 import pydantic
+import pytest
 from aind_data_schema_models.organizations import Organization
 from aind_data_schema_models.pid_names import PIDName
 from aind_data_schema_models.registries import Registry
@@ -13,13 +13,13 @@ from aind_data_schema.components.subjects import BreedingInfo, Housing, LightCyc
 from aind_data_schema.core.subject import Subject
 
 
-class SubjectTests(unittest.TestCase):
+class TestSubject:
     """tests for subject"""
 
     def test_constructors(self):
         """try building Subjects"""
 
-        with self.assertRaises(pydantic.ValidationError):
+        with pytest.raises(pydantic.ValidationError):
             Subject()
 
         now = datetime.datetime.now()
@@ -53,13 +53,13 @@ class SubjectTests(unittest.TestCase):
 
         Subject.model_validate_json(s.model_dump_json())
 
-        self.assertIsNotNone(s)
-        self.assertIsNone(s.subject_details.breeding_info.breeding_group)
+        assert s is not None
+        assert s.subject_details.breeding_info.breeding_group is None
 
     def test_breeding_info_deprecated_field(self):
         """test that using deprecated field raises warning"""
 
-        with self.assertWarns(DeprecationWarning):
+        with pytest.warns(DeprecationWarning):
             BreedingInfo(
                 breeding_group="Emx1-IRES-Cre(ND)",
                 maternal_id="546543",
@@ -67,7 +67,3 @@ class SubjectTests(unittest.TestCase):
                 paternal_id="232323",
                 paternal_genotype="Ai93(TITL-GCaMP6f)/wt",
             )
-
-
-if __name__ == "__main__":
-    unittest.main()

@@ -3,24 +3,24 @@
 import argparse
 from datetime import date
 
+from aind_data_schema_models.modalities import Modality
 from aind_data_schema_models.organizations import Organization
 
+from aind_data_schema.components.connections import Connection
+from aind_data_schema.components.coordinates import CoordinateSystemLibrary
 from aind_data_schema.components.devices import (
+    Device,
     Filter,
     Laser,
     MotorizedStage,
     ScanningStage,
-    Device,
 )
-from aind_data_schema.components.connections import Connection
 from aind_data_schema.core.instrument import (
     Detector,
     Instrument,
-    Objective,
     Microscope,
+    Objective,
 )
-from aind_data_schema_models.modalities import Modality
-from aind_data_schema.components.coordinates import CoordinateSystemLibrary
 
 objective_1 = Objective(
     name="TLX Objective 1",

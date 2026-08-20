@@ -1,30 +1,30 @@
 """example ExaSPIM acquisition"""
 
+import argparse
 from datetime import datetime
 from zoneinfo import ZoneInfo
-import argparse
 
+from aind_data_schema_models.modalities import Modality
 from aind_data_schema_models.organizations import Organization
 from aind_data_schema_models.pid_names import PIDName
 from aind_data_schema_models.registries import Registry
 from aind_data_schema_models.units import PowerUnit, SizeUnit
-from aind_data_schema_models.modalities import Modality
 
 from aind_data_schema.components.configs import (
     Channel,
-    DeviceConfig,
-    LaserConfig,
-    ImageSPIM,
-    Immersion,
-    ImagingConfig,
     DetectorConfig,
+    DeviceConfig,
+    ImageSPIM,
+    ImagingConfig,
+    Immersion,
+    LaserConfig,
     SampleChamberConfig,
 )
 from aind_data_schema.components.coordinates import CoordinateSystemLibrary, Scale, Translation
+from aind_data_schema.components.measurements import Calibration, Maintenance
 from aind_data_schema.components.reagent import Reagent
 from aind_data_schema.components.wrappers import AssetPath
 from aind_data_schema.core.acquisition import Acquisition, DataStream
-from aind_data_schema.components.measurements import Calibration, Maintenance
 
 # If a timezone isn't specified, the timezone of the computer running this
 # script will be used as default

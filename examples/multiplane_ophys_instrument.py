@@ -3,21 +3,23 @@
 import argparse
 from datetime import date
 
+from aind_data_schema_models.coordinates import AnatomicalRelative
+from aind_data_schema_models.devices import CameraTarget
 from aind_data_schema_models.modalities import Modality
 from aind_data_schema_models.organizations import Organization
 from aind_data_schema_models.units import FrequencyUnit, SizeUnit
-from aind_data_schema_models.devices import CameraTarget
-from aind_data_schema_models.coordinates import AnatomicalRelative
 
+from aind_data_schema.components.connections import Connection
 from aind_data_schema.components.coordinates import (
-    CoordinateSystemLibrary,
     Affine,
+    CoordinateSystemLibrary,
     Translation,
 )
 from aind_data_schema.components.devices import (
     BinMode,
     Camera,
     CameraAssembly,
+    Computer,
     Cooling,
     DAQChannel,
     DaqChannelType,
@@ -29,12 +31,10 @@ from aind_data_schema.components.devices import (
     Laser,
     Lens,
     Monitor,
+    Objective,
     PockelsCell,
-    Computer,
 )
-from aind_data_schema.components.devices import Objective
 from aind_data_schema.components.identifiers import Software
-from aind_data_schema.components.connections import Connection
 from aind_data_schema.core.instrument import Instrument
 
 instrument = Instrument(

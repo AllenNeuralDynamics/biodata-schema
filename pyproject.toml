@@ -21,36 +21,30 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = [
-    'biodata-schema[linters]',
-    'pydantic>=2.7, !=2.9.0, !=2.9.1',
+transforms = [
     'scipy',
-    'dictdiffer',
-    'semver',
-    'argparse',
 ]
 
-linters = [
+[dependency-groups]
+dev = [
+    'argparse',
     'codespell',
-    'black',
-    'coverage',
-    'flake8',
-    'interrogate',
-    'isort',
-    'aind-flake8-extensions>=0.6,<0.7'
+    'dictdiffer',
+    'pydantic>=2.7, !=2.9.0, !=2.9.1',
+    'pytest>=8.3',
+    'pytest-cov>=6',
+    'ruff>=0.11',
+    'scipy',
+    'semver',
 ]
 
 docs = [
-    'sphinx',
-    'sphinx-jinja',
-    'furo',
     'autodoc_pydantic',
+    'furo',
     'myst-parser',
     'openpyxl',
-]
-
-transforms = [
-    'scipy',
+    'sphinx',
+    'sphinx-jinja',
 ]
 
 [tool.setuptools.packages.find]
@@ -59,26 +53,6 @@ where = ["src"]
 [tool.setuptools.dynamic]
 version = {attr = "aind_data_schema.__version__"}
 readme = {file = ["README.md"]}
-
-[tool.black]
-line-length = 120
-exclude = '''
-
-(
-  /(
-      \.eggs         # exclude a few common directories in the
-    | \.git          # root of the project
-    | \.hg
-    | \.mypy_cache
-    | \.tox
-    | \.venv
-    | _build
-    | build
-    | dist
-  )/
-  | .gitignore
-)
-'''
 
 [tool.coverage.run]
 omit = [
@@ -93,14 +67,22 @@ source = ["aind_data_schema", "tests"]
 exclude_lines = ["if __name__ == .__main__.:", "pragma: no cover"]
 fail_under = 100
 
-[tool.isort]
-line_length = 120
-profile = "black"
-
-[tool.interrogate]
-exclude = ["setup.py", "docs", "build"]
-fail-under = 100
-
 [tool.codespell]
 skip = '.git,*.pdf,*.svg'
-ignore-words-list = 'nd,assertIn,DeviceC'
+ignore-words-list = 'nd,DeviceC'
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+strict_config = true
+strict_markers = true
+markers = ["online: tests requiring external services"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["C901", "E4", "E7", "E9", "F", "I"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10

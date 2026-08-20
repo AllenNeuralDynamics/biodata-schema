@@ -3,24 +3,29 @@
 import argparse
 from datetime import date, datetime, timezone
 
+from aind_data_schema_models.coordinates import AnatomicalRelative
+from aind_data_schema_models.devices import CameraTarget
 from aind_data_schema_models.harp_types import HarpDeviceType
 from aind_data_schema_models.modalities import Modality
 from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.units import FrequencyUnit, SizeUnit
+from aind_data_schema_models.units import FrequencyUnit, PowerUnit, SizeUnit
+
+from aind_data_schema.components.connections import Connection
 from aind_data_schema.components.coordinates import (
-    CoordinateSystemLibrary,
     Affine,
+    CoordinateSystemLibrary,
     Translation,
 )
-
 from aind_data_schema.components.devices import (
     Camera,
     CameraAssembly,
+    Computer,
     DAQChannel,
     Device,
     Disc,
     EphysAssembly,
     EphysProbe,
+    FiberPatchCord,
     Filter,
     HarpDevice,
     Laser,
@@ -29,16 +34,10 @@ from aind_data_schema.components.devices import (
     Manipulator,
     Monitor,
     NeuropixelsBasestation,
-    FiberPatchCord,
     ProbePort,
-    Computer,
 )
 from aind_data_schema.components.measurements import Calibration
-from aind_data_schema.components.connections import Connection
 from aind_data_schema.core.instrument import Instrument
-from aind_data_schema_models.units import PowerUnit
-from aind_data_schema_models.coordinates import AnatomicalRelative
-from aind_data_schema_models.devices import CameraTarget
 
 # Describes an instrument with running wheel, 2 behavior cameras, one Harp Behavior board,
 # one dual-color laser module, one stick microscope, and 2 Neuropixels probes

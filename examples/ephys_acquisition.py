@@ -4,30 +4,30 @@ import argparse
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
+from aind_data_schema_models.brain_atlas import CCFv3
 from aind_data_schema_models.modalities import Modality
+from aind_data_schema_models.stimulus_modality import StimulusModality
 
-from aind_data_schema.components.identifiers import Software, Code
-from aind_data_schema.core.acquisition import (
-    Acquisition,
-    StimulusEpoch,
-    DataStream,
-    AcquisitionSubjectDetails,
-)
 from aind_data_schema.components.configs import (
-    ManipulatorConfig,
     EphysAssemblyConfig,
+    ManipulatorConfig,
     ProbeConfig,
 )
 from aind_data_schema.components.coordinates import (
-    Translation,
-    Rotation,
     AtlasCoordinate,
     AtlasLibrary,
     CoordinateSystemLibrary,
+    Rotation,
+    Translation,
 )
+from aind_data_schema.components.identifiers import Code, Software
 from aind_data_schema.components.stimulus import VisualStimulation
-from aind_data_schema_models.brain_atlas import CCFv3
-from aind_data_schema_models.stimulus_modality import StimulusModality
+from aind_data_schema.core.acquisition import (
+    Acquisition,
+    AcquisitionSubjectDetails,
+    DataStream,
+    StimulusEpoch,
+)
 
 bonsai_software = Software(name="Bonsai", version="2.7")
 

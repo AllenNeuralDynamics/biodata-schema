@@ -15,18 +15,20 @@ for _mod in core.__loader__.get_resource_reader().contents():
 
 _SKIP_FIELDS = {"object_type", "describedBy", "schema_version"}
 
-_LATEX_SPECIAL = str.maketrans({
-    "&": r"\&",
-    "%": r"\%",
-    "$": r"\$",
-    "#": r"\#",
-    "_": r"\_",
-    "{": r"\{",
-    "}": r"\}",
-    "~": r"\textasciitilde{}",
-    "^": r"\textasciicircum{}",
-    "\\": r"\textbackslash{}",
-})
+_LATEX_SPECIAL = str.maketrans(
+    {
+        "&": r"\&",
+        "%": r"\%",
+        "$": r"\$",
+        "#": r"\#",
+        "_": r"\_",
+        "{": r"\{",
+        "}": r"\}",
+        "~": r"\textasciitilde{}",
+        "^": r"\textasciicircum{}",
+        "\\": r"\textbackslash{}",
+    }
+)
 
 
 def _latex_escape(text: str) -> str:
@@ -186,9 +188,7 @@ def _append_fields(
             type_escaped = _latex_escape(type_str)
             detail_escaped = _latex_escape(detail)
             req_escaped = _latex_escape(req_marker)
-            lines.append(
-                f"{indent}\\item \\texttt{{{fn_escaped}}} ({type_escaped}{req_escaped}) --- {detail_escaped}"
-            )
+            lines.append(f"{indent}\\item \\texttt{{{fn_escaped}}} ({type_escaped}{req_escaped}) --- {detail_escaped}")
         else:
             lines.append(f"{indent}- `{field_name}` ({type_str}{req_marker}) — {detail}")
 

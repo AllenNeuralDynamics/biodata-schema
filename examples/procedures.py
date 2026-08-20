@@ -3,6 +3,17 @@
 import argparse
 from datetime import datetime, timezone
 
+from aind_data_schema_models.brain_atlas import CCFv3
+from aind_data_schema_models.units import SizeUnit, VolumeUnit
+
+from aind_data_schema.components.configs import ProbeConfig
+from aind_data_schema.components.coordinates import (
+    CoordinateSystemLibrary,
+    Origin,
+    Rotation,
+    Translation,
+)
+from aind_data_schema.components.devices import EphysProbe
 from aind_data_schema.components.injection_procedures import (
     InjectionDynamics,
     InjectionProfile,
@@ -20,16 +31,6 @@ from aind_data_schema.components.surgery_procedures import (
 from aind_data_schema.core.procedures import (
     Procedures,
     Surgery,
-)
-from aind_data_schema.components.devices import EphysProbe
-from aind_data_schema.components.configs import ProbeConfig
-from aind_data_schema_models.brain_atlas import CCFv3
-from aind_data_schema_models.units import VolumeUnit, SizeUnit
-from aind_data_schema.components.coordinates import (
-    Translation,
-    Rotation,
-    Origin,
-    CoordinateSystemLibrary,
 )
 
 # If a timezone isn't specified, the timezone of the computer running this

@@ -3,41 +3,41 @@
 import argparse
 from datetime import datetime
 
-from aind_data_schema_models.modalities import Modality
+from aind_data_schema_models.coordinates import AnatomicalRelative
+from aind_data_schema_models.devices import CameraTarget, DetectorType, FilterType
 from aind_data_schema_models.harp_types import HarpDeviceType
+from aind_data_schema_models.modalities import Modality
 from aind_data_schema_models.organizations import Organization
 from aind_data_schema_models.units import SizeUnit, SpeedUnit
-from aind_data_schema_models.devices import CameraTarget, FilterType, DetectorType
-from aind_data_schema_models.coordinates import AnatomicalRelative
 
-from aind_data_schema.core.instrument import Instrument
+from aind_data_schema.components.connections import Connection
+from aind_data_schema.components.coordinates import (
+    CoordinateSystemLibrary,
+)
 from aind_data_schema.components.devices import (
     Camera,
     CameraAssembly,
-    HarpDevice,
+    Computer,
     Cooling,
     DAQChannel,
     DaqChannelType,
     DAQDevice,
     DataInterface,
     Detector,
+    Device,
+    DigitalMicromirrorDevice,
     Disc,
     Filter,
+    HarpDevice,
     Laser,
     Lens,
-    Monitor,
-    PockelsCell,
-    Computer,
-    Objective,
-    Device,
-    PolygonalScanner,
-    DigitalMicromirrorDevice,
     Microscope,
+    Monitor,
+    Objective,
+    PockelsCell,
+    PolygonalScanner,
 )
-from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.coordinates import (
-    CoordinateSystemLibrary,
-)
+from aind_data_schema.core.instrument import Instrument
 
 computer_names = {
     "VCO": "w10dt714710",
@@ -246,7 +246,7 @@ dmds_line_shear_anchors = [[3.88924813, -3.36656499], [2.79574895, -3.24933243]]
 dmds = [None] * 2
 for dmd_idx in range(2):
     dmds[dmd_idx] = DigitalMicromirrorDevice(
-        name=f"DMD{dmd_idx+1}",
+        name=f"DMD{dmd_idx + 1}",
         max_dmd_patterns=dmds_max_patterns[dmd_idx],
         invert_pixel_values=dmds_invert[dmd_idx],
         motion_padding_x=dmds_motion_padding_x[dmd_idx],

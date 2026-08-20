@@ -9,20 +9,19 @@ from aind_data_schema_models.units import SizeUnit
 
 from aind_data_schema.components.coordinates import CoordinateSystemLibrary
 from aind_data_schema.components.devices import (
+    BinMode,
     Camera,
+    CameraChroma,
+    Cooling,
     DAQDevice,
+    DataInterface,
     Device,
     Filter,
     Laser,
     Microscope,
     Objective,
-    Cooling,
-    DataInterface,
-    CameraChroma,
-    BinMode
 )
 from aind_data_schema.core.instrument import Instrument
-
 
 objectives = [
     Objective(

@@ -25,7 +25,7 @@ special_cases = {
     "aind_data_schema.components.wrappers.AssetPath": "AssetPath",
     "aind_data_schema.base._GenericModel": "dict",
     "aind_data_schema_models.mouse_anatomy.MouseAnatomyModel": (
-        "[MouseAnatomyModel](aind_data_schema_models/external" ".md#mouseanatomymodel)"
+        "[MouseAnatomyModel](aind_data_schema_models/external.md#mouseanatomymodel)"
     ),
     "aind_data_schema_models.pid_names.PIDName": "{PIDName}",
 }
@@ -132,7 +132,7 @@ def _get_type_string_helper(tp, origin, args, **kwargs) -> str:
     if origin is list or origin is List:
         return f"List[{get_type_string(args[0])}]"
     if origin is dict or origin is Dict:
-        return f"Dict[{get_type_string(args[0])}," f" {get_type_string(args[1])}]"
+        return f"Dict[{get_type_string(args[0])}, {get_type_string(args[1])}]"
     union_type = getattr(__import__("typing"), "Union", None)
     if origin is union_type and len(args) == 2 and type(None) in args:
         non_none_type = next(arg for arg in args if arg is not type(None))

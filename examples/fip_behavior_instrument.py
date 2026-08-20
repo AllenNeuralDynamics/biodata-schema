@@ -5,41 +5,40 @@
 import argparse
 from datetime import date, datetime, timezone
 
+from aind_data_schema_models.coordinates import AnatomicalRelative
+from aind_data_schema_models.devices import CameraTarget
 from aind_data_schema_models.modalities import Modality
-from aind_data_schema_models.units import FrequencyUnit, SizeUnit, PowerUnit
+from aind_data_schema_models.units import FrequencyUnit, PowerUnit, SizeUnit
 
-from aind_data_schema.components.measurements import Calibration
-from aind_data_schema.components.devices import (
-    CameraAssembly,
-    Camera,
-    Organization,
-    Lens,
-    HarpDevice,
-    HarpDeviceType,
-    DAQChannel,
-    DaqChannelType,
-    LickSpoutAssembly,
-    LickSpout,
-    Device,
-    LickSensorType,
-    MotorizedStage,
-    FiberPatchCord,
-    LightEmittingDiode,
-    Detector,
-    Objective,
-    Filter,
-    Tube,
-    Computer,
-)
 from aind_data_schema.components.connections import Connection
-from aind_data_schema.core.instrument import Instrument
-from aind_data_schema.components.identifiers import Software
 from aind_data_schema.components.coordinates import (
     CoordinateSystemLibrary,
 )
-
-from aind_data_schema_models.coordinates import AnatomicalRelative
-from aind_data_schema_models.devices import CameraTarget
+from aind_data_schema.components.devices import (
+    Camera,
+    CameraAssembly,
+    Computer,
+    DAQChannel,
+    DaqChannelType,
+    Detector,
+    Device,
+    FiberPatchCord,
+    Filter,
+    HarpDevice,
+    HarpDeviceType,
+    Lens,
+    LickSensorType,
+    LickSpout,
+    LickSpoutAssembly,
+    LightEmittingDiode,
+    MotorizedStage,
+    Objective,
+    Organization,
+    Tube,
+)
+from aind_data_schema.components.identifiers import Software
+from aind_data_schema.components.measurements import Calibration
+from aind_data_schema.core.instrument import Instrument
 
 bonsai_software = Software(name="Bonsai", version="2.5")
 

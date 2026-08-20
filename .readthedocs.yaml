@@ -12,14 +12,12 @@ build:
     pre_build:
       - npm --prefix diagram-app ci
       - npm --prefix diagram-app run build
+    pre_install:
+      - python -m pip install uv
+      - uv sync --locked --group dev --group docs
 
 python:
-  install:
-    - method: pip
-      path: .
-      extra_requirements:
-        - dev
-        - docs
+  install: []
 
 sphinx:
   # Path to your Sphinx configuration file.

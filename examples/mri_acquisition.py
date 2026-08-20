@@ -2,21 +2,20 @@
 
 import argparse
 from datetime import datetime
-from zoneinfo import ZoneInfo
 from decimal import Decimal
+from zoneinfo import ZoneInfo
 
 from aind_data_schema_models.modalities import Modality
+from aind_data_schema_models.units import MagneticFieldUnit, SizeUnit, TimeUnit
 
-from aind_data_schema.components.coordinates import Affine, Scale, Translation, CoordinateSystemLibrary
+from aind_data_schema.components.configs import MRAcquisitionType, MRIScan, PulseSequenceType, SubjectPosition
+from aind_data_schema.components.coordinates import Affine, CoordinateSystemLibrary, Scale, Translation
 from aind_data_schema.components.devices import Scanner
 from aind_data_schema.core.acquisition import (
     Acquisition,
-    DataStream,
     AcquisitionSubjectDetails,
+    DataStream,
 )
-from aind_data_schema.components.configs import MRIScan, PulseSequenceType, MRAcquisitionType, SubjectPosition
-
-from aind_data_schema_models.units import TimeUnit, SizeUnit, MagneticFieldUnit
 
 mri_scanner = Scanner(
     name="Scanner 72",

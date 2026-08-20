@@ -4,30 +4,30 @@ import argparse
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
+from aind_data_schema_models.brain_atlas import CCFv3
 from aind_data_schema_models.modalities import Modality
-from aind_data_schema_models.units import PowerUnit, SizeUnit, FrequencyUnit, VolumeUnit
+from aind_data_schema_models.stimulus_modality import StimulusModality
+from aind_data_schema_models.units import FrequencyUnit, PowerUnit, SizeUnit, VolumeUnit
 
-from aind_data_schema.components.coordinates import Translation, Scale, CoordinateSystemLibrary
-from aind_data_schema.core.acquisition import (
-    Acquisition,
-    DataStream,
-    AcquisitionSubjectDetails,
-    StimulusEpoch,
-    PerformanceMetrics,
-)
 from aind_data_schema.components.configs import (
     Channel,
-    DetectorConfig,
-    LaserConfig,
-    TriggerType,
-    ImagingConfig,
     CoupledPlane,
+    DetectorConfig,
+    ImagingConfig,
+    LaserConfig,
     PlanarImage,
     SamplingStrategy,
+    TriggerType,
 )
+from aind_data_schema.components.coordinates import CoordinateSystemLibrary, Scale, Translation
 from aind_data_schema.components.identifiers import Code, Software
-from aind_data_schema_models.stimulus_modality import StimulusModality
-from aind_data_schema_models.brain_atlas import CCFv3
+from aind_data_schema.core.acquisition import (
+    Acquisition,
+    AcquisitionSubjectDetails,
+    DataStream,
+    PerformanceMetrics,
+    StimulusEpoch,
+)
 
 # If a timezone isn't specified, the timezone of the computer running this
 # script will be used as default

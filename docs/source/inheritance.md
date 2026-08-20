@@ -64,9 +64,7 @@ new_qc = QualityControl(
             modality=Modality.SPIM,
             stage=Stage.PROCESSING,
             value=42.5,
-            status_history=[
-                QCStatus(evaluator="Automated", status=Status.PASS, timestamp=datetime.now(timezone.utc))
-            ],
+            status_history=[QCStatus(evaluator="Automated", status=Status.PASS, timestamp=datetime.now(timezone.utc))],
             tags={"step": "fusing"},
         ),
     ],

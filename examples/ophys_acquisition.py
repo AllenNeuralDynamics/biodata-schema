@@ -6,13 +6,13 @@ from zoneinfo import ZoneInfo
 
 from aind_data_schema_models.modalities import Modality
 
+from aind_data_schema.components.configs import Channel, DetectorConfig, LaserConfig, PatchCordConfig
+from aind_data_schema.components.connections import Connection
 from aind_data_schema.core.acquisition import (
     Acquisition,
-    DataStream,
     AcquisitionSubjectDetails,
+    DataStream,
 )
-from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.configs import Channel, DetectorConfig, PatchCordConfig, LaserConfig
 
 t = datetime(2022, 7, 12, 7, 00, 00, tzinfo=ZoneInfo("America/Los_Angeles"))
 

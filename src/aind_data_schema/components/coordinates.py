@@ -1,14 +1,14 @@
 """Classes to define device positions, orientations, and coordinates"""
 
 import math
+import warnings
 from enum import Enum
 from typing import List, Optional, Union
-import warnings
 
 from aind_data_schema_models.atlas import AtlasName
 from aind_data_schema_models.coordinates import AxisName, Direction, Origin
-from aind_data_schema_models.units import AngleUnit, SizeUnit
 from aind_data_schema_models.mouse_anatomy import MouseAnatomyModel
+from aind_data_schema_models.units import AngleUnit, SizeUnit
 from pydantic import Field, field_validator, model_validator
 
 from aind_data_schema.base import DataModel, DiscriminatedList
@@ -39,11 +39,7 @@ class Handedness(str, Enum):
 class Axis(DataModel):
     """Linked direction and axis"""
 
-    name: AxisName = Field(
-        ...,
-        title="Axis name",
-        description="Note: axis names do not influence order or orientation"
-    )
+    name: AxisName = Field(..., title="Axis name", description="Note: axis names do not influence order or orientation")
     direction: Direction = Field(
         ...,
         title="Direction",
@@ -128,9 +124,7 @@ class Rotation(DataModel):
     Rotations should be applied as Euler angles in the specified axis order.
     """
 
-    angles: List[float] = Field(
-        ..., title="Angles", description="Right-hand rule, positive angles rotate CCW"
-    )
+    angles: List[float] = Field(..., title="Angles", description="Right-hand rule, positive angles rotate CCW")
     angles_unit: AngleUnit = Field(default=AngleUnit.DEG, title="Angle unit")
     axis_order: str = Field(
         default="xyz",
@@ -302,9 +296,7 @@ class CoordinateSystem(DataModel):
     """Definition of a coordinate system"""
 
     name: str = Field(
-        ...,
-        title="Name",
-        description="Convention is to use <Origin>_<POS_X_DIR><POS_Y_DIR><POS_Z_DIR> etc"
+        ..., title="Name", description="Convention is to use <Origin>_<POS_X_DIR><POS_Y_DIR><POS_Z_DIR> etc"
     )
 
     origin: Origin | MouseAnatomyModel = Field(

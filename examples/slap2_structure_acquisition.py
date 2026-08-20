@@ -2,35 +2,36 @@
 
 import argparse
 from datetime import datetime, timezone
+
+from aind_data_schema_models.brain_atlas import CCFv3
+from aind_data_schema_models.coordinates import AxisName, Direction
 from aind_data_schema_models.modalities import Modality
 from aind_data_schema_models.slap2_acquisition_type import Slap2AcquisitionType
-from aind_data_schema_models.units import PowerUnit, SizeUnit, FrequencyUnit
+from aind_data_schema_models.units import FrequencyUnit, PowerUnit, SizeUnit
 
-from aind_data_schema.components.coordinates import (
-    Translation,
-    Scale,
-    CoordinateSystem,
-    Axis,
-    Origin,
+from aind_data_schema.components.configs import (
+    Channel,
+    DetectorConfig,
+    DeviceConfig,
+    ImagingConfig,
+    LaserConfig,
+    NeuronStructure,
+    PlanarImageStack,
+    PowerFunction,
+    Slap2Plane,
+    TriggerType,
 )
-from aind_data_schema_models.coordinates import AxisName, Direction
+from aind_data_schema.components.coordinates import (
+    Axis,
+    CoordinateSystem,
+    Origin,
+    Scale,
+    Translation,
+)
 from aind_data_schema.core.acquisition import (
     Acquisition,
     DataStream,
 )
-from aind_data_schema.components.configs import (
-    Channel,
-    DetectorConfig,
-    LaserConfig,
-    TriggerType,
-    ImagingConfig,
-    Slap2Plane,
-    PlanarImageStack,
-    DeviceConfig,
-    PowerFunction,
-    NeuronStructure,
-)
-from aind_data_schema_models.brain_atlas import CCFv3
 
 coordinate_system = CoordinateSystem(
     name="Arbitrary Origin ARI",
@@ -198,12 +199,12 @@ a = Acquisition(
                     images=[
                         PlanarImageStack(
                             power_function=PowerFunction.CONSTANT,
-                            depth_start=min(plane_depths[f"Path {path_idx+1}"]),
-                            depth_end=max(plane_depths[f"Path {path_idx+1}"]),
+                            depth_start=min(plane_depths[f"Path {path_idx + 1}"]),
+                            depth_end=max(plane_depths[f"Path {path_idx + 1}"]),
                             depth_step=(
-                                max(plane_depths[f"Path {path_idx+1}"]) - min(plane_depths[f"Path {path_idx+1}"])
+                                max(plane_depths[f"Path {path_idx + 1}"]) - min(plane_depths[f"Path {path_idx + 1}"])
                             )
-                            / (len(plane_depths[f"Path {path_idx+1}"]) - 1),
+                            / (len(plane_depths[f"Path {path_idx + 1}"]) - 1),
                             depth_unit=SizeUnit.UM,
                             channel_name=f"Path {path_idx + 1} {channel_color} channel",
                             image_to_acquisition_transform=image_to_acquisition_transform,
@@ -211,7 +212,7 @@ a = Acquisition(
                                 scale=[800, 1280],
                             ),
                             dimensions_unit=SizeUnit.PX,
-                            planes=slap2_plane_full_field_raster[f"Path {path_idx+1}"],
+                            planes=slap2_plane_full_field_raster[f"Path {path_idx + 1}"],
                         )
                         for path_idx in range(num_paths)
                         for channel_color in active_channels

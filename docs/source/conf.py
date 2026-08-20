@@ -67,7 +67,7 @@ _write_schema_diagram_json()
 
 
 def setup(app):
-    app.add_css_file('custom.css')
+    app.add_css_file("custom.css")
 
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.

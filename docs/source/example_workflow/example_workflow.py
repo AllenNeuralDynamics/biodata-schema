@@ -1,22 +1,21 @@
 import os
+from datetime import date, datetime
 from typing import List
-import pandas as pd
-from datetime import datetime, date
 from zoneinfo import ZoneInfo
 
+import pandas as pd
+from aind_data_schema_models.brain_atlas import CCFv3
+from aind_data_schema_models.data_name_patterns import DataLevel
 from aind_data_schema_models.modalities import Modality
 from aind_data_schema_models.organizations import Organization
 from aind_data_schema_models.species import Strain
 from aind_data_schema_models.units import VolumeUnit
-from aind_data_schema_models.data_name_patterns import DataLevel
-from aind_data_schema_models.brain_atlas import CCFv3
 
-from aind_data_schema.components.coordinates import Rotation, Translation
+from aind_data_schema.components.coordinates import CoordinateSystemLibrary, Rotation, Translation
 from aind_data_schema.components.identifiers import Person
 from aind_data_schema.components.injection_procedures import InjectionDynamics, InjectionProfile, ViralMaterial
 from aind_data_schema.components.subject_procedures import BrainInjection, Perfusion
-from aind_data_schema.components.subjects import BreedingInfo, Housing, MouseSubject, Species, Sex, HomeCageEnrichment
-from aind_data_schema.components.coordinates import CoordinateSystemLibrary
+from aind_data_schema.components.subjects import BreedingInfo, HomeCageEnrichment, Housing, MouseSubject, Sex, Species
 from aind_data_schema.core.data_description import DataDescription, Funding
 from aind_data_schema.core.procedures import Procedures, Surgery
 from aind_data_schema.core.subject import Subject
@@ -90,17 +89,17 @@ def generate_subject(
 
 
 def generate_procedures(
-        subject_id: str,
-        protocol: str,
-        virus_name: str,
-        virus_titer: int,
-        coords: List[float],
-        injection_volume: float,
-        brain_area: str,
-        injection_date: datetime,
-        perfusion_date: datetime,
-        experimenter: Person,
-        ethics_review_id: str,
+    subject_id: str,
+    protocol: str,
+    virus_name: str,
+    virus_titer: int,
+    coords: List[float],
+    injection_volume: float,
+    brain_area: str,
+    injection_date: datetime,
+    perfusion_date: datetime,
+    experimenter: Person,
+    ethics_review_id: str,
 ) -> Procedures:
     """Create the procedures object"""
 
@@ -115,7 +114,7 @@ def generate_procedures(
         ),
         Rotation(
             angles=[float(coords[3]), 0, 0],
-        )
+        ),
     ]
 
     brain_injection = BrainInjection(
