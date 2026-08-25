@@ -50,7 +50,7 @@ class Model(DataCoreModel):
 
     _DESCRIBED_BY_URL = DataCoreModel._DESCRIBED_BY_BASE_URL.default + "aind_data_schema/core/model.py"
     describedBy: str = Field(default=_DESCRIBED_BY_URL, json_schema_extra={"const": _DESCRIBED_BY_URL})
-    schema_version: Literal["2.0.0"] = Field(default="2.0.0")
+    schema_version: Literal["3.0.0"] = Field(default="3.0.0")
 
     name: str = Field(..., title="Name")
     version: str = Field(..., title="Version")
