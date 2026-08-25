@@ -24,6 +24,7 @@ from aind_data_schema.components.configs import (
 from aind_data_schema.components.connections import Connection
 from aind_data_schema.components.coordinates import Translation
 from aind_data_schema.core.acquisition import (
+    NON_IANA_TIMEZONES,
     Acquisition,
     AcquisitionSubjectDetails,
     DataStream,
@@ -608,3 +609,20 @@ class TestAcquisition:
         assert Acquisition.coerce_fixed_offset_tz_string(None) is None
         assert Acquisition.coerce_fixed_offset_tz_string(-7) == -7
         assert Acquisition.coerce_fixed_offset_tz_string("America/Los_Angeles") == "America/Los_Angeles"
+
+    def test_reject_non_iana_tz(self):
+        """Host timezone artifacts are rejected, real zones and offsets pass through"""
+        for name in NON_IANA_TIMEZONES:
+            with pytest.raises(ValueError) as context:
+                Acquisition.reject_non_iana_tz(name)
+            assert "is not an IANA timezone name" in str(context.value)
+
+        assert Acquisition.reject_non_iana_tz("America/Los_Angeles") == "America/Los_Angeles"
+        assert Acquisition.reject_non_iana_tz(-7) == -7
+        assert Acquisition.reject_non_iana_tz(None) is None
+
+    def test_non_iana_tz_absent_from_schema(self):
+        """The generated enum never advertises host timezone artifacts"""
+        enum = Acquisition.model_json_schema()["properties"]["acquisition_start_tz"]["anyOf"][1]["enum"]
+        assert not NON_IANA_TIMEZONES.intersection(enum)
+        assert "America/Los_Angeles" in enum

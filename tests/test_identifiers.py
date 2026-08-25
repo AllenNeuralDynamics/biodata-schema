@@ -51,6 +51,21 @@ class TestGitHash:
                 Code(url="https://github.com/org/repo", commit_hash=git_hash)
 
 
+class TestCode:
+    """Test Code reproducibility validator"""
+
+    def test_commit_hash_or_version_required(self):
+        """Code without commit_hash or version raises ValidationError"""
+        with pytest.raises(ValidationError) as context:
+            Code(url="https://github.com/org/repo")
+        assert "Either commit_hash or version must be provided" in str(context.value)
+
+    def test_either_field_satisfies_requirement(self):
+        """Either commit_hash or version alone is enough"""
+        assert Code(url="https://github.com/org/repo", version="0.0.1").version == "0.0.1"
+        assert Code(url="https://github.com/org/repo", commit_hash="abc1234").commit_hash == "abc1234"
+
+
 class TestDataAsset:
     """Test DataAsset validator"""
 

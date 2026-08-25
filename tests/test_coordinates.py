@@ -1,7 +1,5 @@
 """Tests for the coordinates module"""
 
-import warnings
-
 import pytest
 from aind_data_schema_models.atlas import AtlasName
 from aind_data_schema_models.units import SizeUnit
@@ -21,64 +19,8 @@ from aind_data_schema.components.coordinates import (
 )
 
 
-class TestScale:
-    """Tests for the Scale class"""
-
-    def setup_method(self):
-        """Set up for tests"""
-        warnings.simplefilter("ignore", DeprecationWarning)
-
-    def teardown_method(self):
-        """Tear down after tests"""
-        warnings.resetwarnings()
-
-
-class TestTranslation:
-    """Tests for the Translation class"""
-
-    def setup_method(self):
-        """Set up for tests"""
-        warnings.simplefilter("ignore", DeprecationWarning)
-
-    def teardown_method(self):
-        """Tear down after tests"""
-        warnings.resetwarnings()
-
-
-class TestRotation:
-    """Tests for the Rotation class"""
-
-    def setup_method(self):
-        """Set up for tests"""
-        warnings.simplefilter("ignore", DeprecationWarning)
-
-    def teardown_method(self):
-        """Tear down after tests"""
-        warnings.resetwarnings()
-
-
-class TestAffineWithAffineTransforms:
-    """Additional tests for the Affine class with Affine transforms"""
-
-    def setup_method(self):
-        """Set up for tests"""
-        warnings.simplefilter("ignore", DeprecationWarning)
-
-    def teardown_method(self):
-        """Tear down after tests"""
-        warnings.resetwarnings()
-
-
 class TestTranslationFrame:
     """Tests for Translation frame field"""
-
-    def setup_method(self):
-        """Set up for tests"""
-        warnings.simplefilter("ignore", DeprecationWarning)
-
-    def teardown_method(self):
-        """Tear down after tests"""
-        warnings.resetwarnings()
 
     def test_default_frame_is_global(self):
         """Test that the default frame is global"""
@@ -93,14 +35,6 @@ class TestTranslationFrame:
 
 class TestRotationNewFields:
     """Tests for new Rotation fields"""
-
-    def setup_method(self):
-        """Set up for tests"""
-        warnings.simplefilter("ignore", DeprecationWarning)
-
-    def teardown_method(self):
-        """Tear down after tests"""
-        warnings.resetwarnings()
 
     def test_default_fields(self):
         """Test that default field values are correct"""
@@ -128,14 +62,6 @@ class TestRotationNewFields:
 
 class TestCoordinateSystemHandedness:
     """Tests for CoordinateSystem handedness field"""
-
-    def setup_method(self):
-        """Set up for tests"""
-        warnings.simplefilter("ignore", DeprecationWarning)
-
-    def teardown_method(self):
-        """Tear down after tests"""
-        warnings.resetwarnings()
 
     def test_default_handedness_is_none(self):
         """Test that handedness defaults to None"""
