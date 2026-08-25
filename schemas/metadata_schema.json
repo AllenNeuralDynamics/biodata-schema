@@ -9108,10 +9108,7 @@
             },
             "name": {
                "default": "",
-               "description": [
-                  "Unique name of the processing step.",
-                  " If not provided, the type will be used as the name."
-               ],
+               "description": "Unique name of the processing step. If not provided, the type will be used as the name.",
                "title": "Name",
                "type": "string"
             },
@@ -26830,10 +26827,7 @@
             },
             "name": {
                "default": "",
-               "description": [
-                  "Unique name of the processing step.",
-                  " If not provided, the type will be used as the name."
-               ],
+               "description": "Unique name of the processing step. If not provided, the type will be used as the name.",
                "title": "Name",
                "type": "string"
             },
@@ -26992,10 +26986,7 @@
             },
             "name": {
                "default": "",
-               "description": [
-                  "Unique name of the processing step.",
-                  " If not provided, the type will be used as the name."
-               ],
+               "description": "Unique name of the processing step. If not provided, the type will be used as the name.",
                "title": "Name",
                "type": "string"
             },
@@ -37431,8 +37422,8 @@
                "type": "string"
             },
             "schema_version": {
-               "const": "3.0.2",
-               "default": "3.0.2",
+               "const": "3.0.0",
+               "default": "3.0.0",
                "title": "Schema Version",
                "type": "string"
             },
@@ -51584,8 +51575,8 @@
          "type": "string"
       },
       "schema_version": {
-         "const": "3.0.2",
-         "default": "3.0.2",
+         "const": "3.0.1",
+         "default": "3.0.1",
          "title": "Schema Version",
          "type": "string"
       },
