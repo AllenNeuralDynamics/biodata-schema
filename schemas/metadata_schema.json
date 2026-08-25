@@ -17,8 +17,8 @@
                "type": "string"
             },
             "schema_version": {
-               "const": "3.0.1",
-               "default": "3.0.1",
+               "const": "3.0.0",
+               "default": "3.0.0",
                "title": "Schema Version",
                "type": "string"
             },
@@ -672,8 +672,7 @@
                         "Universal",
                         "W-SU",
                         "WET",
-                        "Zulu",
-                        "localtime"
+                        "Zulu"
                      ],
                      "minLength": 1,
                      "type": "string"
@@ -51575,8 +51574,8 @@
          "type": "string"
       },
       "schema_version": {
-         "const": "3.0.1",
-         "default": "3.0.1",
+         "const": "3.0.0",
+         "default": "3.0.0",
          "title": "Schema Version",
          "type": "string"
       },

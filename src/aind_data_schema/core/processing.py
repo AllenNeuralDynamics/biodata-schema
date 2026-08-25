@@ -56,7 +56,7 @@ class DataProcess(DataModel):
     name: str = Field(
         default="",
         title="Name",
-        description=("Unique name of the processing step." " If not provided, the type will be used as the name."),
+        description=("Unique name of the processing step. If not provided, the type will be used as the name."),
     )
     stage: ProcessStage = Field(..., title="Processing stage")
     code: Code = Field(..., title="Code", description="Code used for processing")

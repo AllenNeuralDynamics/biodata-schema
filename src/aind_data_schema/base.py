@@ -1,5 +1,6 @@
 """generic base class with supporting validators and fields for basic AIND schema"""
 
+import importlib.resources
 import json
 import logging
 import re
@@ -22,12 +23,32 @@ from pydantic import (
     model_validator,
 )
 from pydantic.functional_validators import WrapValidator
+from pydantic_extra_types.timezone_name import TimeZoneName
 
 from aind_data_schema.utils.validators import recursive_check_paths, recursive_coord_system_check
 
 logger = logging.getLogger(__name__)
 
 MAX_FILE_SIZE = 500 * 1024  # 500KB
+
+
+def _restrict_timezone_names_to_tzdata() -> None:
+    """Pin TimeZoneName to the zones shipped by tzdata
+
+    TimeZoneName builds its allowed values from zoneinfo.available_timezones(), which reads
+    the host's timezone database. That varies by platform: Debian and Ubuntu expose a
+    "localtime" key that macOS does not, so the same file validates differently and the
+    generated JSON schema differs by machine. tzdata is a pinned dependency and ships a
+    canonical zone list, so use that instead.
+    """
+    zone_list = importlib.resources.files("tzdata").joinpath("zones").read_text()
+    zones = {line.strip() for line in zone_list.splitlines() if line.strip()}
+    TimeZoneName.allowed_values = zones
+    TimeZoneName.allowed_values_list = sorted(zones)
+    TimeZoneName.allowed_values_upper_to_correct = {zone.upper(): zone for zone in zones}
+
+
+_restrict_timezone_names_to_tzdata()
 
 
 def _coerce_naive_datetime(v: Any, handler: ValidatorFunctionWrapHandler) -> AwareDatetime:
