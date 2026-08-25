@@ -1,6 +1,5 @@
 """test Procedures"""
 
-import warnings
 from datetime import date
 from unittest.mock import patch
 
@@ -14,7 +13,7 @@ from aind_data_schema_models.units import ConcentrationUnit, CurrentUnit, SizeUn
 from pydantic import ValidationError
 
 from aind_data_schema.components.configs import CatheterConfig
-from aind_data_schema.components.coordinates import CoordinateSystemLibrary, Origin, Translation
+from aind_data_schema.components.coordinates import Origin, Translation
 from aind_data_schema.components.devices import Catheter, Device
 from aind_data_schema.components.injection_procedures import (
     InjectionDynamics,
@@ -36,6 +35,7 @@ from aind_data_schema.components.subject_procedures import BrainInjection, Injec
 from aind_data_schema.components.surgery_procedures import CatheterImplant, Craniotomy, CraniotomyType
 from aind_data_schema.core.procedures import Procedures
 from aind_data_schema.utils.exceptions import OneOfError
+from tests.coordinate_systems import BREGMA_ARI, BREGMA_ARID
 
 
 class TestProcedures:
@@ -54,10 +54,10 @@ class TestProcedures:
         assert "12345" == p.subject_id
 
     @patch("aind_data_schema_models.mouse_anatomy.get_emapa_id")
-    def test_unwrapped_injection_warns(self, mock_get_emapa_id):
-        """Unwrapped Injection in subject_procedures should emit a UserWarning"""
+    def test_unwrapped_injection_rejected(self, mock_get_emapa_id):
+        """Unwrapped Injection in subject_procedures should raise"""
         mock_get_emapa_id.return_value = "123456"
-        with pytest.warns(UserWarning):
+        with pytest.raises(ValidationError):
             Procedures(
                 subject_id="12345",
                 subject_procedures=[
@@ -153,14 +153,14 @@ class TestProcedures:
 
         p = Procedures(
             subject_id="12345",
-            coordinate_system=CoordinateSystemLibrary.BREGMA_ARI,
+            global_coordinate_system=BREGMA_ARI,
             subject_procedures=[
                 Surgery(
                     start_date=self.start_date,
                     experimenters=["Mam Moth"],
                     ethics_review_id="234",
                     protocol_id="123",
-                    coordinate_system=CoordinateSystemLibrary.BREGMA_ARID,
+                    global_coordinate_system=BREGMA_ARID,
                     measured_coordinates={
                         Origin.BREGMA: Translation(
                             translation=[0, 0, 0],
@@ -362,26 +362,6 @@ class TestProcedures:
             )
         assert "SpecimenProcedure.procedure_details should only contain one type of model" in repr(e.value)
 
-    def test_section_deprecated_coordinate_fields(self):
-        """Test that using deprecated coordinate fields in Section raises deprecation warnings"""
-        with warnings.catch_warnings(record=True) as w:
-            warnings.simplefilter("always")
-            section = Section(
-                output_specimen_id="section1",
-                coordinate_system_name="CCFv3",
-                start_coordinate=Translation(translation=[0.5, 1.0, 0.0, 1.0]),
-                thickness=100.0,
-                thickness_unit=SizeUnit.UM,
-                partial_slice=[AnatomicalRelative.LEFT],
-            )
-            deprecation_warnings = [warning for warning in w if issubclass(warning.category, DeprecationWarning)]
-            assert len(deprecation_warnings) >= 1
-            section_warnings = [warning for warning in deprecation_warnings if "Section fields" in str(warning.message)]
-            assert len(section_warnings) == 1
-            assert "partial_slice" in str(section_warnings[0].message)
-            assert "PlanarSection" in str(section_warnings[0].message)
-            assert section.output_specimen_id == "section1"
-
     def test_coordinate_volume_validator(self):
         """Test validator for list lengths on BrainInjection"""
 
@@ -471,9 +451,9 @@ class TestProcedures:
 
         # Updated initialization to use the new Section class
         sectioning_procedure = PlanarSectioning(
-            coordinate_system=CoordinateSystemLibrary.BREGMA_ARI,
+            global_coordinate_system=BREGMA_ARI,
             sections=[
-                Section(
+                PlanarSection(
                     output_specimen_id="123456_001",
                     targeted_structure=CCFv3.MOP,
                     coordinate_system_name="BREGMA_ARI",
@@ -484,7 +464,7 @@ class TestProcedures:
                         translation=[0.5, 0, 0],
                     ),
                 ),
-                Section(
+                PlanarSection(
                     output_specimen_id="123456_002",
                     coordinate_system_name="BREGMA_ARI",
                     start_coordinate=Translation(
@@ -494,7 +474,7 @@ class TestProcedures:
                         translation=[0.7, 0, 0],
                     ),
                 ),
-                Section(
+                PlanarSection(
                     output_specimen_id="123456_003",
                     coordinate_system_name="BREGMA_ARI",
                     start_coordinate=Translation(
@@ -782,12 +762,12 @@ class TestProcedures:
         # Create two procedures with different coordinate systems
         p1 = Procedures(
             subject_id="12345",
-            coordinate_system=CoordinateSystemLibrary.BREGMA_ARI,
+            global_coordinate_system=BREGMA_ARI,
         )
 
         p2 = Procedures(
             subject_id="12345",
-            coordinate_system=CoordinateSystemLibrary.BREGMA_ARID,  # Different coordinate system
+            global_coordinate_system=BREGMA_ARID,  # Different coordinate system
         )
 
         # Test that combining procedures with different coordinate systems raises ValueError
@@ -801,9 +781,9 @@ class TestProcedures:
         # Test that combining procedures with same coordinate systems works
         p3 = Procedures(
             subject_id="12345",
-            coordinate_system=CoordinateSystemLibrary.BREGMA_ARI,  # Same coordinate system as p1
+            global_coordinate_system=BREGMA_ARI,  # Same coordinate system as p1
         )
 
         combined = p1 + p3
-        assert combined.global_coordinate_system == CoordinateSystemLibrary.BREGMA_ARI
+        assert combined.global_coordinate_system == BREGMA_ARI
         assert len(combined.subject_procedures) == 0  # Both started with empty procedures

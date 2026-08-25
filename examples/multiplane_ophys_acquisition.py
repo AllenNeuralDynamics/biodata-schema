@@ -5,6 +5,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 from aind_data_schema_models.brain_atlas import CCFv3
+from aind_data_schema_models.coordinates import AxisName, Direction, Origin
 from aind_data_schema_models.modalities import Modality
 from aind_data_schema_models.stimulus_modality import StimulusModality
 from aind_data_schema_models.units import FrequencyUnit, PowerUnit, SizeUnit, VolumeUnit
@@ -19,7 +20,7 @@ from aind_data_schema.components.configs import (
     SamplingStrategy,
     TriggerType,
 )
-from aind_data_schema.components.coordinates import CoordinateSystemLibrary, Scale, Translation
+from aind_data_schema.components.coordinates import Axis, CoordinateSystem, Scale, Translation
 from aind_data_schema.components.identifiers import Code, Software
 from aind_data_schema.core.acquisition import (
     Acquisition,
@@ -27,6 +28,17 @@ from aind_data_schema.core.acquisition import (
     DataStream,
     PerformanceMetrics,
     StimulusEpoch,
+)
+
+BREGMA_ARI = CoordinateSystem(
+    name="BREGMA_ARI",
+    origin=Origin.BREGMA,
+    axis_unit=SizeUnit.MM,
+    axes=[
+        Axis(name=AxisName.AP, direction=Direction.PA),
+        Axis(name=AxisName.ML, direction=Direction.LR),
+        Axis(name=AxisName.SI, direction=Direction.SI),
+    ],
 )
 
 # If a timezone isn't specified, the timezone of the computer running this
@@ -50,7 +62,7 @@ a = Acquisition(
     subject_details=AcquisitionSubjectDetails(
         mouse_platform_name="disc",
     ),
-    coordinate_system=CoordinateSystemLibrary.BREGMA_ARI,
+    global_coordinate_system=BREGMA_ARI,
     data_streams=[
         DataStream(
             stream_start_time=t,

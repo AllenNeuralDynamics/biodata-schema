@@ -245,6 +245,36 @@ def recursive_coord_system_check(data, coordinate_system_name: Optional[str], ax
     _recurse_helper(data=data, coordinate_system_name=coordinate_system_name, axis_count=axis_count)
 
 
+def recursive_get_named_objects(obj: Any) -> List[tuple]:
+    """Recursively extract (name, object) pairs from a DataModel object and its nested fields.
+
+    Unlike :func:`recursive_get_all_names`, this keeps the object each name came from, so
+    callers can tell a genuine name collision between two distinct objects apart from the
+    same object being referenced in more than one place.
+    """
+    pairs = []
+
+    if obj is None or isinstance(obj, Enum):  # Skip None and Enums
+        return pairs
+
+    elif isinstance(obj, list):  # Handle lists
+        for item in obj:
+            pairs.extend(recursive_get_named_objects(item))
+
+    elif hasattr(obj, "__dict__"):  # Handle objects (including Pydantic models)
+        if not hasattr(obj, "object_type"):
+            # All DataModel objects should have an object_type attribute
+            return pairs
+        if hasattr(obj, "name") and isinstance(obj.name, str):  # Ensure name is a string
+            pairs.append((obj.name, obj))
+
+        # Continue recursion into fields
+        for field_value in vars(obj).values():
+            pairs.extend(recursive_get_named_objects(field_value))
+
+    return pairs
+
+
 def recursive_get_all_names(obj: Any) -> List[str]:
     """Recursively extract all 'name' fields from a DataModel object and its nested fields."""
     names = []
@@ -263,12 +293,8 @@ def recursive_get_all_names(obj: Any) -> List[str]:
         if hasattr(obj, "name") and isinstance(obj.name, str):  # Ensure name is a string
             names.append(obj.name)
 
-        # Continue recursion into fields, skipping the deprecated coordinate_system
-        # when a renamed field (local_coordinate_system / global_coordinate_system) is present
-        _has_new_cs = hasattr(obj, "local_coordinate_system") or hasattr(obj, "global_coordinate_system")
-        for field_name, field_value in vars(obj).items():
-            if field_name == "coordinate_system" and _has_new_cs:
-                continue
+        # Continue recursion into fields
+        for field_value in vars(obj).values():
             names.extend(recursive_get_all_names(field_value))
 
     return names
@@ -276,7 +302,7 @@ def recursive_get_all_names(obj: Any) -> List[str]:
 
 def recursive_check_paths(obj: Any, directory: Optional[Path] = None):
     """Recursively check for AssetPath objects and validate their paths.
-    This function checks if the paths are absolute and logs a warning if they are.
+    This function raises a ValueError if a path is absolute.
     It also checks if the paths exist and logs a warning if they do not.
     If the object is a list, tuple, set, or dict, it recursively checks each item.
 
@@ -285,13 +311,18 @@ def recursive_check_paths(obj: Any, directory: Optional[Path] = None):
     obj : Any
     directory : Optional[Path], optional
         root directory, by default uses the current working directory
+
+    Raises
+    ------
+    ValueError
+        If an AssetPath is absolute rather than relative to the metadata directory.
     """
     if isinstance(obj, Enum):
         return
 
     if isinstance(obj, AssetPath):
         if obj.is_absolute():
-            logger.warning(f"AssetPath {obj} is absolute, ensure file paths are relative to the metadata directory")
+            raise ValueError(f"AssetPath {obj} is absolute, file paths must be relative to the metadata directory")
 
         if directory is None:
             directory = Path.cwd()

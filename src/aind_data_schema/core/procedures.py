@@ -1,11 +1,10 @@
 """schema for various Procedures"""
 
-import warnings
 from typing import List, Literal, Optional
 
 from pydantic import Field, SkipValidation, model_validator
 
-from aind_data_schema.base import DataCoreModel, DiscriminatedList, migrate_deprecated_coordinate_system
+from aind_data_schema.base import DataCoreModel, DiscriminatedList
 from aind_data_schema.components.coordinates import CoordinateSystem
 from aind_data_schema.components.injection_procedures import Injection
 from aind_data_schema.components.specimen_procedures import SpecimenProcedure
@@ -40,15 +39,6 @@ class Procedures(DataCoreModel):
     )
 
     # Coordinate system
-    coordinate_system: Optional[CoordinateSystem] = Field(
-        default=None,
-        title="Coordinate System",
-        description=(
-            "Origin and axis definitions for determining the configured position of devices implanted during"
-            " procedures. Required when coordinates are provided within the Procedures"
-        ),
-        deprecated="Deprecated: use global_coordinate_system instead",
-    )
     global_coordinate_system: Optional[CoordinateSystem] = Field(
         default=None,
         title="Global Coordinate System",
@@ -57,12 +47,6 @@ class Procedures(DataCoreModel):
             " procedures. Required when coordinates are provided within the Procedures"
         ),
     )
-
-    @model_validator(mode="before")
-    @classmethod
-    def migrate_coordinate_system(cls, data):
-        """Copy deprecated coordinate_system into global_coordinate_system when only old field is provided"""
-        return migrate_deprecated_coordinate_system(data, "global_coordinate_system")
 
     notes: Optional[str] = Field(default=None, title="Notes")
 
@@ -91,17 +75,13 @@ class Procedures(DataCoreModel):
 
     @model_validator(mode="after")
     def reject_injections(self):
-        """Raise a warning for injections since they should now be wrapped
+        """Reject bare injections since they must be wrapped
         in a Surgery or NonSurgicalInjection procedure
         """
 
         for procedure in self.subject_procedures:
             if isinstance(procedure, Injection):
-                warnings.warn(
-                    "Injection procedures should be wrapped in a Surgery or NonSurgicalInjection procedure.",
-                    UserWarning,
-                    stacklevel=2,
-                )
+                raise ValueError("Injection procedures must be wrapped in a Surgery or NonSurgicalInjection procedure.")
 
         return self
 

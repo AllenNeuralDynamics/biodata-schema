@@ -4,7 +4,6 @@ from unittest.mock import Mock
 
 import pytest
 
-from aind_data_schema.components.coordinates import CoordinateSystemLibrary
 from aind_data_schema.utils.merge import (
     merge_coordinate_systems,
     merge_notes,
@@ -13,6 +12,7 @@ from aind_data_schema.utils.merge import (
     merge_str_alphabetical,
     merge_str_tuple_lists,
 )
+from tests.coordinate_systems import BREGMA_ARI, MPM_MANIP_RFB
 
 
 class TestMergeStrTupleLists:
@@ -203,8 +203,8 @@ class TestMergeCoordinateSystems:
 
     def setup_method(self):
         """Set up test cases"""
-        self.CSA = CoordinateSystemLibrary.BREGMA_ARI
-        self.CSB = CoordinateSystemLibrary.MPM_MANIP_RFB
+        self.CSA = BREGMA_ARI
+        self.CSB = MPM_MANIP_RFB
 
     def test_both_none(self):
         """Test when both inputs are None"""

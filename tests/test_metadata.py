@@ -14,7 +14,6 @@ from aind_data_schema_models.species import Strain
 from pydantic import ValidationError
 
 from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.coordinates import CoordinateSystemLibrary
 from aind_data_schema.components.devices import EphysAssembly, EphysProbe, Laser, Manipulator
 from aind_data_schema.components.identifiers import Code, Database, Person
 from aind_data_schema.components.subject_procedures import TrainingProtocol
@@ -35,6 +34,7 @@ from examples.model import m as model_example
 from examples.processing import p as processing_example
 from examples.quality_control import q as quality_control_example
 from examples.subject import s as subject
+from tests.coordinate_systems import BREGMA_ARI
 
 ephys_assembly = EphysAssembly(
     probes=[EphysProbe(probe_model="Neuropixels 1.0", name="Probe A")],
@@ -73,7 +73,6 @@ class TestMetadata:
                 date_of_birth=datetime(2022, 11, 22, 8, 43, 00, tzinfo=timezone.utc).date(),
                 source=Organization.AI,
                 breeding_info=BreedingInfo(
-                    breeding_group="Emx1-IRES-Cre(ND)",
                     maternal_id="546543",
                     maternal_genotype="Emx1-IRES-Cre/wt; Camk2a-tTa/Camk2a-tTA",
                     paternal_id="232323",
@@ -194,7 +193,7 @@ class TestMetadata:
             instrument_id="123_EPHYS1_20220101",
             modalities=modalities,
             components=[ephys_assembly],
-            coordinate_system=CoordinateSystemLibrary.BREGMA_ARI,
+            global_coordinate_system=BREGMA_ARI,
         )
         with pytest.raises(ValidationError) as context:
             Metadata(
@@ -742,7 +741,6 @@ class TestMetadata:
                 source=Organization.AI,
                 genotype="wt",
                 breeding_info=BreedingInfo(
-                    breeding_group="Test",
                     maternal_id="123",
                     maternal_genotype="wt",
                     paternal_id="456",
@@ -773,7 +771,6 @@ class TestMetadata:
                 source=Organization.AI,
                 genotype="wt",
                 breeding_info=BreedingInfo(
-                    breeding_group="Test",
                     maternal_id="123",
                     maternal_genotype="wt",
                     paternal_id="456",
@@ -893,10 +890,11 @@ class TestMetadata:
 
         warning_messages = [str(warning.message) for warning in w]
         assert (
-            "Subject is a CalibrationObject but 'calibration' tag is missing from data_description.tags. "
-            "Adding 'calibration' tag automatically."
+            "Subject is a CalibrationObject but 'calibration' tag is missing from data_description.tags."
         ) in warning_messages
         assert metadata is not None
+        # The validator warns but no longer mutates data_description.tags
+        assert metadata.data_description.tags is None
 
     def test_validate_subject_details_if_not_specimen(self):
         """Tests that subject details are required if acquisition.specimen_id is not provided"""

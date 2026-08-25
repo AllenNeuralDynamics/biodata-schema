@@ -41,7 +41,6 @@ class TestSubject:
                     cage_id="543",
                 ),
                 breeding_info=BreedingInfo(
-                    breeding_group="Emx1-IRES-Cre(ND)",
                     maternal_id="546543",
                     maternal_genotype="Emx1-IRES-Cre/wt; Camk2a-tTa/Camk2a-tTA",
                     paternal_id="232323",
@@ -54,16 +53,3 @@ class TestSubject:
         Subject.model_validate_json(s.model_dump_json())
 
         assert s is not None
-        assert s.subject_details.breeding_info.breeding_group is None
-
-    def test_breeding_info_deprecated_field(self):
-        """test that using deprecated field raises warning"""
-
-        with pytest.warns(DeprecationWarning):
-            BreedingInfo(
-                breeding_group="Emx1-IRES-Cre(ND)",
-                maternal_id="546543",
-                maternal_genotype="Emx1-IRES-Cre/wt; Camk2a-tTa/Camk2a-tTA",
-                paternal_id="232323",
-                paternal_genotype="Ai93(TITL-GCaMP6f)/wt",
-            )

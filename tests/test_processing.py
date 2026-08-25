@@ -305,6 +305,7 @@ class TestProcessing:
                     stage=ProcessStage.PROCESSING,
                     code=Code(
                         url="www.example.com/ephys_compression",
+                        version="0.0.1",
                     ),
                 ),
                 DataProcess(
@@ -313,7 +314,7 @@ class TestProcessing:
                     process_type=ProcessName.OTHER,
                     experimenters=["AIND Scientific Computing"],
                     stage=ProcessStage.PROCESSING,
-                    code=Code(url=""),
+                    code=Code(url="", version="0.0.1"),
                     notes="Data was copied.",
                 ),
             ]

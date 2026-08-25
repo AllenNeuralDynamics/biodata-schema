@@ -1,6 +1,5 @@
 """Schemas for Quality Metrics"""
 
-import warnings
 from datetime import datetime, timezone
 from enum import Enum
 from typing import Any, List, Literal, Optional, Union
@@ -83,23 +82,6 @@ class QCMetric(DataModel):
             raise ValueError(f"Metric '{self.name}' is a multi-asset metric and must have evaluated_assets set.")
         elif self.stage != Stage.MULTI_ASSET and self.evaluated_assets:
             raise ValueError(f"Metric '{self.name}' is a single-asset metric and should not have evaluated_assets")
-        return self
-
-    @model_validator(mode="before")
-    @classmethod
-    def fix_tag_lists(cls, self):
-        """Convert tags from list to dict if necessary
-
-        This function is for backwards compatibility with v2.2.X where tags were stored as lists of strings.
-
-        Remove this function in biodata-schema v3.X
-        """
-        if "tags" not in self:
-            return self
-        tags = self["tags"]
-        if isinstance(tags, list):
-            warnings.warn("QCMetric 'tags' field is now a dict. Converting from list to dict", DeprecationWarning)
-            self["tags"] = {f"tag_{i + 1}": tag for i, tag in enumerate(tags)}
         return self
 
 
@@ -294,23 +276,6 @@ class QualityControl(DataCoreModel):
             default_grouping=combined_default_grouping,
             allow_tag_failures=combined_allow_tag_failures,
         )
-
-    @model_validator(mode="before")
-    def fix_default_grouping_list(cls, value: dict) -> dict:
-        """Convert default grouping from list of strings to list of list of strings if necessary
-        This function is for backwards compatibility with v2.2.X where default_grouping was stored as a list of strings.
-        Remove this function in biodata-schema v3.X
-        """
-        if "default_grouping" not in value or "metrics" not in value or len(value["metrics"]) == 0:
-            return value
-
-        if all(isinstance(item, str) for item in value["default_grouping"]):
-            first_metric = value["metrics"][0]
-            if isinstance(first_metric, dict) and "tags" in first_metric:
-                if isinstance(first_metric["tags"], list):
-                    value["default_grouping"] = [["modality"], ["tag_1"]]
-
-        return value
 
 
 def _get_status_by_date(metric: QCMetric | CurationMetric, date: datetime) -> Status:

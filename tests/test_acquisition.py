@@ -22,7 +22,7 @@ from aind_data_schema.components.configs import (
     SampleChamberConfig,
 )
 from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.coordinates import CoordinateSystemLibrary, Translation
+from aind_data_schema.components.coordinates import Translation
 from aind_data_schema.core.acquisition import (
     Acquisition,
     AcquisitionSubjectDetails,
@@ -34,6 +34,7 @@ from examples.ephys_acquisition import acquisition as ephys_acquisition
 from examples.exaspim_acquisition import acq as exaspim_acquisition
 from examples.mri_acquisition import acquisition as mri_acquisition
 from examples.mri_acquisition import scan1
+from tests.coordinate_systems import BREGMA_ARID
 
 
 class TestAcquisition:
@@ -125,7 +126,7 @@ class TestAcquisition:
                 subject_details=AcquisitionSubjectDetails(
                     mouse_platform_name="Running wheel",
                 ),
-                coordinate_system=CoordinateSystemLibrary.BREGMA_ARID,
+                global_coordinate_system=BREGMA_ARID,
                 data_streams=[
                     DataStream(
                         stream_start_time=datetime.now(),

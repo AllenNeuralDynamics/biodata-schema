@@ -3,7 +3,7 @@
 import argparse
 from datetime import datetime
 
-from aind_data_schema_models.coordinates import AnatomicalRelative
+from aind_data_schema_models.coordinates import AnatomicalRelative, AxisName, Direction, Origin
 from aind_data_schema_models.devices import CameraTarget, DetectorType, FilterType
 from aind_data_schema_models.harp_types import HarpDeviceType
 from aind_data_schema_models.modalities import Modality
@@ -11,9 +11,7 @@ from aind_data_schema_models.organizations import Organization
 from aind_data_schema_models.units import SizeUnit, SpeedUnit
 
 from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.coordinates import (
-    CoordinateSystemLibrary,
-)
+from aind_data_schema.components.coordinates import Axis, CoordinateSystem
 from aind_data_schema.components.devices import (
     Camera,
     CameraAssembly,
@@ -38,6 +36,17 @@ from aind_data_schema.components.devices import (
     PolygonalScanner,
 )
 from aind_data_schema.core.instrument import Instrument
+
+BREGMA_ARI = CoordinateSystem(
+    name="BREGMA_ARI",
+    origin=Origin.BREGMA,
+    axis_unit=SizeUnit.MM,
+    axes=[
+        Axis(name=AxisName.AP, direction=Direction.PA),
+        Axis(name=AxisName.ML, direction=Direction.LR),
+        Axis(name=AxisName.SI, direction=Direction.SI),
+    ],
+)
 
 computer_names = {
     "VCO": "w10dt714710",
@@ -349,7 +358,7 @@ instrument = Instrument(
     location="443",
     instrument_id="SLAP2_1_VCO_1",
     modification_date=datetime.now().date(),
-    coordinate_system=CoordinateSystemLibrary.BREGMA_ARI,
+    global_coordinate_system=BREGMA_ARI,
     modalities=[Modality.SLAP2, Modality.BEHAVIOR, Modality.BEHAVIOR_VIDEOS],
     notes=(
         "Devices and connections not currently directly controlled or read out by"

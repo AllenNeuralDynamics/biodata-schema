@@ -1,7 +1,6 @@
 """Generic metadata classes for data"""
 
 import re
-import warnings
 from typing import List, Literal, Optional
 
 from aind_data_schema_models.data_name_patterns import (
@@ -172,48 +171,3 @@ class DataDescription(DataCoreModel):
         if self.data_level == DataLevel.RAW and self.source_data is not None:
             raise ValueError("source_data must not be set when data_level is 'raw'")
         return self
-
-    @classmethod
-    def from_raw(
-        cls, data_description: "DataDescription", process_name: str, source_data: Optional[List[str]] = None, **kwargs
-    ) -> "DataDescription":
-        """Deprecated. Use aind_data_schema.utils.inheritance.derive_data_description_from_raw instead."""
-        from aind_data_schema.utils.inheritance import derive_data_description_from_raw
-
-        warnings.warn(
-            "DataDescription.from_raw is deprecated. Use "
-            "aind_data_schema.utils.inheritance.derive_data_description_from_raw instead.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return derive_data_description_from_raw(data_description, process_name, source_data, **kwargs)
-
-    @classmethod
-    def from_derived(
-        cls, data_description: "DataDescription", process_name: str, source_data: Optional[List[str]] = None, **kwargs
-    ) -> "DataDescription":
-        """Deprecated. Use aind_data_schema.utils.inheritance.derive_data_description_from_derived instead."""
-        from aind_data_schema.utils.inheritance import derive_data_description_from_derived
-
-        warnings.warn(
-            "DataDescription.from_derived is deprecated. Use "
-            "aind_data_schema.utils.inheritance.derive_data_description_from_derived instead.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return derive_data_description_from_derived(data_description, process_name, source_data, **kwargs)
-
-    @classmethod
-    def from_data_description(
-        cls, data_description: "DataDescription", process_name: str, source_data: Optional[List[str]] = None, **kwargs
-    ) -> "DataDescription":
-        """Deprecated. Use aind_data_schema.utils.inheritance.derive_data_description instead."""
-        from aind_data_schema.utils.inheritance import derive_data_description
-
-        warnings.warn(
-            "DataDescription.from_data_description is deprecated. Use "
-            "aind_data_schema.utils.inheritance.derive_data_description instead.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return derive_data_description(data_description, process_name, source_data, **kwargs)

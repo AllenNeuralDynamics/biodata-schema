@@ -323,6 +323,7 @@ stimulus_epoch = StimulusEpoch(
             "frequency": [5, 8, 13],
             "frequency_unit": FrequencyUnit.KHZ,
         },
+        version="0.0.1",
     ),
     performance_metrics=PerformanceMetrics(
         reward_consumed_during_epoch=Decimal("414"),

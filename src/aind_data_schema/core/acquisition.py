@@ -19,7 +19,6 @@ from aind_data_schema.base import (
     DataModel,
     DiscriminatedList,
     GenericModel,
-    migrate_deprecated_coordinate_system,
 )
 from aind_data_schema.components.configs import (
     AirPuffConfig,
@@ -429,15 +428,6 @@ class Acquisition(ProtocolListMixin, DataCoreModel):
     notes: Optional[str] = Field(default=None, title="Notes")
 
     # Coordinate system
-    coordinate_system: Optional[CoordinateSystem] = Field(
-        default=None,
-        title="Coordinate system",
-        description=(
-            "Origin and axis definitions for determining the configured position of devices during acquisition."
-            " Required when coordinates are provided within the Acquisition"
-        ),
-        deprecated="Deprecated: use global_coordinate_system instead",
-    )
     global_coordinate_system: Optional[CoordinateSystem] = Field(
         default=None,
         title="Global coordinate system",
@@ -446,12 +436,6 @@ class Acquisition(ProtocolListMixin, DataCoreModel):
             " Required when coordinates are provided within the Acquisition"
         ),
     )
-
-    @model_validator(mode="before")
-    @classmethod
-    def migrate_coordinate_system(cls, data):
-        """Copy deprecated coordinate_system into global_coordinate_system when only old field is provided"""
-        return migrate_deprecated_coordinate_system(data, "global_coordinate_system")
 
     # Instrument metadata
     calibrations: List[CALIBRATIONS] = Field(

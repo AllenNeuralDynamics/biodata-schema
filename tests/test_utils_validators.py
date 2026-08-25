@@ -486,15 +486,14 @@ class TestRecursiveCheckPaths:
     @patch("pathlib.Path.is_absolute")
     @patch("pathlib.Path.exists")
     @patch("aind_data_schema.utils.validators.logger")
-    def test_absolute_path_warning(self, mock_warning: MagicMock, mock_is_absolute: MagicMock, mock_exists: MagicMock):
+    def test_absolute_path_raises(self, mock_warning: MagicMock, mock_is_absolute: MagicMock, mock_exists: MagicMock):
         """Test when the path is absolute"""
         mock_is_absolute.return_value = True
         mock_exists.return_value = True
         test_path = AssetPath("/absolute/path/to/file.txt")
-        recursive_check_paths(test_path, None)
-        mock_warning.warning.assert_called_with(
-            "AssetPath /absolute/path/to/file.txt is absolute, ensure file paths are relative to the metadata directory"
-        )
+        with pytest.raises(ValueError) as context:
+            recursive_check_paths(test_path, None)
+        assert "is absolute" in str(context.value)
 
     @patch("pathlib.Path.is_absolute", return_value=False)
     @patch("pathlib.Path.exists", returns_value=True)

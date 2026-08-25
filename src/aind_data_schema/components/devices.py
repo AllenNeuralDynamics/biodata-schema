@@ -1,7 +1,6 @@
 """schema for various Devices"""
 
 import logging
-import warnings
 from datetime import date
 from decimal import Decimal
 from enum import Enum
@@ -42,8 +41,8 @@ from aind_data_schema_models.units import (
 )
 from pydantic import Field, ValidationInfo, field_validator, model_validator
 
-from aind_data_schema.base import DataModel, Discriminated, GenericModel, migrate_deprecated_coordinate_system
-from aind_data_schema.components.coordinates import TRANSFORM_TYPES, AxisName, CoordinateSystem, Scale
+from aind_data_schema.base import DataModel, Discriminated, GenericModel
+from aind_data_schema.components.coordinates import TRANSFORM_TYPES, AxisName, CoordinateSystem
 from aind_data_schema.components.geometry import Circle, Rectangle
 from aind_data_schema.components.identifiers import Software
 
@@ -105,11 +104,6 @@ class DevicePosition(DataModel):
     relative_position: List[AnatomicalRelative] = Field(..., title="Relative position")
 
     # Position
-    coordinate_system: Optional[CoordinateSystem] = Field(
-        default=None,
-        title="Device coordinate system",
-        deprecated="Deprecated: use local_coordinate_system instead",
-    )
     local_coordinate_system: Optional[CoordinateSystem] = Field(
         default=None,
         title="Device local coordinate system",
@@ -119,12 +113,6 @@ class DevicePosition(DataModel):
         title="Local to global transform",
         description="Position and orientation of the device in the instrument global coordinate system",
     )
-
-    @model_validator(mode="before")
-    @classmethod
-    def migrate_coordinate_system(cls, data):
-        """Copy deprecated coordinate_system into local_coordinate_system when only old field is provided"""
-        return migrate_deprecated_coordinate_system(data, "local_coordinate_system")
 
     @model_validator(mode="after")
     def validate_transform_and_cs(self):
@@ -305,24 +293,11 @@ class DAQChannel(DataModel):
 
     # optional fields
     port: Optional[int] = Field(default=None, title="DAQ port")
-    channel_index: Optional[int] = Field(
-        default=None, title="DAQ channel index", deprecated="Use DAQChannel.port instead"
-    )
     sample_rate: Optional[Decimal] = Field(default=None, title="DAQ channel sample rate (Hz)")
     sample_rate_unit: Optional[FrequencyUnit] = Field(default=None, title="Sample rate unit")
     event_based_sampling: Optional[bool] = Field(
         default=None, title="Set to true if DAQ channel is sampled at irregular intervals"
     )
-
-    @field_validator("channel_index", mode="after")
-    def deprecated_channel_index(cls, value: Optional[int]) -> Optional[int]:
-        """Warn if channel_index is used (deprecated)"""
-        if value is not None:
-            warnings.warn(
-                "DAQChannel.channel_index is deprecated. Use DAQChannel.port instead.",
-                DeprecationWarning,
-            )
-        return value
 
 
 class DAQDevice(Device):
@@ -550,9 +525,7 @@ class PockelsCell(Device):
 class Enclosure(Device):
     """Description of an enclosure"""
 
-    size: Scale = Field(..., title="Size", deprecated="Use shape")
-    size_unit: SizeUnit = Field(..., title="Size unit", deprecated="Use shape")
-    shape: Optional[Discriminated[Rectangle | Circle]] = Field(default=None, title="Shape of the enclosure")
+    shape: Discriminated[Rectangle | Circle] = Field(..., title="Shape of the enclosure")
     internal_material: Optional[str] = Field(default=None, title="Internal material")
     external_material: str = Field(..., title="External material")
     grounded: bool = Field(..., title="Grounded")
@@ -607,9 +580,7 @@ class Treadmill(Device):
 class Arena(Device):
     """Description of an arena"""
 
-    size: Scale = Field(..., title="3D Size", deprecated="Use shape")
-    size_unit: SizeUnit = Field(..., title="Size unit", deprecated="Use shape")
-    shape: Optional[Discriminated[Circle | Rectangle]] = Field(default=None, title="Shape of the arena")
+    shape: Discriminated[Circle | Rectangle] = Field(..., title="Shape of the arena")
     objects_in_arena: List[Device] = Field(default=[], title="Objects in arena")
 
 
@@ -640,24 +611,6 @@ class Monitor(Device, DevicePosition):
         le=100,
     )
     brightness_unit: Optional[UnitlessUnit] = Field(default=None, title="Brightness unit")
-
-    @model_validator(mode="before")
-    def add_units_if_needed(cls, data: dict) -> dict:
-        """Add units for contrast and brightness if values are provided but units are missing
-
-        This validator is necessary for backwards compatibility
-        TODO: Remove this validator in v3.0.0
-        """
-
-        if "contrast" in data and data["contrast"] is not None and "contrast_unit" not in data:
-            logger.warning("Adding default unit 'percent' for Monitor.contrast_unit")
-            data["contrast_unit"] = UnitlessUnit.PERCENT
-
-        if "brightness" in data and data["brightness"] is not None and "brightness_unit" not in data:
-            logger.warning("Adding default unit 'percent' for Monitor.brightness_unit")
-            data["brightness_unit"] = UnitlessUnit.PERCENT
-
-        return data
 
 
 class LickSpout(Device):

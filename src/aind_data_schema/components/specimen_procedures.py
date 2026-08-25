@@ -1,6 +1,5 @@
 """Specimen procedures module for AIND data schema."""
 
-import warnings
 from datetime import date
 from enum import Enum
 from typing import Dict, List, Optional, Union
@@ -15,7 +14,6 @@ from aind_data_schema.base import (
     AwareDatetimeWithDefault,
     DataModel,
     DiscriminatedList,
-    migrate_deprecated_coordinate_system,
 )
 from aind_data_schema.components.coordinates import Atlas, CoordinateSystem, Translation
 from aind_data_schema.components.identifiers import ProtocolListMixin
@@ -50,54 +48,6 @@ class Section(DataModel):
         title="Includes surrounding tissue",
         description="Whether the section includes additional tissue surrounding the targeted structure.",
     )
-
-    coordinate_system_name: Optional[str] = Field(
-        default=None, title="Coordinate system name", deprecated="Use PlanarSection instead"
-    )
-    start_coordinate: Optional[Translation] = Field(
-        default=None, title="Start coordinate", deprecated="Use PlanarSection instead"
-    )
-    end_coordinate: Optional[Translation] = Field(
-        default=None, title="End coordinate", deprecated="Use PlanarSection instead"
-    )
-    thickness: Optional[float] = Field(default=None, title="Slice thickness", deprecated="Use PlanarSection instead")
-    thickness_unit: Optional[SizeUnit] = Field(
-        default=None, title="Slice thickness unit", deprecated="Use PlanarSection instead"
-    )
-    partial_slice: Optional[List[AnatomicalRelative]] = Field(
-        default=None,
-        title="Partial slice",
-        description="If sectioning does not include the entire slice, indicate which part of the slice is retained.",
-        deprecated="Use PlanarSection instead",
-    )
-
-    @model_validator(mode="after")
-    def deprecated_coordinate_fields(self):
-        """Warn if deprecated coordinate fields are used"""
-        deprecated_fields = []
-        if self.coordinate_system_name is not None:
-            deprecated_fields.append("coordinate_system_name")
-        if self.start_coordinate is not None:
-            deprecated_fields.append("start_coordinate")
-        if self.end_coordinate is not None:
-            deprecated_fields.append("end_coordinate")
-        if self.thickness is not None:
-            deprecated_fields.append("thickness")
-        if self.thickness_unit is not None:
-            deprecated_fields.append("thickness_unit")
-        if self.partial_slice is not None:
-            deprecated_fields.append("partial_slice")
-
-        if deprecated_fields:
-            warnings.warn(
-                (
-                    f"Section fields {deprecated_fields} are deprecated. "
-                    "Use PlanarSection for sections with coordinate data."
-                ),
-                DeprecationWarning,
-            )
-
-        return self
 
 
 class PlanarSection(Section):
@@ -137,23 +87,11 @@ class Sectioning(DataModel):
 class PlanarSectioning(Sectioning):
     """Description of a sectioning procedure performed on the coronal, sagittal, or transverse/axial plane"""
 
-    coordinate_system: Optional[CoordinateSystem | Atlas] = Field(
-        default=None,
-        title="Sectioning coordinate system",
-        description="Only required if different from the Procedures.coordinate_system",
-        deprecated="Deprecated: use global_coordinate_system instead",
-    )
     global_coordinate_system: Optional[CoordinateSystem | Atlas] = Field(
         default=None,
         title="Sectioning global coordinate system",
         description="Only required if different from the Procedures.global_coordinate_system",
     )
-
-    @model_validator(mode="before")
-    @classmethod
-    def migrate_coordinate_system(cls, data):
-        """Copy deprecated coordinate_system into global_coordinate_system when only old field is provided"""
-        return migrate_deprecated_coordinate_system(data, "global_coordinate_system")
 
     sections: List[Union[Section, PlanarSection]] = Field(
         ..., title="Planar sections", description="Use PlanarSection for new implementations"

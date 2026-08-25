@@ -292,16 +292,10 @@ class Metadata(DataCoreModel):
             and isinstance(self.subject.subject_details, CalibrationObject)
             and self.data_description
         ):
-            if self.data_description.tags is None:
-                # Initialize tags list if it doesn't exist
-                self.data_description.tags = []
-
-            if "calibration" not in self.data_description.tags:
+            if "calibration" not in (self.data_description.tags or []):
                 warnings.warn(
-                    "Subject is a CalibrationObject but 'calibration' tag is missing from data_description.tags. "
-                    "Adding 'calibration' tag automatically."
+                    "Subject is a CalibrationObject but 'calibration' tag is missing from data_description.tags."
                 )
-                self.data_description.tags.append("calibration")
 
         return self
 

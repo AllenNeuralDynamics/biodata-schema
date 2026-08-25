@@ -5,8 +5,10 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 from aind_data_schema_models.brain_atlas import CCFv3
+from aind_data_schema_models.coordinates import AxisName, Direction, Origin
 from aind_data_schema_models.modalities import Modality
 from aind_data_schema_models.stimulus_modality import StimulusModality
+from aind_data_schema_models.units import SizeUnit
 
 from aind_data_schema.components.configs import (
     EphysAssemblyConfig,
@@ -16,7 +18,8 @@ from aind_data_schema.components.configs import (
 from aind_data_schema.components.coordinates import (
     AtlasCoordinate,
     AtlasLibrary,
-    CoordinateSystemLibrary,
+    Axis,
+    CoordinateSystem,
     Rotation,
     Translation,
 )
@@ -29,13 +32,36 @@ from aind_data_schema.core.acquisition import (
     StimulusEpoch,
 )
 
+BREGMA_ARID = CoordinateSystem(
+    name="BREGMA_ARID",
+    origin=Origin.BREGMA,
+    axis_unit=SizeUnit.MM,
+    axes=[
+        Axis(name=AxisName.AP, direction=Direction.PA),
+        Axis(name=AxisName.ML, direction=Direction.LR),
+        Axis(name=AxisName.SI, direction=Direction.SI),
+        Axis(name=AxisName.DEPTH, direction=Direction.UD),
+    ],
+)
+
+MPM_MANIP_RFB = CoordinateSystem(
+    name="MPM_MANIP_RFB",
+    origin=Origin.TIP,
+    axis_unit=SizeUnit.MM,
+    axes=[
+        Axis(name=AxisName.X, direction=Direction.LR),
+        Axis(name=AxisName.Y, direction=Direction.BF),
+        Axis(name=AxisName.Z, direction=Direction.UD),
+    ],
+)
+
 bonsai_software = Software(name="Bonsai", version="2.7")
 
 ephys_assembly_a_config = EphysAssemblyConfig(
     device_name="Ephys_assemblyA",
     manipulator=ManipulatorConfig(
         device_name="ManipulatorA",
-        coordinate_system=CoordinateSystemLibrary.MPM_MANIP_RFB,
+        local_coordinate_system=MPM_MANIP_RFB,
         local_axis_positions=Translation(
             translation=[8422, 4205, 11087.5],
         ),
@@ -48,7 +74,7 @@ ephys_assembly_a_config = EphysAssemblyConfig(
                 coordinate_system=AtlasLibrary.CCFv3_10um,
                 translation=[8150, 3250, 7800],
             ),
-            coordinate_system=CoordinateSystemLibrary.MPM_MANIP_RFB,
+            local_coordinate_system=MPM_MANIP_RFB,
             transform=[
                 Translation(
                     translation=[5000, 5000, 0, 1],
@@ -69,7 +95,7 @@ ephys_assembly_b_config = EphysAssemblyConfig(
     device_name="Ephys_assemblyB",
     manipulator=ManipulatorConfig(
         device_name="ManipulatorB",
-        coordinate_system=CoordinateSystemLibrary.MPM_MANIP_RFB,
+        local_coordinate_system=MPM_MANIP_RFB,
         local_axis_positions=Translation(
             translation=[8422, 4205, 11087.5],
         ),
@@ -82,7 +108,7 @@ ephys_assembly_b_config = EphysAssemblyConfig(
                 coordinate_system=AtlasLibrary.CCFv3_10um,
                 translation=[8150, 3250, 7800],
             ),
-            coordinate_system=CoordinateSystemLibrary.MPM_MANIP_RFB,
+            local_coordinate_system=MPM_MANIP_RFB,
             transform=[
                 Translation(
                     translation=[5000, 5000, 0, 1],
@@ -112,7 +138,7 @@ acquisition = Acquisition(
     subject_details=AcquisitionSubjectDetails(
         mouse_platform_name="Running Wheel",
     ),
-    coordinate_system=CoordinateSystemLibrary.BREGMA_ARID,
+    global_coordinate_system=BREGMA_ARID,
     stimulus_epochs=[
         StimulusEpoch(
             stimulus_name="Visual Stimulation",
@@ -135,6 +161,7 @@ acquisition = Acquisition(
                         "grating_spatial_frequency_unit": "cycles/degree",
                     },
                 ),
+                version="0.0.1",
             ),
         ),
         StimulusEpoch(
@@ -159,6 +186,7 @@ acquisition = Acquisition(
                         "flash_duration_unit": "seconds",
                     },
                 ),
+                version="0.0.1",
             ),
         ),
     ],

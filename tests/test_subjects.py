@@ -207,25 +207,8 @@ class TestCalibrationObject:
 class TestBreedingInfo:
     """Test the breeding info model"""
 
-    def test_breeding_info_deprecated_field_warning(self):
-        """Test that breeding_group field triggers deprecation warning and is cleared"""
-
-        with pytest.warns(DeprecationWarning) as warning:
-            breeding_info = BreedingInfo(
-                breeding_group="test_group",  # This should trigger warning and be cleared
-                maternal_id="M001",
-                maternal_genotype="wt/wt",
-                paternal_id="P001",
-                paternal_genotype="wt/wt",
-            )
-
-        assert len(warning) == 1
-        assert "breeding_group" in str(warning[0].message)
-
-        assert breeding_info.breeding_group is None
-
-    def test_breeding_info_without_deprecated_field(self):
-        """Test creating BreedingInfo without the deprecated breeding_group field"""
+    def test_breeding_info(self):
+        """Test creating BreedingInfo"""
 
         breeding_info = BreedingInfo(
             maternal_id="M001", maternal_genotype="wt/wt", paternal_id="P001", paternal_genotype="wt/wt"
@@ -235,4 +218,3 @@ class TestBreedingInfo:
         assert breeding_info.maternal_genotype == "wt/wt"
         assert breeding_info.paternal_id == "P001"
         assert breeding_info.paternal_genotype == "wt/wt"
-        assert breeding_info.breeding_group is None

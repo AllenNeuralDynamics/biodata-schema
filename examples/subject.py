@@ -22,7 +22,6 @@ s = Subject(
         date_of_birth=t.date(),
         source=Organization.AI,
         breeding_info=BreedingInfo(
-            breeding_group="Emx1-IRES-Cre(ND)",
             maternal_id="546543",
             maternal_genotype="Emx1-IRES-Cre/wt; Camk2a-tTa/Camk2a-tTA",
             paternal_id="232323",

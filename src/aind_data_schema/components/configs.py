@@ -29,7 +29,6 @@ from aind_data_schema.base import (
     Discriminated,
     DiscriminatedList,
     GenericModel,
-    migrate_deprecated_coordinate_system,
 )
 from aind_data_schema.components.coordinates import (
     TRANSFORM_TYPES,
@@ -340,15 +339,6 @@ class ImagingConfig(DeviceConfig):
     """Configuration of an imaging instrument"""
 
     channels: DiscriminatedList[Channel] = Field()
-    coordinate_system: Optional[CoordinateSystem] = Field(
-        default=None,
-        title="Coordinate system",
-        description=(
-            "Required for ImageSPIM objects and when the imaging coordinate system differs from the "
-            "Acquisition.coordinate_system"
-        ),
-        deprecated="Deprecated: use local_coordinate_system instead",
-    )
     local_coordinate_system: Optional[CoordinateSystem] = Field(
         default=None,
         title="Local coordinate system",
@@ -362,12 +352,6 @@ class ImagingConfig(DeviceConfig):
         default=None,
         title="Sampling strategy",
     )
-
-    @model_validator(mode="before")
-    @classmethod
-    def migrate_coordinate_system(cls, data):
-        """Copy deprecated coordinate_system into local_coordinate_system when only old field is provided"""
-        return migrate_deprecated_coordinate_system(data, "local_coordinate_system")
 
     @model_validator(mode="after")
     def check_image_channels(self):
@@ -418,11 +402,6 @@ class LickSpoutConfig(DeviceConfig):
     relative_position: List[AnatomicalRelative] = Field(..., title="Initial relative position")
 
     # Transform
-    coordinate_system: Optional[CoordinateSystem] = Field(
-        default=None,
-        title="Device coordinate system",
-        deprecated="Deprecated: use local_coordinate_system instead",
-    )
     local_coordinate_system: Optional[CoordinateSystem] = Field(default=None, title="Device local coordinate system")
     transform: Optional[TRANSFORM_TYPES] = Field(
         default=None,
@@ -430,12 +409,6 @@ class LickSpoutConfig(DeviceConfig):
         description="Entry coordinate, depth, and rotation in the Acquisition.global_coordinate_system",
     )
     notes: Optional[str] = Field(default=None, title="Notes", validate_default=True)
-
-    @model_validator(mode="before")
-    @classmethod
-    def migrate_coordinate_system(cls, data):
-        """Copy deprecated coordinate_system into local_coordinate_system when only old field is provided"""
-        return migrate_deprecated_coordinate_system(data, "local_coordinate_system")
 
     @model_validator(mode="after")
     def validate_other(self):
@@ -455,11 +428,6 @@ class AirPuffConfig(DeviceConfig):
     relative_position: List[AnatomicalRelative] = Field(..., title="Initial relative position")
 
     # Transform
-    coordinate_system: Optional[CoordinateSystem] = Field(
-        default=None,
-        title="Device coordinate system",
-        deprecated="Deprecated: use local_coordinate_system instead",
-    )
     local_coordinate_system: Optional[CoordinateSystem] = Field(default=None, title="Device local coordinate system")
     transform: Optional[TRANSFORM_TYPES] = Field(
         default=None,
@@ -471,12 +439,6 @@ class AirPuffConfig(DeviceConfig):
     pressure_unit: Optional[PressureUnit] = Field(default=None, title="Pressure unit")
 
     duration: Optional[float] = Field(default=None, title="Duration")
-
-    @model_validator(mode="before")
-    @classmethod
-    def migrate_coordinate_system(cls, data):
-        """Copy deprecated coordinate_system into local_coordinate_system when only old field is provided"""
-        return migrate_deprecated_coordinate_system(data, "local_coordinate_system")
 
 
 class SpeakerConfig(DeviceConfig):
@@ -519,19 +481,8 @@ class JoystickConfig(DeviceConfig):
 class ManipulatorConfig(DeviceConfig):
     """Configuration of a manipulator"""
 
-    coordinate_system: Optional[CoordinateSystem] = Field(
-        default=None,
-        title="Device coordinate system",
-        deprecated="Deprecated: use local_coordinate_system instead",
-    )
     local_coordinate_system: CoordinateSystem = Field(..., title="Device local coordinate system")
     local_axis_positions: Translation = Field(..., title="Local axis positions")
-
-    @model_validator(mode="before")
-    @classmethod
-    def migrate_coordinate_system(cls, data):
-        """Copy deprecated coordinate_system into local_coordinate_system when only old field is provided"""
-        return migrate_deprecated_coordinate_system(data, "local_coordinate_system")
 
 
 class ProbeConfig(DeviceConfig):
@@ -548,15 +499,6 @@ class ProbeConfig(DeviceConfig):
     )
 
     # Transform
-    coordinate_system: Optional[CoordinateSystem] = Field(
-        default=None,
-        title="Device coordinate system",
-        description=(
-            "Device coordinate system, defines un-rotated probe's orientation relative to the "
-            "Acquisition.coordinate_system"
-        ),
-        deprecated="Deprecated: use local_coordinate_system instead",
-    )
     local_coordinate_system: CoordinateSystem = Field(
         ...,
         title="Device local coordinate system",
@@ -573,12 +515,6 @@ class ProbeConfig(DeviceConfig):
 
     dye: Optional[str] = Field(default=None, title="Dye")
     notes: Optional[str] = Field(default=None, title="Notes")
-
-    @model_validator(mode="before")
-    @classmethod
-    def migrate_coordinate_system(cls, data):
-        """Copy deprecated coordinate_system into local_coordinate_system when only old field is provided"""
-        return migrate_deprecated_coordinate_system(data, "local_coordinate_system")
 
 
 class MISModuleConfig(DataModel):

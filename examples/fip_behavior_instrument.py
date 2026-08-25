@@ -5,15 +5,13 @@
 import argparse
 from datetime import date, datetime, timezone
 
-from aind_data_schema_models.coordinates import AnatomicalRelative
+from aind_data_schema_models.coordinates import AnatomicalRelative, AxisName, Direction, Origin
 from aind_data_schema_models.devices import CameraTarget
 from aind_data_schema_models.modalities import Modality
 from aind_data_schema_models.units import FrequencyUnit, PowerUnit, SizeUnit
 
 from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.coordinates import (
-    CoordinateSystemLibrary,
-)
+from aind_data_schema.components.coordinates import Axis, CoordinateSystem
 from aind_data_schema.components.devices import (
     Camera,
     CameraAssembly,
@@ -39,6 +37,17 @@ from aind_data_schema.components.devices import (
 from aind_data_schema.components.identifiers import Software
 from aind_data_schema.components.measurements import Calibration
 from aind_data_schema.core.instrument import Instrument
+
+BREGMA_ARI = CoordinateSystem(
+    name="BREGMA_ARI",
+    origin=Origin.BREGMA,
+    axis_unit=SizeUnit.MM,
+    axes=[
+        Axis(name=AxisName.AP, direction=Direction.PA),
+        Axis(name=AxisName.ML, direction=Direction.LR),
+        Axis(name=AxisName.SI, direction=Direction.SI),
+    ],
+)
 
 bonsai_software = Software(name="Bonsai", version="2.5")
 
@@ -390,7 +399,7 @@ inst = Instrument(
     instrument_id="FIP-Behavior",
     modification_date=date(2000, 1, 1),
     modalities=[Modality.BEHAVIOR, Modality.FIB],
-    coordinate_system=CoordinateSystemLibrary.BREGMA_ARI,
+    global_coordinate_system=BREGMA_ARI,
     components=[
         camera1,
         camera2,

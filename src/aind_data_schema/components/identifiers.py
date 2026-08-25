@@ -1,7 +1,6 @@
 """Schema for identifiers"""
 
 import re
-import warnings
 from enum import Enum
 from pathlib import Path
 from typing import Annotated, Dict, List, Optional
@@ -135,9 +134,5 @@ class Code(DataModel):
     def _ensure_commit_hash_or_version(self) -> "Code":
         """Ensure that at least one of commit_hash or version is provided for code identification"""
         if not self.commit_hash and not self.version:
-            warnings.warn(
-                "Neither commit_hash nor version provided for Code. "
-                "It's recommended to provide at least one to ensure reproducibility. "
-                "In the future, we will require at least one of these fields."
-            )
+            raise ValueError("Either commit_hash or version must be provided for Code to ensure reproducibility.")
         return self

@@ -7,7 +7,7 @@ from typing import List, Literal, Optional
 from aind_data_schema_models.modalities import Modality
 from pydantic import Field, SkipValidation, field_validator, model_validator
 
-from aind_data_schema.base import DataCoreModel, DiscriminatedList, migrate_deprecated_coordinate_system
+from aind_data_schema.base import DataCoreModel, DiscriminatedList
 from aind_data_schema.components.connections import Connection
 from aind_data_schema.components.coordinates import CoordinateSystem
 from aind_data_schema.components.devices import (
@@ -53,9 +53,10 @@ from aind_data_schema.components.devices import (
     Tube,
     Wheel,
 )
+from aind_data_schema.components.identifiers import Software
 from aind_data_schema.components.measurements import CALIBRATIONS
 from aind_data_schema.utils.merge import merge_notes, merge_optional_list, merge_str_alphabetical
-from aind_data_schema.utils.validators import recursive_get_all_names
+from aind_data_schema.utils.validators import recursive_get_all_names, recursive_get_named_objects
 
 logger = logging.getLogger(__name__)
 
@@ -103,23 +104,11 @@ class Instrument(DataCoreModel):
     )
 
     # coordinate system
-    coordinate_system: Optional[CoordinateSystem] = Field(
-        default=None,
-        title="Coordinate system",
-        description="Origin and axis definitions for determining the position of the instrument's components",
-        deprecated="Deprecated: use global_coordinate_system instead",
-    )
     global_coordinate_system: CoordinateSystem = Field(
         ...,
         title="Global coordinate system",
         description="Origin and axis definitions for determining the position of the instrument's components",
     )
-
-    @model_validator(mode="before")
-    @classmethod
-    def migrate_coordinate_system(cls, data):
-        """Copy deprecated coordinate_system into global_coordinate_system when only old field is provided"""
-        return migrate_deprecated_coordinate_system(data, "global_coordinate_system")
 
     # instrument details
     temperature_control: Optional[bool] = Field(
@@ -214,16 +203,37 @@ class Instrument(DataCoreModel):
 
     @model_validator(mode="after")
     def validate_unique_component_names(self):
-        """Warn if any component names are duplicated"""
-        names = self.get_component_names()
-        if len(set(names)) != len(names):
-            seen = set()
-            duplicates = set()
-            for name in names:
-                if name in seen:
-                    duplicates.add(name)
-                seen.add(name)
-            logger.warning(f"Duplicate component names found: {sorted(duplicates)}")
+        """Raise if a device name is used more than once
+
+        Component names are how connections and configurations refer to devices, so a
+        repeated name is ambiguous. Two things are rejected: two top-level components
+        sharing a name, and two *distinct* objects anywhere in the tree sharing a name.
+        A single shared object referenced from more than one place is not a collision,
+        so objects are compared by value first.
+
+        ``Software`` names are exempt entirely: software is a descriptor rather than an
+        addressable device, and the same package is routinely recorded on several
+        devices at once.
+        """
+        top_level = [
+            component.name
+            for component in self.components
+            if getattr(component, "name", None) and not isinstance(component, Software)
+        ]
+        duplicates = {name for name in top_level if top_level.count(name) > 1}
+
+        by_name = {}
+        for component in self.components:
+            for name, obj in recursive_get_named_objects(component):
+                if isinstance(obj, Software):
+                    continue
+                distinct = by_name.setdefault(name, [])
+                if not any(obj == other for other in distinct):
+                    distinct.append(obj)
+        duplicates |= {name for name, distinct in by_name.items() if len(distinct) > 1}
+
+        if duplicates:
+            raise ValueError(f"Duplicate component names found: {sorted(duplicates)}")
         return self
 
     @model_validator(mode="after")
