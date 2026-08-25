@@ -56,7 +56,7 @@ class DataProcess(DataModel):
     name: str = Field(
         default="",
         title="Name",
-        description=("Unique name of the processing step.", " If not provided, the type will be used as the name."),
+        description=("Unique name of the processing step." " If not provided, the type will be used as the name."),
     )
     stage: ProcessStage = Field(..., title="Processing stage")
     code: Code = Field(..., title="Code", description="Code used for processing")
@@ -99,7 +99,7 @@ class Processing(DataCoreModel):
 
     _DESCRIBED_BY_URL: str = DataCoreModel._DESCRIBED_BY_BASE_URL.default + "aind_data_schema/core/processing.py"
     describedBy: str = Field(default=_DESCRIBED_BY_URL, json_schema_extra={"const": _DESCRIBED_BY_URL})
-    schema_version: SkipValidation[Literal["3.0.1"]] = Field(default="3.0.1")
+    schema_version: SkipValidation[Literal["3.0.0"]] = Field(default="3.0.0")
 
     data_processes: List[DataProcess] = Field(..., title="Data processing")
     pipelines: Optional[List[Code]] = Field(

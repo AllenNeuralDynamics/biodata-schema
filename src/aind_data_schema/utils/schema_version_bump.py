@@ -69,7 +69,7 @@ class SchemaVersionHandler:
         """
         schemas_that_need_updating = []
         for core_model in SchemaWriter.get_schemas():
-            core_model_json = core_model.model_json_schema()
+            core_model_json = json.loads(json.dumps(core_model.model_json_schema()))
             original_schema = self._get_schema_json(core_model)
 
             diff_list = list(dictdiffer.diff(original_schema, core_model_json))
