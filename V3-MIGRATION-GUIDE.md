@@ -101,8 +101,12 @@ Section(output_specimen_id="123456_001", coordinate_system_name="BREGMA_ARI", th
 **After**
 
 ```python
-PlanarSection(output_specimen_id="123456_001", coordinate_system_name="BREGMA_ARI",
-              start_coordinate=Translation(translation=[0.3, 0, 0]), thickness=0.1)
+PlanarSection(
+    output_specimen_id="123456_001",
+    coordinate_system_name="BREGMA_ARI",
+    start_coordinate=Translation(translation=[0.3, 0, 0]),
+    thickness=0.1,
+)
 ```
 
 `PlanarSection` requires `coordinate_system_name` and `start_coordinate`.
@@ -303,8 +307,8 @@ accepted, so they are the most likely source of new `ValidationError`s.
 least one of these fields would be required in a future release. It is required now.
 
 ```python
-Code(url="https://github.com/AllenNeuralDynamics/example")                  # ValidationError
-Code(url="https://github.com/AllenNeuralDynamics/example", version="0.0.1") # ok
+Code(url="https://github.com/AllenNeuralDynamics/example")  # ValidationError
+Code(url="https://github.com/AllenNeuralDynamics/example", version="0.0.1")  # ok
 ```
 
 ### Bare `Injection` procedures are rejected
@@ -313,7 +317,7 @@ Code(url="https://github.com/AllenNeuralDynamics/example", version="0.0.1") # ok
 a `Surgery` or `NonSurgicalInjection`:
 
 ```python
-Procedures(subject_id="12345", subject_procedures=[Injection(...)])                    # ValidationError
+Procedures(subject_id="12345", subject_procedures=[Injection(...)])  # ValidationError
 Procedures(subject_id="12345", subject_procedures=[Surgery(procedures=[Injection(...)])])  # ok
 ```
 
@@ -369,7 +373,7 @@ value was given without one. It is removed. A separate validator already require
 whenever the value is set, and that requirement now takes effect:
 
 ```python
-Monitor(..., contrast=50)                                    # ValidationError
+Monitor(..., contrast=50)  # ValidationError
 Monitor(..., contrast=50, contrast_unit=UnitlessUnit.PERCENT)  # ok
 ```
 
