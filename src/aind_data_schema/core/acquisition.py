@@ -78,6 +78,16 @@ CONFIG_REQUIREMENTS = {
 
 SPECIMEN_MODALITIES = [Modality.SPIM.abbreviation, Modality.CONFOCAL.abbreviation]
 
+# Names exposed by some host timezone databases (Debian and Ubuntu) that are not IANA zones
+NON_IANA_TIMEZONES = {"localtime", "posixrules"}
+
+
+def _drop_non_iana_timezones(schema: dict) -> None:
+    """Remove non-IANA timezone names from the generated enum so the schema is host independent"""
+    for option in schema.get("anyOf", []):
+        if "enum" in option:
+            option["enum"] = [tz for tz in option["enum"] if tz not in NON_IANA_TIMEZONES]
+
 
 class AcquisitionSubjectDetails(DataModel):
     """Details about the subject during an acquisition"""
@@ -393,6 +403,7 @@ class Acquisition(ProtocolListMixin, DataCoreModel):
             "or an integer UTC offset in hours for fixed-offset timezones. "
             "Use ZoneInfo (from the zoneinfo standard library) to preserve the named timezone."
         ),
+        json_schema_extra=_drop_non_iana_timezones,
     )
     acquisition_end_time: AwareDatetimeWithDefault = Field(..., title="Acquisition end time")
 
@@ -405,6 +416,14 @@ class Acquisition(ProtocolListMixin, DataCoreModel):
             if m:
                 sign = -1 if m.group(1) == "-" else 1
                 return sign * (int(m.group(2)) * 60 + int(m.group(3))) // 60
+        return v
+
+    @field_validator("acquisition_start_tz", mode="before")
+    @classmethod
+    def reject_non_iana_tz(cls, v):
+        """Reject timezone names that are host artifacts rather than IANA zones."""
+        if isinstance(v, str) and v in NON_IANA_TIMEZONES:
+            raise ValueError(f"'{v}' is not an IANA timezone name. Use a named zone such as 'America/Los_Angeles'.")
         return v
 
     experimenters: List[str] = Field(
