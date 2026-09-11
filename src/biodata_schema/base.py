@@ -157,7 +157,7 @@ class DataModel(BaseModel):
         if any of variable_* are set
         """
         # Accumulate a dictionary mapping variable : unit/unit_value
-        values = self.model_dump().items()
+        values = self.__dict__.items()
         for unit_name, unit_value in values:
             if "_unit" in unit_name and not unit_value:
                 var_name = unit_name.rsplit("_unit", 1)[0]
