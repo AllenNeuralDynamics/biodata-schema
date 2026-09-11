@@ -150,6 +150,19 @@ class TestComposability:
         assert merged_acq.acquisition_type == "ExaSPIM"
         assert merged_acq.instrument_id == acq1.instrument_id
 
+        empty_type_acq = self.exaspim_acquisition.model_copy()
+        empty_type_acq.acquisition_type = ""
+        merged_empty_type = empty_type_acq + acq2
+        assert merged_empty_type.acquisition_type == "ExaSPIM"
+
+        merged_empty_type = acq2 + empty_type_acq
+        assert merged_empty_type.acquisition_type == "ExaSPIM"
+
+        conflicting_type_acq = self.exaspim_acquisition.model_copy()
+        conflicting_type_acq.acquisition_type = "Other"
+        with pytest.raises(ValueError):
+            acq2 + conflicting_type_acq
+
         # Test duplicate removal in merging
         acq3 = self.exaspim_acquisition.model_copy()
         acq4 = self.exaspim_acquisition.model_copy()
