@@ -4,8 +4,8 @@
 are expected to define the coordinate systems they use, as shown here.
 """
 
-from aind_data_schema_models.coordinates import AxisName, Direction, Origin
-from aind_data_schema_models.units import SizeUnit
+from biodata_models.coordinates import AxisName, Direction, Origin
+from biodata_models.units import SizeUnit
 
 from aind_data_schema.components.coordinates import Axis, CoordinateSystem
 

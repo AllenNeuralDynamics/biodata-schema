@@ -3,7 +3,7 @@
 import argparse
 import datetime
 
-from aind_data_schema_models.system_architecture import ModelArchitecture
+from biodata_models.system_architecture import ModelArchitecture
 
 from aind_data_schema.components.identifiers import Code, DataAsset, Software
 from aind_data_schema.core.model import Model, ModelEvaluation, ModelTraining, PerformanceMetric

@@ -3,9 +3,9 @@
 import argparse
 from datetime import date
 
-from aind_data_schema_models.coordinates import AxisName, Direction, Origin
-from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.units import SizeUnit
+from biodata_models.coordinates import AxisName, Direction, Origin
+from biodata_models.organizations import Organization
+from biodata_models.units import SizeUnit
 
 from aind_data_schema.components.coordinates import Axis, CoordinateSystem
 from aind_data_schema.components.reagent import Reagent

@@ -5,7 +5,7 @@ from enum import Enum
 from pathlib import Path
 from typing import Annotated, Dict, List, Optional
 
-from aind_data_schema_models.registries import Registry
+from biodata_models.registries import Registry
 from pydantic import BaseModel, Field, StringConstraints, model_validator
 
 from aind_data_schema.base import DataModel, DiscriminatedList, GenericModel

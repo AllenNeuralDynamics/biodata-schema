@@ -3,12 +3,12 @@
 import argparse
 from datetime import datetime
 
-from aind_data_schema_models.coordinates import AnatomicalRelative, AxisName, Direction, Origin
-from aind_data_schema_models.devices import CameraTarget, DetectorType, FilterType
-from aind_data_schema_models.harp_types import HarpDeviceType
-from aind_data_schema_models.modalities import Modality
-from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.units import SizeUnit, SpeedUnit
+from biodata_models.coordinates import AnatomicalRelative, AxisName, Direction, Origin
+from biodata_models.devices import CameraTarget, DetectorType, FilterType
+from biodata_models.harp_types import HarpDeviceType
+from biodata_models.modalities import Modality
+from biodata_models.organizations import Organization
+from biodata_models.units import SizeUnit, SpeedUnit
 
 from aind_data_schema.components.connections import Connection
 from aind_data_schema.components.coordinates import Axis, CoordinateSystem

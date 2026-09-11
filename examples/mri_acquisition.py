@@ -5,9 +5,9 @@ from datetime import datetime
 from decimal import Decimal
 from zoneinfo import ZoneInfo
 
-from aind_data_schema_models.coordinates import AxisName, Direction, Origin
-from aind_data_schema_models.modalities import Modality
-from aind_data_schema_models.units import MagneticFieldUnit, SizeUnit, TimeUnit
+from biodata_models.coordinates import AxisName, Direction, Origin
+from biodata_models.modalities import Modality
+from biodata_models.units import MagneticFieldUnit, SizeUnit, TimeUnit
 
 from aind_data_schema.components.configs import MRAcquisitionType, MRIScan, PulseSequenceType, SubjectPosition
 from aind_data_schema.components.coordinates import Affine, Axis, CoordinateSystem, Scale, Translation

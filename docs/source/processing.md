@@ -35,7 +35,7 @@ Description of a single processing step
 
 | Field | Type | Title (Description) |
 |-------|------|-------------|
-| `process_type` | [ProcessName](aind_data_schema_models/process_names.md#processname) | Process type  |
+| `process_type` | [ProcessName](biodata_models/process_names.md#processname) | Process type  |
 | `name` | `str` | Name (('Unique name of the processing step.', ' If not provided, the type will be used as the name.')) |
 | `stage` | [ProcessStage](processing.md#processstage) | Processing stage  |
 | `code` | [Code](components/identifiers.md#code) | Code (Code used for processing) |
@@ -81,9 +81,9 @@ Description of resources used by a process
 | `cpu_cores` | `Optional[int]` | CPU cores  |
 | `gpu` | `Optional[str]` | GPU name  |
 | `system_memory` | `Optional[float]` | System memory  |
-| `system_memory_unit` | Optional[[MemoryUnit](aind_data_schema_models/units.md#memoryunit)] | System memory unit  |
+| `system_memory_unit` | Optional[[MemoryUnit](biodata_models/units.md#memoryunit)] | System memory unit  |
 | `ram` | `Optional[float]` | System RAM  |
-| `ram_unit` | Optional[[MemoryUnit](aind_data_schema_models/units.md#memoryunit)] | Ram unit  |
+| `ram_unit` | Optional[[MemoryUnit](biodata_models/units.md#memoryunit)] | Ram unit  |
 | `cpu_usage` | Optional[List[[ResourceTimestamped](processing.md#resourcetimestamped)]] | CPU usage  |
 | `gpu_usage` | Optional[List[[ResourceTimestamped](processing.md#resourcetimestamped)]] | GPU usage  |
 | `ram_usage` | Optional[List[[ResourceTimestamped](processing.md#resourcetimestamped)]] | RAM usage  |

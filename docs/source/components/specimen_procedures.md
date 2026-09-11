@@ -39,10 +39,10 @@ Description of a single planar section of brain tissue
 | `start_coordinate` | [Translation](coordinates.md#translation) | Start coordinate  |
 | `end_coordinate` | Optional[[Translation](coordinates.md#translation)] | End coordinate  |
 | `thickness` | `Optional[float]` | Slice thickness  |
-| `thickness_unit` | Optional[[SizeUnit](../aind_data_schema_models/units.md#sizeunit)] | Slice thickness unit  |
-| `partial_slice` | Optional[List[[AnatomicalRelative](../aind_data_schema_models/coordinates.md#anatomicalrelative)]] | Partial slice (If sectioning does not include the entire slice, indicate which part of the slice is retained.) |
+| `thickness_unit` | Optional[[SizeUnit](../biodata_models/units.md#sizeunit)] | Slice thickness unit  |
+| `partial_slice` | Optional[List[[AnatomicalRelative](../biodata_models/coordinates.md#anatomicalrelative)]] | Partial slice (If sectioning does not include the entire slice, indicate which part of the slice is retained.) |
 | `output_specimen_id` | `str` | Specimen ID (Output IDs should generally follow the format {input_specimen_id}_###) |
-| `targeted_structure` | Optional[[BrainAtlas](../aind_data_schema_models/brain_atlas.md#ccfv3)] | Targeted structure  |
+| `targeted_structure` | Optional[[BrainAtlas](../biodata_models/brain_atlas.md#ccfv3)] | Targeted structure  |
 | `includes_surrounding_tissue` | `Optional[bool]` | Includes surrounding tissue (Whether the section includes additional tissue surrounding the targeted structure.) |
 
 
@@ -65,14 +65,14 @@ Description of a single section of brain tissue. Slices should use PlanarSection
 | Field | Type | Title (Description) |
 |-------|------|-------------|
 | `output_specimen_id` | `str` | Specimen ID (Output IDs should generally follow the format {input_specimen_id}_###) |
-| `targeted_structure` | Optional[[BrainAtlas](../aind_data_schema_models/brain_atlas.md#ccfv3)] | Targeted structure  |
+| `targeted_structure` | Optional[[BrainAtlas](../biodata_models/brain_atlas.md#ccfv3)] | Targeted structure  |
 | `includes_surrounding_tissue` | `Optional[bool]` | Includes surrounding tissue (Whether the section includes additional tissue surrounding the targeted structure.) |
 | <del>`coordinate_system_name`</del> | `Optional[str]` | **[DEPRECATED]** Use PlanarSection instead. Coordinate system name  |
 | <del>`start_coordinate`</del> | Optional[[Translation](coordinates.md#translation)] | **[DEPRECATED]** Use PlanarSection instead. Start coordinate  |
 | <del>`end_coordinate`</del> | Optional[[Translation](coordinates.md#translation)] | **[DEPRECATED]** Use PlanarSection instead. End coordinate  |
 | <del>`thickness`</del> | `Optional[float]` | **[DEPRECATED]** Use PlanarSection instead. Slice thickness  |
-| <del>`thickness_unit`</del> | Optional[[SizeUnit](../aind_data_schema_models/units.md#sizeunit)] | **[DEPRECATED]** Use PlanarSection instead. Slice thickness unit  |
-| <del>`partial_slice`</del> | Optional[List[[AnatomicalRelative](../aind_data_schema_models/coordinates.md#anatomicalrelative)]] | **[DEPRECATED]** Use PlanarSection instead. Partial slice (If sectioning does not include the entire slice, indicate which part of the slice is retained.) |
+| <del>`thickness_unit`</del> | Optional[[SizeUnit](../biodata_models/units.md#sizeunit)] | **[DEPRECATED]** Use PlanarSection instead. Slice thickness unit  |
+| <del>`partial_slice`</del> | Optional[List[[AnatomicalRelative](../biodata_models/coordinates.md#anatomicalrelative)]] | **[DEPRECATED]** Use PlanarSection instead. Partial slice (If sectioning does not include the entire slice, indicate which part of the slice is retained.) |
 
 
 ### SectionOrientation
@@ -101,7 +101,7 @@ Description of surgical or other procedure performed on a specimen
 
 | Field | Type | Title (Description) |
 |-------|------|-------------|
-| `procedure_type` | [SpecimenProcedureType](../aind_data_schema_models/specimen_procedure_types.md#specimenproceduretype) | Procedure type  |
+| `procedure_type` | [SpecimenProcedureType](../biodata_models/specimen_procedure_types.md#specimenproceduretype) | Procedure type  |
 | `procedure_name` | `Optional[str]` | Procedure name  |
 | `specimen_id` | `str or List[str]` | Specimen ID(s)  |
 | `start_date` | `datetime.date` | Start date  |

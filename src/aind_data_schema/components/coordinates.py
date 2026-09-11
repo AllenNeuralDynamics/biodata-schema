@@ -3,10 +3,10 @@
 from enum import Enum
 from typing import List, Optional
 
-from aind_data_schema_models.atlas import AtlasName
-from aind_data_schema_models.coordinates import AxisName, Direction, Origin
-from aind_data_schema_models.mouse_anatomy import MouseAnatomyModel
-from aind_data_schema_models.units import AngleUnit, SizeUnit
+from biodata_models.atlas import AtlasName
+from biodata_models.coordinates import AxisName, Direction, Origin
+from biodata_models.mouse_anatomy import MouseAnatomyModel
+from biodata_models.units import AngleUnit, SizeUnit
 from pydantic import Field, field_validator
 
 from aind_data_schema.base import DataModel, DiscriminatedList

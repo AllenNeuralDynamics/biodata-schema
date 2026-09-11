@@ -6,8 +6,8 @@ from decimal import Decimal
 from enum import Enum
 from typing import List, Literal, Optional
 
-from aind_data_schema_models.coordinates import AnatomicalRelative
-from aind_data_schema_models.devices import (
+from biodata_models.coordinates import AnatomicalRelative
+from biodata_models.devices import (
     BinMode,
     CameraChroma,
     CameraTarget,
@@ -27,10 +27,10 @@ from aind_data_schema_models.devices import (
     ProbeModel,
     StageAxisDirection,
 )
-from aind_data_schema_models.harp_types import HarpDeviceType
-from aind_data_schema_models.mouse_anatomy import MouseAnatomyModel
-from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.units import (
+from biodata_models.harp_types import HarpDeviceType
+from biodata_models.mouse_anatomy import MouseAnatomyModel
+from biodata_models.organizations import Organization
+from biodata_models.units import (
     FrequencyUnit,
     MagneticFieldUnit,
     SizeUnit,

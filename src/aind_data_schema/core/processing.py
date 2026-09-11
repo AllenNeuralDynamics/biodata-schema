@@ -5,8 +5,8 @@ import warnings
 from enum import Enum
 from typing import Annotated, Dict, List, Literal, Optional
 
-from aind_data_schema_models.process_names import ProcessName
-from aind_data_schema_models.units import MemoryUnit, UnitlessUnit
+from biodata_models.process_names import ProcessName
+from biodata_models.units import MemoryUnit, UnitlessUnit
 from pydantic import Field, SkipValidation, model_validator
 
 from aind_data_schema.base import AwareDatetimeWithDefault, DataCoreModel, DataModel, GenericModel

@@ -7,7 +7,7 @@ import warnings
 from pathlib import Path
 from typing import Dict, List, Literal, Optional, Union, get_args
 
-from aind_data_schema_models.modalities import Modality
+from biodata_models.modalities import Modality
 from pydantic import (
     ConfigDict,
     Field,

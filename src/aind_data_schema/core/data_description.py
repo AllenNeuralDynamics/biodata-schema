@@ -3,16 +3,16 @@
 import re
 from typing import List, Literal, Optional
 
-from aind_data_schema_models.data_name_patterns import (
+from biodata_models.data_name_patterns import (
     DataLevel,
     DataRegex,
     Group,
     build_data_name,
     datetime_from_name_string,
 )
-from aind_data_schema_models.licenses import License
-from aind_data_schema_models.modalities import Modality
-from aind_data_schema_models.organizations import Organization
+from biodata_models.licenses import License
+from biodata_models.modalities import Modality
+from biodata_models.organizations import Organization
 from pydantic import Field, SkipValidation, model_validator
 
 from aind_data_schema.base import AwareDatetimeWithDefault, DataCoreModel, DataModel

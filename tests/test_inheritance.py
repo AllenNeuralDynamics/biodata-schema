@@ -3,9 +3,9 @@
 from datetime import datetime, timezone
 
 import pytest
-from aind_data_schema_models.data_name_patterns import DataLevel
-from aind_data_schema_models.modalities import Modality
-from aind_data_schema_models.organizations import Organization
+from biodata_models.data_name_patterns import DataLevel
+from biodata_models.modalities import Modality
+from biodata_models.organizations import Organization
 
 from aind_data_schema.components.identifiers import Code, Person
 from aind_data_schema.core.data_description import DataDescription, Funding

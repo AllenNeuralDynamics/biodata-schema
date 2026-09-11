@@ -36,7 +36,7 @@ from aind_data_schema.core.metadata import Metadata
 from aind_data_schema.core.processing import DataProcess, Processing, ProcessName, ProcessStage
 from aind_data_schema.core.quality_control import QCMetric, QCStatus, QualityControl, Stage, Status
 from aind_data_schema.components.identifiers import Code
-from aind_data_schema_models.modalities import Modality
+from biodata_models.modalities import Modality
 
 # Load and validate source metadata (e.g. from a JSON file)
 source = Metadata.model_validate_json(open("metadata.nd.json").read())

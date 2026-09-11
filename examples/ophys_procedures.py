@@ -3,14 +3,14 @@
 import argparse
 import datetime
 
-from aind_data_schema_models.brain_atlas import CCFv3
-from aind_data_schema_models.coordinates import AxisName, Direction, Origin
-from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.pid_names import PIDName
-from aind_data_schema_models.reagent import FluorophoreType, StainType
-from aind_data_schema_models.registries import Registry
-from aind_data_schema_models.species import Species
-from aind_data_schema_models.units import SizeUnit, VolumeUnit
+from biodata_models.brain_atlas import CCFv3
+from biodata_models.coordinates import AxisName, Direction, Origin
+from biodata_models.organizations import Organization
+from biodata_models.pid_names import PIDName
+from biodata_models.reagent import FluorophoreType, StainType
+from biodata_models.registries import Registry
+from biodata_models.species import Species
+from biodata_models.units import SizeUnit, VolumeUnit
 
 from aind_data_schema.components.configs import ProbeConfig
 from aind_data_schema.components.coordinates import Axis, CoordinateSystem, Translation

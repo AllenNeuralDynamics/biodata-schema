@@ -7,8 +7,8 @@ from zoneinfo import ZoneInfo
 
 import pydantic
 import pytest
-from aind_data_schema_models.brain_atlas import CCFv3
-from aind_data_schema_models.modalities import Modality
+from biodata_models.brain_atlas import CCFv3
+from biodata_models.modalities import Modality
 from pydantic import ValidationError
 
 from aind_data_schema.components.configs import (

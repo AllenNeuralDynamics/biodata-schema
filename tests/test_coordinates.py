@@ -1,8 +1,8 @@
 """Tests for the coordinates module"""
 
 import pytest
-from aind_data_schema_models.atlas import AtlasName
-from aind_data_schema_models.units import SizeUnit
+from biodata_models.atlas import AtlasName
+from biodata_models.units import SizeUnit
 
 from aind_data_schema.components.coordinates import (
     Atlas,
@@ -148,7 +148,7 @@ class TestCoordinateSystemMouseAnatomyOrigin:
     @pytest.mark.online
     def test_mouse_anatomy_origin(self):  # pragma: no cover
         """Test that CoordinateSystem accepts a MouseAnatomyModel as origin"""
-        from aind_data_schema_models.mouse_anatomy import MouseAnatomy
+        from biodata_models.mouse_anatomy import MouseAnatomy
 
         cs = CoordinateSystem(
             name="TEST_MOUSE_ANATOMY",

@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 
 import pytest
-from aind_data_schema_models.modalities import Modality
+from biodata_models.modalities import Modality
 
 from aind_data_schema.components.identifiers import Code
 from aind_data_schema.core.acquisition import AcquisitionSubjectDetails

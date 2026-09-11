@@ -3,9 +3,9 @@
 import argparse
 from datetime import datetime, timezone
 
-from aind_data_schema_models.brain_atlas import CCFv3
-from aind_data_schema_models.coordinates import AxisName, Direction, Origin
-from aind_data_schema_models.units import SizeUnit, VolumeUnit
+from biodata_models.brain_atlas import CCFv3
+from biodata_models.coordinates import AxisName, Direction, Origin
+from biodata_models.units import SizeUnit, VolumeUnit
 
 from aind_data_schema.components.configs import ProbeConfig
 from aind_data_schema.components.coordinates import Axis, CoordinateSystem, Rotation, Translation

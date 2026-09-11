@@ -5,17 +5,17 @@ import os
 from enum import Enum
 
 # Atlas models
-from aind_data_schema_models.atlas import AtlasName
-from aind_data_schema_models.brain_atlas import BrainStructureModel, CCFv3
+from biodata_models.atlas import AtlasName
+from biodata_models.brain_atlas import BrainStructureModel, CCFv3
 
 # Coordinates models
-from aind_data_schema_models.coordinates import AnatomicalRelative, AxisName, Direction, Origin
+from biodata_models.coordinates import AnatomicalRelative, AxisName, Direction, Origin
 
 # Name patterns
-from aind_data_schema_models.data_name_patterns import DataLevel, Group
+from biodata_models.data_name_patterns import DataLevel, Group
 
 # Devices models
-from aind_data_schema_models.devices import (
+from biodata_models.devices import (
     BinMode,
     CameraChroma,
     CameraTarget,
@@ -35,33 +35,33 @@ from aind_data_schema_models.devices import (
     ProbeModel,
     StageAxisDirection,
 )
-from aind_data_schema_models.harp_types import HarpDeviceType
-from aind_data_schema_models.licenses import License
+from biodata_models.harp_types import HarpDeviceType
+from biodata_models.licenses import License
 
 # Other registry models
-from aind_data_schema_models.modalities import Modality
+from biodata_models.modalities import Modality
 
 # Organization models
-from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.pid_names import PIDName
+from biodata_models.organizations import Organization
+from biodata_models.pid_names import PIDName
 
 # Processing
-from aind_data_schema_models.process_names import ProcessName
+from biodata_models.process_names import ProcessName
 
 # Reagent models
-from aind_data_schema_models.reagent import FluorophoreType, StainType
+from biodata_models.reagent import FluorophoreType, StainType
 
 # Registries
-from aind_data_schema_models.registries import Registry
+from biodata_models.registries import Registry
 
 # Species models
-from aind_data_schema_models.species import Species, Strain
-from aind_data_schema_models.specimen_procedure_types import SpecimenProcedureType
-from aind_data_schema_models.stimulus_modality import StimulusModality
-from aind_data_schema_models.system_architecture import CPUArchitecture, ModelArchitecture, OperatingSystem
+from biodata_models.species import Species, Strain
+from biodata_models.specimen_procedure_types import SpecimenProcedureType
+from biodata_models.stimulus_modality import StimulusModality
+from biodata_models.system_architecture import CPUArchitecture, ModelArchitecture, OperatingSystem
 
 # Units models
-from aind_data_schema_models.units import (
+from biodata_models.units import (
     AngleUnit,
     ConcentrationUnit,
     CurrentUnit,
@@ -165,13 +165,13 @@ registries = [
 ]
 
 special_cases = {
-    "ADDGENE": "[Addgene](aind_data_schema_models/registries.md#registry)",
-    "EMAPA": "[Emapa](aind_data_schema_models/registries.md#registry)",
-    "MGI": "[MGI](aind_data_schema_models/registries.md#registry)",
-    "NCBI": "[NBCI](aind_data_schema_models/registries.md#registry)",
-    "ORCID": "[ORCID](aind_data_schema_models/registries.md#registry)",
-    "ROR": "[ROR](aind_data_schema_models/registries.md#registry)",
-    "RID": "[RID](aind_data_schema_models/registries.md#registry)",
+    "ADDGENE": "[Addgene](biodata_models/registries.md#registry)",
+    "EMAPA": "[Emapa](biodata_models/registries.md#registry)",
+    "MGI": "[MGI](biodata_models/registries.md#registry)",
+    "NCBI": "[NBCI](biodata_models/registries.md#registry)",
+    "ORCID": "[ORCID](biodata_models/registries.md#registry)",
+    "ROR": "[ROR](biodata_models/registries.md#registry)",
+    "RID": "[RID](biodata_models/registries.md#registry)",
     "aind_data_schema.components.wrappers.AssetPath": "AssetPath",
 }
 

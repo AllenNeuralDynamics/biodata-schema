@@ -15,19 +15,19 @@ from aind_data_schema.utils.docs.utils import generate_enum_table
 
 special_cases = {
     "pydantic.types.AwareDatetime": "datetime (timezone-aware)",
-    "aind_data_schema_models.organizations": ("[Organization](aind_data_schema_models/organizations.md#organization)"),
-    "aind_data_schema_models.modalities": ("[Modality](aind_data_schema_models/modalities.md#modality)"),
-    "aind_data_schema_models.brain_atlas": ("[BrainAtlas](aind_data_schema_models/brain_atlas.md#ccfv3)"),
-    "aind_data_schema_models.harp_types": ("[HarpDeviceType](aind_data_schema_models/harp_types.md#harpdevicetype)"),
-    "aind_data_schema_models.species._C57Bl_6J": "[Strain](aind_data_schema_models/species.md#strain)",
-    "aind_data_schema_models.species._Callithrix_Jacchus": "[Species](aind_data_schema_models/species.md#species)",
+    "biodata_models.organizations": ("[Organization](biodata_models/organizations.md#organization)"),
+    "biodata_models.modalities": ("[Modality](biodata_models/modalities.md#modality)"),
+    "biodata_models.brain_atlas": ("[BrainAtlas](biodata_models/brain_atlas.md#ccfv3)"),
+    "biodata_models.harp_types": ("[HarpDeviceType](biodata_models/harp_types.md#harpdevicetype)"),
+    "biodata_models.species._C57Bl_6J": "[Strain](biodata_models/species.md#strain)",
+    "biodata_models.species._Callithrix_Jacchus": "[Species](biodata_models/species.md#species)",
     "aind_data_schema.core.quality_control.QCMetric": "{QCMetric} or {CurationMetric}",
     "aind_data_schema.components.wrappers.AssetPath": "AssetPath",
     "aind_data_schema.base._GenericModel": "dict",
-    "aind_data_schema_models.mouse_anatomy.MouseAnatomyModel": (
-        "[MouseAnatomyModel](aind_data_schema_models/external.md#mouseanatomymodel)"
+    "biodata_models.mouse_anatomy.MouseAnatomyModel": (
+        "[MouseAnatomyModel](biodata_models/external.md#mouseanatomymodel)"
     ),
-    "aind_data_schema_models.pid_names.PIDName": "{PIDName}",
+    "biodata_models.pid_names.PIDName": "{PIDName}",
 }
 
 skip_fields = ["object_type", "describedBy", "schema_version"]

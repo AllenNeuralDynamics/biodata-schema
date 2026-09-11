@@ -16,7 +16,7 @@ Each [QCMetric](#qcmetric) is a single value or array of values that can be comp
 
 Each [QCMetric](#qcmetric) has a [Status](#status). The [Status](#status) should depend directly on the `QCMetric.value`, either by a simple function: "value>5", or by a qualitative rule: "Field of view includes visual areas". The `QCMetric.description` field should describe the rule used to set the status. Metrics can be evaluated multiple times, in which case the new status should be appended the `QCMetric.status_history`.
 
-Each [QCMetric](#qcmetric) is annotated with three pieces of additional metadata: the [Stage](#stage) during which it was evaluated, the [Modality](aind_data_schema_models/modalities.md#modality) of the evaluated data, and [tags](#tags).
+Each [QCMetric](#qcmetric) is annotated with three pieces of additional metadata: the [Stage](#stage) during which it was evaluated, the [Modality](biodata_models/modalities.md#modality) of the evaluated data, and [tags](#tags).
 
 ### Curations
 
@@ -114,7 +114,7 @@ Description of a curation metric
 | `type` | `str` | Curation type  |
 | `curation_history` | List[[CurationHistory](quality_control.md#curationhistory)] | Curation history  |
 | `name` | `str` | Metric name  |
-| `modality` | [Modality](aind_data_schema_models/modalities.md#modality) | Modality  |
+| `modality` | [Modality](biodata_models/modalities.md#modality) | Modality  |
 | `stage` | [Stage](quality_control.md#stage) | Evaluation stage  |
 | `status_history` | List[[QCStatus](quality_control.md#qcstatus)] | Metric status history  |
 | `description` | `Optional[str]` | Metric description (Describes the measured value and the rule that links the value and status.) |
@@ -130,7 +130,7 @@ Description of a single quality control metric
 | Field | Type | Title (Description) |
 |-------|------|-------------|
 | `name` | `str` | Metric name  |
-| `modality` | [Modality](aind_data_schema_models/modalities.md#modality) | Modality  |
+| `modality` | [Modality](biodata_models/modalities.md#modality) | Modality  |
 | `stage` | [Stage](quality_control.md#stage) | Evaluation stage  |
 | `value` | `typing.Any` | Metric value  |
 | `status_history` | List[[QCStatus](quality_control.md#qcstatus)] | Metric status history  |

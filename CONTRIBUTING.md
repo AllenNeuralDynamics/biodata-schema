@@ -110,7 +110,7 @@ Use `uv run ruff format .` to apply Ruff's formatting.
 **NOTE**: Please note that these linters are automatically run in github actions when a PR is opened. These linters must pass for a PR to merge. 
 
 ### Units
-Unit types (i.e. anything from [aind_data_schema_models.units](https://github.com/AllenNeuralDynamics/aind-data-schema-models/blob/main/src/aind_data_schema_models/units.py)) should always be paired with a variable in one of two patterns.
+Unit types (i.e. anything from [biodata_models.units](https://github.com/AllenNeuralDynamics/biodata-models/blob/main/src/biodata_models/units.py)) should always be paired with a variable in one of two patterns.
 
 When you have a single `variable` with a unit, you should add the `_unit` suffix on the name of the unit:
 

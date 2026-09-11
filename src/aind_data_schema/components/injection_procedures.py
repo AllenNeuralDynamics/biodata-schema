@@ -4,10 +4,10 @@ from datetime import date
 from enum import Enum
 from typing import List, Optional
 
-from aind_data_schema_models.coordinates import AnatomicalRelative
-from aind_data_schema_models.mouse_anatomy import MouseAnatomyModel
-from aind_data_schema_models.pid_names import PIDName
-from aind_data_schema_models.units import CurrentUnit, TimeUnit, VolumeUnit
+from biodata_models.coordinates import AnatomicalRelative
+from biodata_models.mouse_anatomy import MouseAnatomyModel
+from biodata_models.pid_names import PIDName
+from biodata_models.units import CurrentUnit, TimeUnit, VolumeUnit
 from pydantic import Field, model_validator
 
 from aind_data_schema.base import DataModel, DiscriminatedList

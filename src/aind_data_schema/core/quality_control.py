@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from enum import Enum
 from typing import Any, List, Literal, Optional, Union
 
-from aind_data_schema_models.modalities import Modality
+from biodata_models.modalities import Modality
 from pydantic import Field, SkipValidation, model_validator
 
 from aind_data_schema.base import AwareDatetimeWithDefault, DataCoreModel, DataModel, DiscriminatedList

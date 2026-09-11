@@ -5,11 +5,11 @@ from datetime import date
 from unittest.mock import patch
 
 import pytest
-from aind_data_schema_models.coordinates import AnatomicalRelative
-from aind_data_schema_models.harp_types import HarpDeviceType
-from aind_data_schema_models.modalities import Modality
-from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.units import FrequencyUnit, PowerUnit
+from biodata_models.coordinates import AnatomicalRelative
+from biodata_models.harp_types import HarpDeviceType
+from biodata_models.modalities import Modality
+from biodata_models.organizations import Organization
+from biodata_models.units import FrequencyUnit, PowerUnit
 from pydantic import ValidationError
 
 from aind_data_schema.components.connections import Connection

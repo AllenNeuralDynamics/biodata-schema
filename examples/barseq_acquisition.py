@@ -10,7 +10,7 @@ import argparse
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-from aind_data_schema_models.modalities import Modality
+from biodata_models.modalities import Modality
 
 from aind_data_schema.core.acquisition import Acquisition, ExternalDataStream
 

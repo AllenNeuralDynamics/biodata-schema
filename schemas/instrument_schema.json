@@ -11482,7 +11482,7 @@
                      "AnalogInput": "#/$defs/_Analoginput",
                      "Archimedes": "#/$defs/_Archimedes",
                      "AudioSwitch": "#/$defs/_Audioswitch",
-                     "Behavior": "#/$defs/aind_data_schema_models__harp_types___Behavior",
+                     "Behavior": "#/$defs/biodata_models__harp_types___Behavior",
                      "CameraController": "#/$defs/_Cameracontroller",
                      "CameraControllerGen2": "#/$defs/_Cameracontrollergen2",
                      "ClockSynchronizer": "#/$defs/_Clocksynchronizer",
@@ -11538,7 +11538,7 @@
                      "$ref": "#/$defs/_Audioswitch"
                   },
                   {
-                     "$ref": "#/$defs/aind_data_schema_models__harp_types___Behavior"
+                     "$ref": "#/$defs/biodata_models__harp_types___Behavior"
                   },
                   {
                      "$ref": "#/$defs/_Cameracontroller"
@@ -19499,7 +19499,7 @@
                      "AnalogInput": "#/$defs/_Analoginput",
                      "Archimedes": "#/$defs/_Archimedes",
                      "AudioSwitch": "#/$defs/_Audioswitch",
-                     "Behavior": "#/$defs/aind_data_schema_models__harp_types___Behavior",
+                     "Behavior": "#/$defs/biodata_models__harp_types___Behavior",
                      "CameraController": "#/$defs/_Cameracontroller",
                      "CameraControllerGen2": "#/$defs/_Cameracontrollergen2",
                      "ClockSynchronizer": "#/$defs/_Clocksynchronizer",
@@ -19555,7 +19555,7 @@
                      "$ref": "#/$defs/_Audioswitch"
                   },
                   {
-                     "$ref": "#/$defs/aind_data_schema_models__harp_types___Behavior"
+                     "$ref": "#/$defs/biodata_models__harp_types___Behavior"
                   },
                   {
                      "$ref": "#/$defs/_Cameracontroller"
@@ -32736,7 +32736,7 @@
          "title": "_World_Precision_Intstruments",
          "type": "object"
       },
-      "aind_data_schema_models__harp_types___Behavior": {
+      "biodata_models__harp_types___Behavior": {
          "description": "Model Behavior",
          "properties": {
             "whoami": {
@@ -32755,7 +32755,7 @@
          "title": "_Behavior",
          "type": "object"
       },
-      "aind_data_schema_models__modalities___Behavior": {
+      "biodata_models__modalities___Behavior": {
          "additionalProperties": false,
          "description": "Model behavior",
          "properties": {
@@ -32834,7 +32834,7 @@
                   "MRI": "#/$defs/_Mri",
                   "SPIM": "#/$defs/_Spim",
                   "STPT": "#/$defs/_Stpt",
-                  "behavior": "#/$defs/aind_data_schema_models__modalities___Behavior",
+                  "behavior": "#/$defs/biodata_models__modalities___Behavior",
                   "behavior-videos": "#/$defs/_Behavior_Videos",
                   "brightfield": "#/$defs/_Brightfield",
                   "confocal": "#/$defs/_Confocal",
@@ -32855,7 +32855,7 @@
                   "$ref": "#/$defs/_Barseq"
                },
                {
-                  "$ref": "#/$defs/aind_data_schema_models__modalities___Behavior"
+                  "$ref": "#/$defs/biodata_models__modalities___Behavior"
                },
                {
                   "$ref": "#/$defs/_Behavior_Videos"

@@ -3,7 +3,7 @@
 from enum import Enum
 from typing import Annotated, List, Literal, Optional
 
-from aind_data_schema_models.units import UNITS, PowerUnit, TimeUnit, VoltageUnit, VolumeUnit
+from biodata_models.units import UNITS, PowerUnit, TimeUnit, VoltageUnit, VolumeUnit
 from pydantic import model_validator
 
 from aind_data_schema.base import AwareDatetimeWithDefault, DataModel, Discriminated, Field, GenericModel

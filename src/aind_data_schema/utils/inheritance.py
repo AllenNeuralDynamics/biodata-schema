@@ -4,7 +4,7 @@ import re
 from datetime import datetime, timezone
 from typing import Any, List, Optional, Tuple
 
-from aind_data_schema_models.data_name_patterns import DataLevel, DataRegex, datetime_to_name_string
+from biodata_models.data_name_patterns import DataLevel, DataRegex, datetime_to_name_string
 from pydantic_core import PydanticUndefined
 
 from aind_data_schema.core.data_description import DataDescription

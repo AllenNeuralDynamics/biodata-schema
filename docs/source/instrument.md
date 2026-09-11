@@ -26,7 +26,7 @@ If you need to specify additional information about a device we will need to add
 
 ### Missing organizations
 
-You can find the full list of [Organizations](aind_data_schema_models/organizations.md) in the `aind-data-schema-models` repository. Some device types are restricted to a subset of this full list to simplify the `metadata-entry` app. Please open an [issue](https://github.com/AllenNeuralDynamics/biodata-schema/issues) if you need a manufacturer that isn't available in either the main list or one of the subsets.
+You can find the full list of [Organizations](biodata_models/organizations.md) in the `biodata-models` repository. Some device types are restricted to a subset of this full list to simplify the `metadata-entry` app. Please open an [issue](https://github.com/AllenNeuralDynamics/biodata-schema/issues) if you need a manufacturer that isn't available in either the main list or one of the subsets.
 
 ## Position
 
@@ -58,7 +58,7 @@ Description of an instrument
 | `location` | `Optional[str]` | Location (Location of the instrument) |
 | `instrument_id` | `str` | Instrument ID (Unique instrument identifier) |
 | `modification_date` | `datetime.date` | Date of modification (Date of the last change to the instrument, hardware addition/removal, calibration, etc.) |
-| `modalities` | List[[Modality](aind_data_schema_models/modalities.md#modality)] | Modalities (List of all possible modalities that the instrument is capable of acquiring) |
+| `modalities` | List[[Modality](biodata_models/modalities.md#modality)] | Modalities (List of all possible modalities that the instrument is capable of acquiring) |
 | `calibrations` | Optional[List[[Calibration](components/measurements.md#calibration) or [VolumeCalibration](components/measurements.md#volumecalibration) or [PowerCalibration](components/measurements.md#powercalibration)]] | Calibrations (List of calibration measurements takend during instrument setup and maintenance) |
 | <del>`coordinate_system`</del> | Optional[[CoordinateSystem](components/coordinates.md#coordinatesystem)] | **[DEPRECATED]** Deprecated: use global_coordinate_system instead. Coordinate system (Origin and axis definitions for determining the position of the instrument's components) |
 | `global_coordinate_system` | [CoordinateSystem](components/coordinates.md#coordinatesystem) | Global coordinate system (Origin and axis definitions for determining the position of the instrument's components) |

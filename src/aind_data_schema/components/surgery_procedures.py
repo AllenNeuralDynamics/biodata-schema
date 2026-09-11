@@ -3,11 +3,11 @@
 from enum import Enum
 from typing import List, Optional, Union
 
-from aind_data_schema_models.brain_atlas import BrainStructureModel
-from aind_data_schema_models.coordinates import AnatomicalRelative
-from aind_data_schema_models.mouse_anatomy import MouseAnatomyModel
-from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.units import SizeUnit, TimeUnit, VolumeUnit
+from biodata_models.brain_atlas import BrainStructureModel
+from biodata_models.coordinates import AnatomicalRelative
+from biodata_models.mouse_anatomy import MouseAnatomyModel
+from biodata_models.organizations import Organization
+from biodata_models.units import SizeUnit, TimeUnit, VolumeUnit
 from pydantic import Field, field_validator, model_validator
 
 from aind_data_schema.base import AwareDatetimeWithDefault, DataModel

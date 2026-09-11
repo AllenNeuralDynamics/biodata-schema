@@ -4,10 +4,10 @@ from datetime import date
 from enum import Enum
 from typing import Dict, List, Optional, Union
 
-from aind_data_schema_models.brain_atlas import BrainStructureModel
-from aind_data_schema_models.coordinates import AnatomicalRelative
-from aind_data_schema_models.specimen_procedure_types import SpecimenProcedureType
-from aind_data_schema_models.units import SizeUnit
+from biodata_models.brain_atlas import BrainStructureModel
+from biodata_models.coordinates import AnatomicalRelative
+from biodata_models.specimen_procedure_types import SpecimenProcedureType
+from biodata_models.units import SizeUnit
 from pydantic import Field, model_validator
 
 from aind_data_schema.base import (

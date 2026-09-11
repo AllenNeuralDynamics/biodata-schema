@@ -5,9 +5,9 @@ from datetime import time
 from enum import Enum
 from typing import Annotated, List, Optional
 
-from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.pid_names import PIDName
-from aind_data_schema_models.species import Species, SpeciesModel, Strain
+from biodata_models.organizations import Organization
+from biodata_models.pid_names import PIDName
+from biodata_models.species import Species, SpeciesModel, Strain
 from pydantic import Field, field_validator, model_validator
 from pydantic_core.core_schema import ValidationInfo
 

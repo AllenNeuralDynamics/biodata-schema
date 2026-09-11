@@ -4,7 +4,7 @@ import logging
 from datetime import date
 from typing import List, Literal, Optional
 
-from aind_data_schema_models.modalities import Modality
+from biodata_models.modalities import Modality
 from pydantic import Field, SkipValidation, field_validator, model_validator
 
 from aind_data_schema.base import DataCoreModel, DiscriminatedList

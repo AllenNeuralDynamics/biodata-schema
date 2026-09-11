@@ -3,8 +3,8 @@
 from datetime import datetime, timezone
 
 import pytest
-from aind_data_schema_models.modalities import Modality
-from aind_data_schema_models.organizations import Organization
+from biodata_models.modalities import Modality
+from biodata_models.organizations import Organization
 from pydantic import ValidationError
 
 from aind_data_schema.components.configs import Image

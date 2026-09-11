@@ -149,13 +149,13 @@ def process_components(component_folder, output_rel_path):
         replacement = replacement.replace("components/", "")
 
         # If we aren't linking out of the component folder, remove the component folder from the link
-        if "aind_data_schema_models/" not in replacement:
+        if "biodata_models/" not in replacement:
             replacement = replacement.replace(f"{component_folder}.md", "")
 
         combined_content = combined_content.replace(link, replacement)
 
     # Deal with special cases which are incorrectly linked too deep
-    combined_content = combined_content.replace("(aind_data_schema_models/", "(../aind_data_schema_models/")
+    combined_content = combined_content.replace("(biodata_models/", "(../biodata_models/")
 
     # Write to the output file
     with open(output_file_path, "w") as output_file:
@@ -190,7 +190,7 @@ def process_registry(registry_folder, output_rel_path):
     """
     # Define paths
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".."))
-    registry_docs_dir = os.path.join(base_dir, "docs", "base", "models", "aind_data_schema_models", registry_folder)
+    registry_docs_dir = os.path.join(base_dir, "docs", "base", "models", "biodata_models", registry_folder)
     output_dir = os.path.join(base_dir, output_rel_path)
     output_file_path = os.path.join(output_dir, f"{registry_folder}.md")
 
@@ -240,7 +240,7 @@ def process_registry(registry_folder, output_rel_path):
 def generate_all_registry_documentation():
     """Generate documentation for registries folders"""
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".."))
-    registries_dir = os.path.join(base_dir, "docs", "base", "models", "aind_data_schema_models")
+    registries_dir = os.path.join(base_dir, "docs", "base", "models", "biodata_models")
 
     if not os.path.exists(registries_dir):
         print(f"Warning: Registry directory not found: {registries_dir}")
@@ -249,7 +249,7 @@ def generate_all_registry_documentation():
     registry_folders = [d for d in os.listdir(registries_dir) if os.path.isdir(os.path.join(registries_dir, d))]
 
     for registry_folder in registry_folders:
-        process_registry(registry_folder, os.path.join("docs", "source", "aind_data_schema_models"))
+        process_registry(registry_folder, os.path.join("docs", "source", "biodata_models"))
 
 
 def generate_all_core_documentation():

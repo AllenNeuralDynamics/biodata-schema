@@ -4,12 +4,12 @@ from typing import List
 from zoneinfo import ZoneInfo
 
 import pandas as pd
-from aind_data_schema_models.brain_atlas import CCFv3
-from aind_data_schema_models.data_name_patterns import DataLevel
-from aind_data_schema_models.modalities import Modality
-from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.species import Strain
-from aind_data_schema_models.units import VolumeUnit
+from biodata_models.brain_atlas import CCFv3
+from biodata_models.data_name_patterns import DataLevel
+from biodata_models.modalities import Modality
+from biodata_models.organizations import Organization
+from biodata_models.species import Strain
+from biodata_models.units import VolumeUnit
 
 from aind_data_schema.components.coordinates import CoordinateSystemLibrary, Rotation, Translation
 from aind_data_schema.components.identifiers import Person

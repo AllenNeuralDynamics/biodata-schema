@@ -3,11 +3,11 @@
 from datetime import date
 from typing import List, Optional, Union
 
-from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.pid_names import PIDName
-from aind_data_schema_models.reagent import FluorophoreType, StainType
-from aind_data_schema_models.species import Species
-from aind_data_schema_models.units import MassUnit, SizeUnit
+from biodata_models.organizations import Organization
+from biodata_models.pid_names import PIDName
+from biodata_models.reagent import FluorophoreType, StainType
+from biodata_models.species import Species
+from biodata_models.units import MassUnit, SizeUnit
 from pydantic import Field
 
 from aind_data_schema.base import DataModel, Discriminated

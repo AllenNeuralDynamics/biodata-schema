@@ -235,8 +235,8 @@ Acquisition(..., global_coordinate_system=CoordinateSystemLibrary.BREGMA_ARI)
 **After**
 
 ```python
-from aind_data_schema_models.coordinates import AxisName, Direction, Origin
-from aind_data_schema_models.units import SizeUnit
+from biodata_models.coordinates import AxisName, Direction, Origin
+from biodata_models.units import SizeUnit
 
 from aind_data_schema.components.coordinates import Axis, CoordinateSystem
 

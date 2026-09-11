@@ -26,7 +26,7 @@ If you need to specify additional information about a device we will need to add
 
 ### Missing organizations
 
-You can find the full list of [Organizations](aind_data_schema_models/organizations.md) in the `aind-data-schema-models` repository. Some device types are restricted to a subset of this full list to simplify the `metadata-entry` app. Please open an [issue](https://github.com/AllenNeuralDynamics/biodata-schema/issues) if you need a manufacturer that isn't available in either the main list or one of the subsets.
+You can find the full list of [Organizations](biodata_models/organizations.md) in the `biodata-models` repository. Some device types are restricted to a subset of this full list to simplify the `metadata-entry` app. Please open an [issue](https://github.com/AllenNeuralDynamics/biodata-schema/issues) if you need a manufacturer that isn't available in either the main list or one of the subsets.
 
 ## Position
 

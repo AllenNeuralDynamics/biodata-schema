@@ -232,7 +232,7 @@
                            "Tymphany": "#/$defs/_Tymphany",
                            "University of California, San Diego": "#/$defs/_University_Of_California_San_Diego",
                            "University of Pennsylvania": "#/$defs/_University_Of_Pennsylvania",
-                           "Unknown": "#/$defs/aind_data_schema_models__organizations___Unknown",
+                           "Unknown": "#/$defs/biodata_models__organizations___Unknown",
                            "Vieworks": "#/$defs/_Vieworks",
                            "Vortran": "#/$defs/_Vortran",
                            "World Precision Intstruments": "#/$defs/_World_Precision_Intstruments",
@@ -608,7 +608,7 @@
                            "$ref": "#/$defs/_University_Of_Pennsylvania"
                         },
                         {
-                           "$ref": "#/$defs/aind_data_schema_models__organizations___Unknown"
+                           "$ref": "#/$defs/biodata_models__organizations___Unknown"
                         },
                         {
                            "$ref": "#/$defs/_Vieworks"
@@ -906,7 +906,7 @@
                      "Tymphany": "#/$defs/_Tymphany",
                      "University of California, San Diego": "#/$defs/_University_Of_California_San_Diego",
                      "University of Pennsylvania": "#/$defs/_University_Of_Pennsylvania",
-                     "Unknown": "#/$defs/aind_data_schema_models__organizations___Unknown",
+                     "Unknown": "#/$defs/biodata_models__organizations___Unknown",
                      "Vieworks": "#/$defs/_Vieworks",
                      "Vortran": "#/$defs/_Vortran",
                      "World Precision Intstruments": "#/$defs/_World_Precision_Intstruments",
@@ -1282,7 +1282,7 @@
                      "$ref": "#/$defs/_University_Of_Pennsylvania"
                   },
                   {
-                     "$ref": "#/$defs/aind_data_schema_models__organizations___Unknown"
+                     "$ref": "#/$defs/biodata_models__organizations___Unknown"
                   },
                   {
                      "$ref": "#/$defs/_Vieworks"
@@ -1371,7 +1371,7 @@
                   "mapping": {
                      "BALB/c": "#/$defs/_Balb_C",
                      "C57BL/6J": "#/$defs/_C57Bl_6J",
-                     "Unknown": "#/$defs/aind_data_schema_models__species___Unknown"
+                     "Unknown": "#/$defs/biodata_models__species___Unknown"
                   },
                   "propertyName": "name"
                },
@@ -1383,7 +1383,7 @@
                      "$ref": "#/$defs/_Balb_C"
                   },
                   {
-                     "$ref": "#/$defs/aind_data_schema_models__species___Unknown"
+                     "$ref": "#/$defs/biodata_models__species___Unknown"
                   }
                ],
                "title": "Strain"
@@ -1618,7 +1618,7 @@
                      "Tymphany": "#/$defs/_Tymphany",
                      "University of California, San Diego": "#/$defs/_University_Of_California_San_Diego",
                      "University of Pennsylvania": "#/$defs/_University_Of_Pennsylvania",
-                     "Unknown": "#/$defs/aind_data_schema_models__organizations___Unknown",
+                     "Unknown": "#/$defs/biodata_models__organizations___Unknown",
                      "Vieworks": "#/$defs/_Vieworks",
                      "Vortran": "#/$defs/_Vortran",
                      "World Precision Intstruments": "#/$defs/_World_Precision_Intstruments",
@@ -1994,7 +1994,7 @@
                      "$ref": "#/$defs/_University_Of_Pennsylvania"
                   },
                   {
-                     "$ref": "#/$defs/aind_data_schema_models__organizations___Unknown"
+                     "$ref": "#/$defs/biodata_models__organizations___Unknown"
                   },
                   {
                      "$ref": "#/$defs/_Vieworks"
@@ -2267,7 +2267,7 @@
                      "Tymphany": "#/$defs/_Tymphany",
                      "University of California, San Diego": "#/$defs/_University_Of_California_San_Diego",
                      "University of Pennsylvania": "#/$defs/_University_Of_Pennsylvania",
-                     "Unknown": "#/$defs/aind_data_schema_models__organizations___Unknown",
+                     "Unknown": "#/$defs/biodata_models__organizations___Unknown",
                      "Vieworks": "#/$defs/_Vieworks",
                      "Vortran": "#/$defs/_Vortran",
                      "World Precision Intstruments": "#/$defs/_World_Precision_Intstruments",
@@ -2643,7 +2643,7 @@
                      "$ref": "#/$defs/_University_Of_Pennsylvania"
                   },
                   {
-                     "$ref": "#/$defs/aind_data_schema_models__organizations___Unknown"
+                     "$ref": "#/$defs/biodata_models__organizations___Unknown"
                   },
                   {
                      "$ref": "#/$defs/_Vieworks"
@@ -8541,7 +8541,7 @@
          "title": "_World_Precision_Intstruments",
          "type": "object"
       },
-      "aind_data_schema_models__organizations___Unknown": {
+      "biodata_models__organizations___Unknown": {
          "description": "Model Unknown",
          "properties": {
             "name": {
@@ -8583,7 +8583,7 @@
          "title": "_Unknown",
          "type": "object"
       },
-      "aind_data_schema_models__species___Unknown": {
+      "biodata_models__species___Unknown": {
          "description": "Model Unknown",
          "properties": {
             "name": {

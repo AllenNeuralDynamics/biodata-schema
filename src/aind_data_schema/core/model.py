@@ -2,7 +2,7 @@
 
 from typing import Any, List, Literal, Optional
 
-from aind_data_schema_models.system_architecture import ModelArchitecture
+from biodata_models.system_architecture import ModelArchitecture
 from pydantic import Field
 
 from aind_data_schema.base import DataCoreModel, DataModel, DiscriminatedList, GenericModel

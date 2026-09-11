@@ -3,12 +3,12 @@
 import argparse
 from datetime import datetime, timezone
 
-from aind_data_schema_models.brain_atlas import CCFv3
-from aind_data_schema_models.coordinates import AxisName, Direction
-from aind_data_schema_models.modalities import Modality
-from aind_data_schema_models.slap2_acquisition_type import Slap2AcquisitionType
-from aind_data_schema_models.stimulus_modality import StimulusModality
-from aind_data_schema_models.units import FrequencyUnit, PowerUnit, SizeUnit, TimeUnit
+from biodata_models.brain_atlas import CCFv3
+from biodata_models.coordinates import AxisName, Direction
+from biodata_models.modalities import Modality
+from biodata_models.slap2_acquisition_type import Slap2AcquisitionType
+from biodata_models.stimulus_modality import StimulusModality
+from biodata_models.units import FrequencyUnit, PowerUnit, SizeUnit, TimeUnit
 
 from aind_data_schema.components.configs import (
     Channel,

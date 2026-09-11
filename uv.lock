@@ -20,20 +20,6 @@ wheels = [
 ]
 
 [[package]]
-name = "aind-data-schema-models"
-version = "6.2.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "importlib-resources" },
-    { name = "pydantic" },
-    { name = "requests" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/3a/4d/f061dd571b570b528020e78094b1eec299d91405a8630c8598bd9892b59a/aind_data_schema_models-6.2.1.tar.gz", hash = "sha256:67e833ab0d88776f94dcc8a1e480f1096b9952ae6256323f7901d03cb0327349", size = 362815, upload-time = "2026-08-19T16:47:32.436Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/37/c2/50c661a5d13787b67906d0d832b206322d48280e2a764381136670ef661f/aind_data_schema_models-6.2.1-py3-none-any.whl", hash = "sha256:21d1ea816a3ac9e70a063c0a28becc49d3dd3bff94bec613b03a28a938b60aad", size = 336501, upload-time = "2026-08-19T16:47:30.737Z" },
-]
-
-[[package]]
 name = "alabaster"
 version = "1.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -98,10 +84,24 @@ wheels = [
 ]
 
 [[package]]
+name = "biodata-models"
+version = "1.0.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "importlib-resources" },
+    { name = "pydantic" },
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/e0/06/04cb073d3a7b3aace223c559e2f964e515ce644a074a09cf9ebb0f3b7b07/biodata_models-1.0.1.tar.gz", hash = "sha256:d057dc3d3c154c9330771ea7cc9e4a408f90fa45d2c32f648f4c43cf06b9199b", size = 386193, upload-time = "2026-09-11T17:53:41.683Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/30/ee/5f8560cc41e7e584d3ffba2ff3fa7fa30470c61d80534fe7d6f0bb53a19a/biodata_models-1.0.1-py3-none-any.whl", hash = "sha256:7b0d25ca936f4ebece75d5ab8b14c2418aa6501448ff76c52b4b123c75f613b0", size = 359546, upload-time = "2026-09-11T17:53:40.129Z" },
+]
+
+[[package]]
 name = "biodata-schema"
 source = { editable = "." }
 dependencies = [
-    { name = "aind-data-schema-models" },
+    { name = "biodata-models" },
     { name = "pydantic" },
     { name = "pydantic-extra-types" },
     { name = "tzdata" },
@@ -132,7 +132,7 @@ docs = [
 
 [package.metadata]
 requires-dist = [
-    { name = "aind-data-schema-models", specifier = ">=6.1.0,<7" },
+    { name = "biodata-models", specifier = ">=1.0.1,<2" },
     { name = "pydantic", specifier = ">=2.7,<2.12" },
     { name = "pydantic-extra-types" },
     { name = "tzdata" },

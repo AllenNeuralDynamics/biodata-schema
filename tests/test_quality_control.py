@@ -3,7 +3,7 @@
 from datetime import datetime
 
 import pytest
-from aind_data_schema_models.modalities import Modality
+from biodata_models.modalities import Modality
 from pydantic import ValidationError
 
 from aind_data_schema.core.quality_control import (

@@ -4,12 +4,12 @@ import argparse
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-from aind_data_schema_models.coordinates import AxisName, Direction, Origin
-from aind_data_schema_models.modalities import Modality
-from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.pid_names import PIDName
-from aind_data_schema_models.registries import Registry
-from aind_data_schema_models.units import PowerUnit, SizeUnit
+from biodata_models.coordinates import AxisName, Direction, Origin
+from biodata_models.modalities import Modality
+from biodata_models.organizations import Organization
+from biodata_models.pid_names import PIDName
+from biodata_models.registries import Registry
+from biodata_models.units import PowerUnit, SizeUnit
 
 from aind_data_schema.components.configs import (
     Channel,

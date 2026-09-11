@@ -3,8 +3,8 @@
 from datetime import date
 from typing import Dict, List, Optional
 
-from aind_data_schema_models.coordinates import Origin
-from aind_data_schema_models.units import MassUnit, UnitlessUnit, VolumeUnit
+from biodata_models.coordinates import Origin
+from biodata_models.units import MassUnit, UnitlessUnit, VolumeUnit
 from pydantic import Field
 
 from aind_data_schema.base import DataModel, DiscriminatedList

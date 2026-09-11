@@ -4,12 +4,12 @@ from datetime import date
 from unittest.mock import patch
 
 import pytest
-from aind_data_schema_models.brain_atlas import CCFv3
-from aind_data_schema_models.coordinates import AnatomicalRelative
-from aind_data_schema_models.mouse_anatomy import InjectionTargets, MouseBloodVessels
-from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.specimen_procedure_types import SpecimenProcedureType
-from aind_data_schema_models.units import ConcentrationUnit, CurrentUnit, SizeUnit, TimeUnit, VolumeUnit
+from biodata_models.brain_atlas import CCFv3
+from biodata_models.coordinates import AnatomicalRelative
+from biodata_models.mouse_anatomy import InjectionTargets, MouseBloodVessels
+from biodata_models.organizations import Organization
+from biodata_models.specimen_procedure_types import SpecimenProcedureType
+from biodata_models.units import ConcentrationUnit, CurrentUnit, SizeUnit, TimeUnit, VolumeUnit
 from pydantic import ValidationError
 
 from aind_data_schema.components.configs import CatheterConfig
@@ -53,7 +53,7 @@ class TestProcedures:
         p = Procedures(subject_id="12345")
         assert "12345" == p.subject_id
 
-    @patch("aind_data_schema_models.mouse_anatomy.get_emapa_id")
+    @patch("biodata_models.mouse_anatomy.get_emapa_id")
     def test_unwrapped_injection_rejected(self, mock_get_emapa_id):
         """Unwrapped Injection in subject_procedures should raise"""
         mock_get_emapa_id.return_value = "123456"
@@ -76,7 +76,7 @@ class TestProcedures:
                 ],
             )
 
-    @patch("aind_data_schema_models.mouse_anatomy.get_emapa_id")
+    @patch("biodata_models.mouse_anatomy.get_emapa_id")
     def test_injection_material_check(self, mock_get_emapa_id):
         """Check for validation error when injection_materials is empty"""
 
@@ -112,7 +112,7 @@ class TestProcedures:
 
         assert "injection_materials" in repr(e.value)
 
-    @patch("aind_data_schema_models.mouse_anatomy.get_emapa_id")
+    @patch("biodata_models.mouse_anatomy.get_emapa_id")
     def test_injection_material_none(self, mock_get_emapa_id):
         """Check for validation error when injection_materials is None"""
         mock_get_emapa_id.return_value = "123456"
@@ -146,7 +146,7 @@ class TestProcedures:
 
         assert "injection_materials" in repr(e.value)
 
-    @patch("aind_data_schema_models.mouse_anatomy.get_emapa_id")
+    @patch("biodata_models.mouse_anatomy.get_emapa_id")
     def test_injection_materials_list(self, mock_get_emapa_id):
         """Valid injection_materials list"""
         mock_get_emapa_id.return_value = "123456"

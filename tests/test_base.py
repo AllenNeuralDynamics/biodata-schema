@@ -8,7 +8,7 @@ from typing import Literal, Optional
 from unittest.mock import MagicMock, mock_open, patch
 
 import pytest
-from aind_data_schema_models.brain_atlas import BrainStructureModel
+from biodata_models.brain_atlas import BrainStructureModel
 from pydantic import Field, SkipValidation, ValidationError, create_model
 
 from aind_data_schema.base import (

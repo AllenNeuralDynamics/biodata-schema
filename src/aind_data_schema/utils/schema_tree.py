@@ -39,7 +39,7 @@ def _latex_escape(text: str) -> str:
 def _discriminated_str(types: list) -> str:
     """Return a string representation for a list of types that are part of a discriminated union."""
     bases = {t.__bases__[0] for t in types if isinstance(t, type) and t.__bases__}
-    registry_bases = {b for b in bases if "aind_data_schema_models" in getattr(b, "__module__", "")}
+    registry_bases = {b for b in bases if "biodata_models" in getattr(b, "__module__", "")}
     if len(registry_bases) == 1:
         return next(iter(registry_bases)).__name__.removesuffix("Model")
     names = [_annotation_to_str(t) for t in types]
@@ -109,10 +109,10 @@ def _extract_expandable_types(annotation) -> list:
 
 def _extract_named_types(annotation) -> list:
     """Return every named class (model or enum) embedded in an annotation, from either
-    aind_data_schema or aind_data_schema_models, for documentation-link purposes.
+    aind_data_schema or biodata_models, for documentation-link purposes.
 
     Broader than :func:`_extract_expandable_types`: it also picks up enums and
-    registry classes from aind_data_schema_models, which have their own docs page but
+    registry classes from biodata_models, which have their own docs page but
     aren't locally-defined models we can recurse into within the diagram.
     """
     from pydantic import BaseModel
@@ -141,7 +141,7 @@ def _extract_named_types(annotation) -> list:
         and (issubclass(annotation, BaseModel) or issubclass(annotation, enum.Enum))
     ):
         module = annotation.__module__
-        if module.startswith("aind_data_schema.") or module.startswith("aind_data_schema_models."):
+        if module.startswith("aind_data_schema.") or module.startswith("biodata_models."):
             return [annotation]
 
     return []
@@ -250,14 +250,14 @@ def _doc_url(model_cls) -> str:
     everything else gets a page per module under its top-level package folder).
     """
     module = model_cls.__module__
-    for prefix in ("aind_data_schema.", "aind_data_schema_models."):
+    for prefix in ("aind_data_schema.", "biodata_models."):
         prefix_len = len(prefix)
         if module.startswith(prefix):
             parts = module[prefix_len:].split(".")
             if prefix == "aind_data_schema." and parts[0] == "core":
                 doc_path = parts[1]
-            elif prefix == "aind_data_schema_models.":
-                doc_path = "aind_data_schema_models/" + parts[0]
+            elif prefix == "biodata_models.":
+                doc_path = "biodata_models/" + parts[0]
             else:
                 doc_path = "/".join(parts)
             return f"{doc_path}.html#{model_cls.__name__.lower()}"
@@ -295,7 +295,7 @@ def _build_model_entry(model_cls) -> tuple:
                 named.append(t)
 
         # A field's `links` cover every named type it touches: local models get a `key`
-        # so the popup can drill into them in-app, while enums and aind_data_schema_models
+        # so the popup can drill into them in-app, while enums and biodata_models
         # registry classes only get a `url` out to their own docs page.
         links = [
             {

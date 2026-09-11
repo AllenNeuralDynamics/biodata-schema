@@ -3,10 +3,10 @@
 from datetime import datetime
 
 import pytest
-from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.pid_names import PIDName
-from aind_data_schema_models.registries import Registry
-from aind_data_schema_models.species import Species, Strain
+from biodata_models.organizations import Organization
+from biodata_models.pid_names import PIDName
+from biodata_models.registries import Registry
+from biodata_models.species import Species, Strain
 
 from aind_data_schema.components.subjects import (
     BreedingInfo,

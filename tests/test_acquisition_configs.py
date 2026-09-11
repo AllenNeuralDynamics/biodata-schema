@@ -3,8 +3,8 @@
 from decimal import Decimal
 
 import pytest
-from aind_data_schema_models.brain_atlas import CCFv3
-from aind_data_schema_models.units import AngleUnit, FrequencyUnit, SizeUnit, TimeUnit, VolumeUnit
+from biodata_models.brain_atlas import CCFv3
+from biodata_models.units import AngleUnit, FrequencyUnit, SizeUnit, TimeUnit, VolumeUnit
 from pydantic import ValidationError
 
 from aind_data_schema.components.configs import (
