@@ -21898,6 +21898,7 @@
          "enum": [
             "Michigan uLED Probe (Version 1)",
             "MPI Photonic Probe (Version 1)",
+            "MPI Photonic Probe (Version 2)",
             "Neuropixels Opto (Demonstrator)",
             "Neuropixels UHD (Fixed)",
             "Neuropixels UHD (Switchable)",
@@ -32792,8 +32793,8 @@
          "type": "string"
       },
       "schema_version": {
-         "const": "3.0.0",
-         "default": "3.0.0",
+         "const": "3.0.1",
+         "default": "3.0.1",
          "title": "Schema Version",
          "type": "string"
       },

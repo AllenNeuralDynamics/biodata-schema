@@ -5422,6 +5422,7 @@
             "Alexa Fluor",
             "Atto",
             "CF",
+            "CoraLite",
             "Cyanine",
             "DyLight"
          ],
@@ -8548,6 +8549,7 @@
          "enum": [
             "Michigan uLED Probe (Version 1)",
             "MPI Photonic Probe (Version 1)",
+            "MPI Photonic Probe (Version 2)",
             "Neuropixels Opto (Demonstrator)",
             "Neuropixels UHD (Fixed)",
             "Neuropixels UHD (Switchable)",
@@ -9190,10 +9192,13 @@
                            "Gallus gallus": "#/$defs/_Gallus_Gallus",
                            "Homo sapiens": "#/$defs/_Homo_Sapiens",
                            "Lama glama": "#/$defs/_Lama_Glama",
+                           "Macaca fascicularis": "#/$defs/_Macaca_Fascicularis",
                            "Macaca mulatta": "#/$defs/_Macaca_Mulatta",
+                           "Macaca nemestrina": "#/$defs/_Macaca_Nemestrina",
                            "Mus musculus": "#/$defs/_Mus_Musculus",
                            "Oryctolagus cuniculus": "#/$defs/_Oryctolagus_Cuniculus",
                            "Rattus norvegicus": "#/$defs/_Rattus_Norvegicus",
+                           "Saimiri sciureus": "#/$defs/_Saimiri_Sciureus",
                            "Vicuna pacos": "#/$defs/_Vicuna_Pacos"
                         },
                         "propertyName": "name"
@@ -9221,7 +9226,13 @@
                            "$ref": "#/$defs/_Lama_Glama"
                         },
                         {
+                           "$ref": "#/$defs/_Macaca_Fascicularis"
+                        },
+                        {
                            "$ref": "#/$defs/_Macaca_Mulatta"
+                        },
+                        {
+                           "$ref": "#/$defs/_Macaca_Nemestrina"
                         },
                         {
                            "$ref": "#/$defs/_Mus_Musculus"
@@ -9231,6 +9242,9 @@
                         },
                         {
                            "$ref": "#/$defs/_Rattus_Norvegicus"
+                        },
+                        {
+                           "$ref": "#/$defs/_Saimiri_Sciureus"
                         },
                         {
                            "$ref": "#/$defs/_Vicuna_Pacos"
@@ -13924,6 +13938,35 @@
          "title": "_Lumencor",
          "type": "object"
       },
+      "_Macaca_Fascicularis": {
+         "description": "Model Macaca fascicularis",
+         "properties": {
+            "name": {
+               "const": "Macaca fascicularis",
+               "default": "Macaca fascicularis",
+               "title": "Name",
+               "type": "string"
+            },
+            "common_name": {
+               "const": "Crab-eating macaque",
+               "default": "Crab-eating macaque",
+               "title": "Common Name",
+               "type": "string"
+            },
+            "registry": {
+               "$ref": "#/$defs/Registry",
+               "default": "National Center for Biotechnology Information (NCBI)"
+            },
+            "registry_identifier": {
+               "const": "NCBI:txid9541",
+               "default": "NCBI:txid9541",
+               "title": "Registry Identifier",
+               "type": "string"
+            }
+         },
+         "title": "_Macaca_Fascicularis",
+         "type": "object"
+      },
       "_Macaca_Mulatta": {
          "description": "Model Macaca mulatta",
          "properties": {
@@ -13951,6 +13994,35 @@
             }
          },
          "title": "_Macaca_Mulatta",
+         "type": "object"
+      },
+      "_Macaca_Nemestrina": {
+         "description": "Model Macaca nemestrina",
+         "properties": {
+            "name": {
+               "const": "Macaca nemestrina",
+               "default": "Macaca nemestrina",
+               "title": "Name",
+               "type": "string"
+            },
+            "common_name": {
+               "const": "Pig-tailed macaque",
+               "default": "Pig-tailed macaque",
+               "title": "Common Name",
+               "type": "string"
+            },
+            "registry": {
+               "$ref": "#/$defs/Registry",
+               "default": "National Center for Biotechnology Information (NCBI)"
+            },
+            "registry_identifier": {
+               "const": "NCBI:txid9545",
+               "default": "NCBI:txid9545",
+               "title": "Registry Identifier",
+               "type": "string"
+            }
+         },
+         "title": "_Macaca_Nemestrina",
          "type": "object"
       },
       "_Massachusetts_Institute_Of_Technology": {
@@ -15426,6 +15498,35 @@
          "title": "_Rockland_Immunochemicals",
          "type": "object"
       },
+      "_Saimiri_Sciureus": {
+         "description": "Model Saimiri sciureus",
+         "properties": {
+            "name": {
+               "const": "Saimiri sciureus",
+               "default": "Saimiri sciureus",
+               "title": "Name",
+               "type": "string"
+            },
+            "common_name": {
+               "const": "Common squirrel monkey",
+               "default": "Common squirrel monkey",
+               "title": "Common Name",
+               "type": "string"
+            },
+            "registry": {
+               "$ref": "#/$defs/Registry",
+               "default": "National Center for Biotechnology Information (NCBI)"
+            },
+            "registry_identifier": {
+               "const": "NCBI:txid9521",
+               "default": "NCBI:txid9521",
+               "title": "Registry Identifier",
+               "type": "string"
+            }
+         },
+         "title": "_Saimiri_Sciureus",
+         "type": "object"
+      },
       "_Same_Sky": {
          "description": "Model Same Sky",
          "properties": {
@@ -16732,8 +16833,8 @@
          "type": "string"
       },
       "schema_version": {
-         "const": "3.0.0",
-         "default": "3.0.0",
+         "const": "3.0.1",
+         "default": "3.0.1",
          "title": "Schema Version",
          "type": "string"
       },
