@@ -15,7 +15,7 @@ dynamic = ["version"]
 
 dependencies = [
     'biodata-models>=1.0.1,<2',
-    'pydantic>=2.7, <2.12',
+    'pydantic>=2.7, <3',
     'pydantic-extra-types',
     'tzdata',
 ]
