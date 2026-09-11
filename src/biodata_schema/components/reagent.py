@@ -95,7 +95,7 @@ class FluorescentStain(Reagent):
 class FluorescentReagent(Reagent):
     """Description of an inherently fluorescent marker. Note this class will change name in v3.0"""
 
-    stain_type: StainType = Field(..., type="Stain type")
+    stain_type: StainType = Field(..., title="Stain type")
     excitation_wavelength: int = Field(..., title="Excitation wavelength (nm)")
     emission_wavelength: int = Field(..., title="Emission wavelength (nm)")
     wavelength_unit: SizeUnit = Field(default=SizeUnit.NM, title="Excitation wavelength unit")
