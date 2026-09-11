@@ -7,10 +7,10 @@ from biodata_models.coordinates import AxisName, Direction, Origin
 from biodata_models.organizations import Organization
 from biodata_models.units import SizeUnit
 
-from aind_data_schema.components.coordinates import Axis, CoordinateSystem
-from aind_data_schema.components.reagent import Reagent
-from aind_data_schema.components.subject_procedures import Perfusion
-from aind_data_schema.core import procedures
+from biodata_schema.components.coordinates import Axis, CoordinateSystem
+from biodata_schema.components.reagent import Reagent
+from biodata_schema.components.subject_procedures import Perfusion
+from biodata_schema.core import procedures
 
 BREGMA_ARI = CoordinateSystem(
     name="BREGMA_ARI",

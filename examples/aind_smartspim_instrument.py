@@ -8,16 +8,16 @@ from biodata_models.modalities import Modality
 from biodata_models.organizations import Organization
 from biodata_models.units import SizeUnit
 
-from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.coordinates import Axis, CoordinateSystem
-from aind_data_schema.components.devices import (
+from biodata_schema.components.connections import Connection
+from biodata_schema.components.coordinates import Axis, CoordinateSystem
+from biodata_schema.components.devices import (
     Device,
     Filter,
     Laser,
     MotorizedStage,
     ScanningStage,
 )
-from aind_data_schema.core.instrument import (
+from biodata_schema.core.instrument import (
     Detector,
     Instrument,
     Microscope,

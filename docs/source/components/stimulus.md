@@ -31,7 +31,7 @@ Types of bandpass filters for auditory stim
 
 ### OlfactometerChannelConfig
 
-**DEPRECATED**: Use OlfactometerConfig in aind_data_schema.components.configs
+**DEPRECATED**: Use OlfactometerConfig in biodata_schema.components.configs
 
 Description of olfactometer channel configurations
 
@@ -46,7 +46,7 @@ Description of olfactometer channel configurations
 
 ### OlfactoryStimulation
 
-**DEPRECATED**: Use StimulusEpoch.stimulus_name and OlfactometerConfig in aind_data_schema.components.configs
+**DEPRECATED**: Use StimulusEpoch.stimulus_name and OlfactometerConfig in biodata_schema.components.configs
 
 Description of a olfactory stimulus
 

@@ -8,8 +8,8 @@ from biodata_models.modalities import Modality
 from biodata_models.organizations import Organization
 from biodata_models.units import SizeUnit
 
-from aind_data_schema.components.coordinates import Axis, CoordinateSystem
-from aind_data_schema.components.devices import (
+from biodata_schema.components.coordinates import Axis, CoordinateSystem
+from biodata_schema.components.devices import (
     BinMode,
     Camera,
     CameraChroma,
@@ -22,7 +22,7 @@ from aind_data_schema.components.devices import (
     Microscope,
     Objective,
 )
-from aind_data_schema.core.instrument import Instrument
+from biodata_schema.core.instrument import Instrument
 
 IMAGE_XYZ = CoordinateSystem(
     name="IMAGE_XYZ",

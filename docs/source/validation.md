@@ -15,7 +15,7 @@ The following consistency rules are enforced:
 Construct it as follows:
 
 ```python
-from aind_data_schema.utils.compatibility_check import InstrumentAcquisitionCompatibility
+from biodata_schema.utils.compatibility_check import InstrumentAcquisitionCompatibility
 
 # Construct your Instrument and Acquisition objects
 

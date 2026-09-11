@@ -10,9 +10,9 @@ from biodata_models.modalities import Modality
 from biodata_models.organizations import Organization
 from pydantic import ValidationError
 
-from aind_data_schema.components.identifiers import Person
-from aind_data_schema.core.data_description import DataDescription, Funding, build_data_name
-from aind_data_schema.utils.inheritance import (
+from biodata_schema.components.identifiers import Person
+from biodata_schema.core.data_description import DataDescription, Funding, build_data_name
+from biodata_schema.utils.inheritance import (
     derive_data_description,
     derive_data_description_from_derived,
     derive_data_description_from_raw,
@@ -56,7 +56,7 @@ class TestDataDescription:
         name = build_data_name("project", dt)
         assert name == "project_2022-10-12_23-23-11"
 
-    @patch("aind_data_schema.core.data_description.build_data_name")
+    @patch("biodata_schema.core.data_description.build_data_name")
     def test_build_name_validation_error(self, mock_build_data_name: MagicMock):
         """Test build_data_name function to trigger validation error"""
         mock_build_data_name.return_value = "invalid"

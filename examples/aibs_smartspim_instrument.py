@@ -8,9 +8,9 @@ from biodata_models.modalities import Modality
 from biodata_models.organizations import Organization
 from biodata_models.units import SizeUnit
 
-from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.coordinates import Axis, CoordinateSystem
-from aind_data_schema.components.devices import (
+from biodata_schema.components.connections import Connection
+from biodata_schema.components.coordinates import Axis, CoordinateSystem
+from biodata_schema.components.devices import (
     AdditionalImagingDevice,
     Detector,
     Device,
@@ -21,7 +21,7 @@ from aind_data_schema.components.devices import (
     Objective,
     ScanningStage,
 )
-from aind_data_schema.core.instrument import Instrument
+from biodata_schema.core.instrument import Instrument
 
 SIPE_MONITOR_RTF = CoordinateSystem(
     name="SIPE_MONITOR_RTF",

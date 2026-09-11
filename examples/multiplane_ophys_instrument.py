@@ -9,9 +9,9 @@ from biodata_models.modalities import Modality
 from biodata_models.organizations import Organization
 from biodata_models.units import FrequencyUnit, SizeUnit
 
-from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.coordinates import Affine, Axis, CoordinateSystem, Translation
-from aind_data_schema.components.devices import (
+from biodata_schema.components.connections import Connection
+from biodata_schema.components.coordinates import Affine, Axis, CoordinateSystem, Translation
+from biodata_schema.components.devices import (
     BinMode,
     Camera,
     CameraAssembly,
@@ -30,8 +30,8 @@ from aind_data_schema.components.devices import (
     Objective,
     PockelsCell,
 )
-from aind_data_schema.components.identifiers import Software
-from aind_data_schema.core.instrument import Instrument
+from biodata_schema.components.identifiers import Software
+from biodata_schema.core.instrument import Instrument
 
 BREGMA_ARI = CoordinateSystem(
     name="BREGMA_ARI",

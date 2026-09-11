@@ -9,8 +9,8 @@ from biodata_models.pid_names import PIDName
 from biodata_models.registries import Registry
 from biodata_models.species import Species, Strain
 
-from aind_data_schema.components.subjects import BreedingInfo, Housing, LightCycle, MouseSubject
-from aind_data_schema.core.subject import Subject
+from biodata_schema.components.subjects import BreedingInfo, Housing, LightCycle, MouseSubject
+from biodata_schema.core.subject import Subject
 
 
 class TestSubject:

@@ -10,12 +10,12 @@ from biodata_models.modalities import Modality
 from biodata_models.stimulus_modality import StimulusModality
 from biodata_models.units import SizeUnit
 
-from aind_data_schema.components.configs import (
+from biodata_schema.components.configs import (
     EphysAssemblyConfig,
     ManipulatorConfig,
     ProbeConfig,
 )
-from aind_data_schema.components.coordinates import (
+from biodata_schema.components.coordinates import (
     AtlasCoordinate,
     AtlasLibrary,
     Axis,
@@ -23,9 +23,9 @@ from aind_data_schema.components.coordinates import (
     Rotation,
     Translation,
 )
-from aind_data_schema.components.identifiers import Code, Software
-from aind_data_schema.components.stimulus import VisualStimulation
-from aind_data_schema.core.acquisition import (
+from biodata_schema.components.identifiers import Code, Software
+from biodata_schema.components.stimulus import VisualStimulation
+from biodata_schema.core.acquisition import (
     Acquisition,
     AcquisitionSubjectDetails,
     DataStream,

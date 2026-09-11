@@ -6,8 +6,8 @@ from datetime import datetime, timezone
 from biodata_models.organizations import Organization
 from biodata_models.species import Species, Strain
 
-from aind_data_schema.components.subjects import BreedingInfo, Housing, MouseSubject, Sex
-from aind_data_schema.core.subject import Subject
+from biodata_schema.components.subjects import BreedingInfo, Housing, MouseSubject, Sex
+from biodata_schema.core.subject import Subject
 
 # If a timezone isn't specified, the timezone of the computer running this
 # script will be used as default

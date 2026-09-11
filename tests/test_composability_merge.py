@@ -6,11 +6,11 @@ from zoneinfo import ZoneInfo
 import pytest
 from biodata_models.modalities import Modality
 
-from aind_data_schema.components.identifiers import Code
-from aind_data_schema.core.acquisition import AcquisitionSubjectDetails
-from aind_data_schema.core.procedures import Procedures
-from aind_data_schema.core.processing import DataProcess, Processing, ProcessName, ProcessStage
-from aind_data_schema.core.quality_control import QCMetric, QCStatus, QualityControl, Stage, Status
+from biodata_schema.components.identifiers import Code
+from biodata_schema.core.acquisition import AcquisitionSubjectDetails
+from biodata_schema.core.procedures import Procedures
+from biodata_schema.core.processing import DataProcess, Processing, ProcessName, ProcessStage
+from biodata_schema.core.quality_control import QCMetric, QCStatus, QualityControl, Stage, Status
 from examples.exaspim_acquisition import acq
 from examples.procedures import p, t, t2
 

@@ -13,19 +13,19 @@ from biodata_models.organizations import Organization
 from biodata_models.species import Strain
 from pydantic import ValidationError
 
-from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.devices import EphysAssembly, EphysProbe, Laser, Manipulator
-from aind_data_schema.components.identifiers import Code, Database, Person
-from aind_data_schema.components.subject_procedures import TrainingProtocol
-from aind_data_schema.components.subjects import BreedingInfo, CalibrationObject, Housing, MouseSubject, Sex, Species
-from aind_data_schema.components.surgery_procedures import BrainInjection
-from aind_data_schema.core.acquisition import Acquisition, AcquisitionSubjectDetails, DataStream, StimulusEpoch
-from aind_data_schema.core.data_description import DataDescription, Funding
-from aind_data_schema.core.instrument import Instrument
-from aind_data_schema.core.metadata import Metadata, create_metadata_json
-from aind_data_schema.core.procedures import Procedures, Surgery
-from aind_data_schema.core.processing import DataProcess, Processing, ProcessName, ProcessStage
-from aind_data_schema.core.subject import Subject
+from biodata_schema.components.connections import Connection
+from biodata_schema.components.devices import EphysAssembly, EphysProbe, Laser, Manipulator
+from biodata_schema.components.identifiers import Code, Database, Person
+from biodata_schema.components.subject_procedures import TrainingProtocol
+from biodata_schema.components.subjects import BreedingInfo, CalibrationObject, Housing, MouseSubject, Sex, Species
+from biodata_schema.components.surgery_procedures import BrainInjection
+from biodata_schema.core.acquisition import Acquisition, AcquisitionSubjectDetails, DataStream, StimulusEpoch
+from biodata_schema.core.data_description import DataDescription, Funding
+from biodata_schema.core.instrument import Instrument
+from biodata_schema.core.metadata import Metadata, create_metadata_json
+from biodata_schema.core.procedures import Procedures, Surgery
+from biodata_schema.core.processing import DataProcess, Processing, ProcessName, ProcessStage
+from biodata_schema.core.subject import Subject
 from examples.aibs_smartspim_instrument import inst as spim_inst
 from examples.barseq_acquisition import acquisition as barseq_acquisition
 from examples.data_description import d as data_description
@@ -952,7 +952,7 @@ class TestWriteStandardFiles:
     """Tests for Metadata.write_standard_files"""
 
     @patch.object(Path, "open", autospec=True)
-    @patch("aind_data_schema.utils.validators.recursive_check_paths")
+    @patch("biodata_schema.utils.validators.recursive_check_paths")
     def test_writes_each_present_core_file(self, mock_rcp, mock_open_fn):
         """write_standard_files calls write_standard_file for each non-None core field"""
         m = Metadata.model_construct(
@@ -973,7 +973,7 @@ class TestWriteStandardFiles:
         assert 4 == mock_open_fn.call_count
 
     @patch.object(Path, "open", autospec=True)
-    @patch("aind_data_schema.utils.validators.recursive_check_paths")
+    @patch("biodata_schema.utils.validators.recursive_check_paths")
     def test_skips_none_fields(self, mock_rcp, mock_open_fn):
         """Fields that are None produce no file writes"""
         m = Metadata.model_construct(
@@ -988,7 +988,7 @@ class TestWriteStandardFiles:
         assert "processing.json" in opened_files
 
     @patch.object(Path, "open", autospec=True)
-    @patch("aind_data_schema.utils.validators.recursive_check_paths")
+    @patch("biodata_schema.utils.validators.recursive_check_paths")
     def test_output_directory_forwarded(self, mock_rcp, mock_open_fn):
         """output_directory is forwarded to each write_standard_file call"""
         m = Metadata.model_construct(

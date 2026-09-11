@@ -45,17 +45,17 @@ docs = [
 where = ["src"]
 
 [tool.setuptools.dynamic]
-version = {attr = "aind_data_schema.__version__"}
+version = {attr = "biodata_schema.__version__"}
 readme = {file = ["README.md"]}
 
 [tool.coverage.run]
 omit = [
     "*__init__*",
-    "*/aind_data_schema/visualizations/*",
+    "*/biodata_schema/visualizations/*",
     "*/tests/test_diagram_builder.py",
-    "*/aind_data_schema/utils/schema_tree.py"
+    "*/biodata_schema/utils/schema_tree.py"
 ]
-source = ["aind_data_schema", "tests"]
+source = ["biodata_schema", "tests"]
 
 [tool.coverage.report]
 exclude_lines = ["if __name__ == .__main__.:", "pragma: no cover"]

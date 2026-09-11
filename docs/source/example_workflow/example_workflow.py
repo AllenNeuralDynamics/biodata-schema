@@ -11,14 +11,14 @@ from biodata_models.organizations import Organization
 from biodata_models.species import Strain
 from biodata_models.units import VolumeUnit
 
-from aind_data_schema.components.coordinates import CoordinateSystemLibrary, Rotation, Translation
-from aind_data_schema.components.identifiers import Person
-from aind_data_schema.components.injection_procedures import InjectionDynamics, InjectionProfile, ViralMaterial
-from aind_data_schema.components.subject_procedures import BrainInjection, Perfusion
-from aind_data_schema.components.subjects import BreedingInfo, HomeCageEnrichment, Housing, MouseSubject, Sex, Species
-from aind_data_schema.core.data_description import DataDescription, Funding
-from aind_data_schema.core.procedures import Procedures, Surgery
-from aind_data_schema.core.subject import Subject
+from biodata_schema.components.coordinates import CoordinateSystemLibrary, Rotation, Translation
+from biodata_schema.components.identifiers import Person
+from biodata_schema.components.injection_procedures import InjectionDynamics, InjectionProfile, ViralMaterial
+from biodata_schema.components.subject_procedures import BrainInjection, Perfusion
+from biodata_schema.components.subjects import BreedingInfo, HomeCageEnrichment, Housing, MouseSubject, Sex, Species
+from biodata_schema.core.data_description import DataDescription, Funding
+from biodata_schema.core.procedures import Procedures, Surgery
+from biodata_schema.core.subject import Subject
 
 sessions_df = pd.read_excel("example_workflow.xlsx", sheet_name="sessions")
 mice_df = pd.read_excel("example_workflow.xlsx", sheet_name="mice")

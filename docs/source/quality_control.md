@@ -1,12 +1,12 @@
 # Quality control
 
-[Link to code](https://github.com/AllenNeuralDynamics/biodata-schema/blob/dev/src/aind_data_schema/core/quality_control.py)
+[Link to code](https://github.com/AllenNeuralDynamics/biodata-schema/blob/dev/src/biodata_schema/core/quality_control.py)
 
 Quality control is a collection of **metrics** evaluated on a data asset.
 
 [QCMetric](#qcmetric) objects should be generated during pipelines: from raw data, during processing, and during analysis by researchers.
 
-Every [QCMetric](#qcmetric) has a `aind_data_schema.quality_control.State` which takes the value of the metric and compares it to some rule. Metrics can only pass or fail. Metrics that require manual evaluation are set to pending.
+Every [QCMetric](#qcmetric) has a `biodata_schema.quality_control.State` which takes the value of the metric and compares it to some rule. Metrics can only pass or fail. Metrics that require manual evaluation are set to pending.
 
 ## Details
 

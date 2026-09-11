@@ -10,7 +10,7 @@ from biodata_models.modalities import Modality
 from biodata_models.stimulus_modality import StimulusModality
 from biodata_models.units import FrequencyUnit, SizeUnit
 
-from aind_data_schema.components.configs import (
+from biodata_schema.components.configs import (
     Channel,
     DetectorConfig,
     ImagingConfig,
@@ -19,10 +19,10 @@ from aind_data_schema.components.configs import (
     Plane,
     SamplingStrategy,
 )
-from aind_data_schema.components.coordinates import Axis, CoordinateSystem, Scale, Translation
-from aind_data_schema.components.identifiers import Code
-from aind_data_schema.components.stimulus import PhotoStimulation, PhotoStimulationGroup
-from aind_data_schema.core.acquisition import (
+from biodata_schema.components.coordinates import Axis, CoordinateSystem, Scale, Translation
+from biodata_schema.components.identifiers import Code
+from biodata_schema.components.stimulus import PhotoStimulation, PhotoStimulationGroup
+from biodata_schema.core.acquisition import (
     Acquisition,
     AcquisitionSubjectDetails,
     DataStream,

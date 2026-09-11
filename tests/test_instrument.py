@@ -12,8 +12,8 @@ from biodata_models.organizations import Organization
 from biodata_models.units import FrequencyUnit, PowerUnit
 from pydantic import ValidationError
 
-from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.devices import (
+from biodata_schema.components.connections import Connection
+from biodata_schema.components.devices import (
     Camera,
     CameraAssembly,
     CameraTarget,
@@ -41,9 +41,9 @@ from aind_data_schema.components.devices import (
     OlfactometerChannelType,
     ScanningStage,
 )
-from aind_data_schema.components.identifiers import Software
-from aind_data_schema.components.measurements import Calibration
-from aind_data_schema.core.instrument import (
+from biodata_schema.components.identifiers import Software
+from biodata_schema.components.measurements import Calibration
+from biodata_schema.core.instrument import (
     DEVICES_REQUIRED,
     Instrument,
 )
@@ -712,7 +712,7 @@ class TestInstrument:
             components=[Computer(name="Computer1")],
         )
 
-        with patch("aind_data_schema.core.instrument.logger") as mock_logger:
+        with patch("biodata_schema.core.instrument.logger") as mock_logger:
             combined = inst1 + inst2
             mock_logger.error.assert_called_once()
             error_call_args = mock_logger.error.call_args[0][0]
@@ -747,7 +747,7 @@ class TestInstrument:
             components=[harp_clock_gen.model_copy(deep=True)],
         )
 
-        with patch("aind_data_schema.core.instrument.logger") as mock_logger:
+        with patch("biodata_schema.core.instrument.logger") as mock_logger:
             combined = inst1 + inst2
             mock_logger.info.assert_called_once()
             info_call_args = mock_logger.info.call_args[0][0]
@@ -813,7 +813,7 @@ class TestInstrument:
             ],
         )
 
-        with patch("aind_data_schema.core.instrument.logger") as mock_logger:
+        with patch("biodata_schema.core.instrument.logger") as mock_logger:
             combined = inst1 + inst2
             mock_logger.error.assert_called_once()
             error_call_args = mock_logger.error.call_args[0][0]

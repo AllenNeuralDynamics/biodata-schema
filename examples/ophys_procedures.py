@@ -12,19 +12,19 @@ from biodata_models.registries import Registry
 from biodata_models.species import Species
 from biodata_models.units import SizeUnit, VolumeUnit
 
-from aind_data_schema.components.configs import ProbeConfig
-from aind_data_schema.components.coordinates import Axis, CoordinateSystem, Translation
-from aind_data_schema.components.devices import FiberProbe
-from aind_data_schema.components.injection_procedures import InjectionDynamics, InjectionProfile, ViralMaterial
-from aind_data_schema.components.reagent import FluorescentStain, Fluorophore, ProbeReagent, ProteinProbe
-from aind_data_schema.components.surgery_procedures import (
+from biodata_schema.components.configs import ProbeConfig
+from biodata_schema.components.coordinates import Axis, CoordinateSystem, Translation
+from biodata_schema.components.devices import FiberProbe
+from biodata_schema.components.injection_procedures import InjectionDynamics, InjectionProfile, ViralMaterial
+from biodata_schema.components.reagent import FluorescentStain, Fluorophore, ProbeReagent, ProteinProbe
+from biodata_schema.components.surgery_procedures import (
     Anaesthetic,
     BrainInjection,
     Headframe,
     Perfusion,
     ProbeImplant,
 )
-from aind_data_schema.core.procedures import (
+from biodata_schema.core.procedures import (
     Procedures,
     SpecimenProcedure,
     Surgery,

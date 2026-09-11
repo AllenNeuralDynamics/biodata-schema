@@ -10,9 +10,9 @@ from biodata_models.modalities import Modality
 from biodata_models.organizations import Organization
 from biodata_models.units import FrequencyUnit, PowerUnit, SizeUnit
 
-from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.coordinates import Affine, Axis, CoordinateSystem, Translation
-from aind_data_schema.components.devices import (
+from biodata_schema.components.connections import Connection
+from biodata_schema.components.coordinates import Affine, Axis, CoordinateSystem, Translation
+from biodata_schema.components.devices import (
     Camera,
     CameraAssembly,
     Computer,
@@ -32,8 +32,8 @@ from aind_data_schema.components.devices import (
     NeuropixelsBasestation,
     ProbePort,
 )
-from aind_data_schema.components.measurements import Calibration
-from aind_data_schema.core.instrument import Instrument
+from biodata_schema.components.measurements import Calibration
+from biodata_schema.core.instrument import Instrument
 
 BREGMA_ARI = CoordinateSystem(
     name="BREGMA_ARI",

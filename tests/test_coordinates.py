@@ -4,7 +4,7 @@ import pytest
 from biodata_models.atlas import AtlasName
 from biodata_models.units import SizeUnit
 
-from aind_data_schema.components.coordinates import (
+from biodata_schema.components.coordinates import (
     Atlas,
     Axis,
     AxisName,

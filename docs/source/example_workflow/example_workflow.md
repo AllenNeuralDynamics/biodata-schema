@@ -59,9 +59,9 @@ First, we'll set up the Python environment and define some shared variables.
 
 ### How did we know which `biodata-schema` classes to import?
 
-Our general recommendation for metadata is to navigate the documentation starting from the core class you are working on. So for the data description you would go to that page: [DataDescription](../data_description.md). The import for any object can be read from the URL of the page, core classes are found in the core subfolder `from aind_data_schema.core import DataDescription`.
+Our general recommendation for metadata is to navigate the documentation starting from the core class you are working on. So for the data description you would go to that page: [DataDescription](../data_description.md). The import for any object can be read from the URL of the page, core classes are found in the core subfolder `from biodata_schema.core import DataDescription`.
 
-One of the objects you'll need to build is going to be the [Person](../components/identifiers.md#person). From the [DataDescription](../data_description.md) page you can click-through (we recommend you ctrl+click or command+click to open the link in a new tab) to the [Person](../components/identifiers.md#person) page. Again read the URL to know where to import the file, in this case we're in a subfolder components in the file identifiers `from aind_data_schema.components.identifiers import Person`. After importing the class and populating it in your Python code you can close the extra tab.
+One of the objects you'll need to build is going to be the [Person](../components/identifiers.md#person). From the [DataDescription](../data_description.md) page you can click-through (we recommend you ctrl+click or command+click to open the link in a new tab) to the [Person](../components/identifiers.md#person) page. Again read the URL to know where to import the file, in this case we're in a subfolder components in the file identifiers `from biodata_schema.components.identifiers import Person`. After importing the class and populating it in your Python code you can close the extra tab.
 
 Let's move on to build the actual data description now.
 
@@ -105,7 +105,7 @@ This is the point at which we need to also discuss the [coordinate systems](../c
 For most mouse experiments like the one here, the coordinate system used had the origin at Bregma and the axes pointing anterior, right, and inferior (or ventral), plus a depth coordinate. To make your life easier you can import this coordinate system from the library so that you don't have to worry about constructing it yourself.
 
 ```
-from aind_data_schema.coordinates.components import CoordinateSystemLibrary
+from biodata_schema.coordinates.components import CoordinateSystemLibrary
 
 coordinate_system = CoordinateSystemLibrary.BREGMA_ARID
 ```

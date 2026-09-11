@@ -12553,8 +12553,8 @@
          "type": "string"
       },
       "describedBy": {
-         "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/acquisition.py",
-         "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/acquisition.py",
+         "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/acquisition.py",
+         "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/acquisition.py",
          "title": "Describedby",
          "type": "string"
       },

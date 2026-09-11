@@ -7,7 +7,7 @@ from biodata_models.brain_atlas import CCFv3
 from biodata_models.units import AngleUnit, FrequencyUnit, SizeUnit, TimeUnit, VolumeUnit
 from pydantic import ValidationError
 
-from aind_data_schema.components.configs import (
+from biodata_schema.components.configs import (
     Channel,
     DetectorConfig,
     ImageSPIM,
@@ -24,7 +24,7 @@ from aind_data_schema.components.configs import (
     SubjectPosition,
     Valence,
 )
-from aind_data_schema.components.coordinates import Affine, Translation
+from biodata_schema.components.coordinates import Affine, Translation
 from tests.coordinate_systems import SPIM_IJK
 
 

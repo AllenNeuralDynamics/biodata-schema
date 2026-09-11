@@ -149,7 +149,7 @@ Configuration of an imaging instrument
 
 | Field | Type | Title (Description) |
 |-------|------|-------------|
-| `channels` | `List[typing.Annotated[aind_data_schema.components.configs.Channel, FieldInfo(annotation=NoneType, required=True, discriminator='object_type')]]` |   |
+| `channels` | `List[typing.Annotated[biodata_schema.components.configs.Channel, FieldInfo(annotation=NoneType, required=True, discriminator='object_type')]]` |   |
 | <del>`coordinate_system`</del> | Optional[[CoordinateSystem](coordinates.md#coordinatesystem)] | **[DEPRECATED]** Deprecated: use local_coordinate_system instead. Coordinate system (Required for ImageSPIM objects and when the imaging coordinate system differs from the Acquisition.coordinate_system) |
 | `local_coordinate_system` | Optional[[CoordinateSystem](coordinates.md#coordinatesystem)] | Local coordinate system (Required for ImageSPIM objects and when the imaging coordinate system differs from the Acquisition.global_coordinate_system) |
 | `images` | List[[PlanarImage](#planarimage) or [PlanarImageStack](#planarimagestack) or [ImageSPIM](#imagespim)] | Images  |

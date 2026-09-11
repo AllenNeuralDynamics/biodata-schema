@@ -7,16 +7,16 @@ from biodata_models.brain_atlas import CCFv3
 from biodata_models.coordinates import AxisName, Direction, Origin
 from biodata_models.units import SizeUnit, VolumeUnit
 
-from aind_data_schema.components.configs import ProbeConfig
-from aind_data_schema.components.coordinates import Axis, CoordinateSystem, Rotation, Translation
-from aind_data_schema.components.devices import EphysProbe
-from aind_data_schema.components.injection_procedures import (
+from biodata_schema.components.configs import ProbeConfig
+from biodata_schema.components.coordinates import Axis, CoordinateSystem, Rotation, Translation
+from biodata_schema.components.devices import EphysProbe
+from biodata_schema.components.injection_procedures import (
     InjectionDynamics,
     InjectionProfile,
     TarsVirusIdentifiers,
     ViralMaterial,
 )
-from aind_data_schema.components.surgery_procedures import (
+from biodata_schema.components.surgery_procedures import (
     Anaesthetic,
     BrainInjection,
     Craniotomy,
@@ -24,7 +24,7 @@ from aind_data_schema.components.surgery_procedures import (
     Perfusion,
     ProbeImplant,
 )
-from aind_data_schema.core.procedures import (
+from biodata_schema.core.procedures import (
     Procedures,
     Surgery,
 )

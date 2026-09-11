@@ -16726,8 +16726,8 @@
          "type": "string"
       },
       "describedBy": {
-         "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/procedures.py",
-         "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/procedures.py",
+         "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/procedures.py",
+         "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/procedures.py",
          "title": "Describedby",
          "type": "string"
       },

@@ -6,9 +6,9 @@ from zoneinfo import ZoneInfo
 
 from biodata_models.modalities import Modality
 
-from aind_data_schema.components.configs import Channel, DetectorConfig, LaserConfig, PatchCordConfig
-from aind_data_schema.components.connections import Connection
-from aind_data_schema.core.acquisition import (
+from biodata_schema.components.configs import Channel, DetectorConfig, LaserConfig, PatchCordConfig
+from biodata_schema.components.connections import Connection
+from biodata_schema.core.acquisition import (
     Acquisition,
     AcquisitionSubjectDetails,
     DataStream,

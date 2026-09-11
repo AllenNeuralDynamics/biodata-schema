@@ -5,9 +5,9 @@ import datetime
 
 from biodata_models.system_architecture import ModelArchitecture
 
-from aind_data_schema.components.identifiers import Code, DataAsset, Software
-from aind_data_schema.core.model import Model, ModelEvaluation, ModelTraining, PerformanceMetric
-from aind_data_schema.core.processing import ProcessStage
+from biodata_schema.components.identifiers import Code, DataAsset, Software
+from biodata_schema.core.model import Model, ModelEvaluation, ModelTraining, PerformanceMetric
+from biodata_schema.core.processing import ProcessStage
 
 now = datetime.datetime.now()
 

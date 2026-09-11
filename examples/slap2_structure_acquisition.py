@@ -9,7 +9,7 @@ from biodata_models.modalities import Modality
 from biodata_models.slap2_acquisition_type import Slap2AcquisitionType
 from biodata_models.units import FrequencyUnit, PowerUnit, SizeUnit
 
-from aind_data_schema.components.configs import (
+from biodata_schema.components.configs import (
     Channel,
     DetectorConfig,
     DeviceConfig,
@@ -21,14 +21,14 @@ from aind_data_schema.components.configs import (
     Slap2Plane,
     TriggerType,
 )
-from aind_data_schema.components.coordinates import (
+from biodata_schema.components.coordinates import (
     Axis,
     CoordinateSystem,
     Origin,
     Scale,
     Translation,
 )
-from aind_data_schema.core.acquisition import (
+from biodata_schema.core.acquisition import (
     Acquisition,
     DataStream,
 )

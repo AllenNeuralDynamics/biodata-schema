@@ -11,7 +11,7 @@ from biodata_models.brain_atlas import CCFv3
 from biodata_models.modalities import Modality
 from pydantic import ValidationError
 
-from aind_data_schema.components.configs import (
+from biodata_schema.components.configs import (
     DeviceConfig,
     EphysAssemblyConfig,
     ImagingConfig,
@@ -21,9 +21,9 @@ from aind_data_schema.components.configs import (
     MRIScan,
     SampleChamberConfig,
 )
-from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.coordinates import Translation
-from aind_data_schema.core.acquisition import (
+from biodata_schema.components.connections import Connection
+from biodata_schema.components.coordinates import Translation
+from biodata_schema.core.acquisition import (
     NON_IANA_TIMEZONES,
     Acquisition,
     AcquisitionSubjectDetails,
@@ -320,7 +320,7 @@ class TestAcquisition:
         """
 
         # Import the calibration and maintenance base classes to exclude them
-        from aind_data_schema.components.measurements import Calibration, Maintenance
+        from biodata_schema.components.measurements import Calibration, Maintenance
 
         # Get all subclasses of DeviceConfig using introspection
         def get_all_subclasses(cls):

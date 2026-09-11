@@ -7,8 +7,8 @@ from biodata_models.data_name_patterns import DataLevel
 from biodata_models.modalities import Modality
 from biodata_models.organizations import Organization
 
-from aind_data_schema.components.identifiers import Person
-from aind_data_schema.core.data_description import DataDescription, Funding
+from biodata_schema.components.identifiers import Person
+from biodata_schema.core.data_description import DataDescription, Funding
 
 d = DataDescription(
     modalities=[Modality.ECEPHYS, Modality.BEHAVIOR_VIDEOS],

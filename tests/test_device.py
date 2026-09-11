@@ -7,8 +7,8 @@ from biodata_models.organizations import Organization
 from biodata_models.units import UnitlessUnit
 from pydantic import ValidationError
 
-from aind_data_schema.components.coordinates import Translation
-from aind_data_schema.components.devices import (
+from biodata_schema.components.coordinates import Translation
+from biodata_schema.components.devices import (
     AdditionalImagingDevice,
     DataInterface,
     Detector,

@@ -22,12 +22,12 @@ jobs:
         run: uv sync --locked --group dev
       - name: Bump schema versions
         run: |
-          uv run python -m aind_data_schema.utils.schema_version_bump
+          uv run python -m biodata_schema.utils.schema_version_bump
           echo "Finished schema version bump"
       - name: Update schemas
         run: |
           rm -rf $OUTPUT_DIR
-          uv run python -m aind_data_schema.utils.json_writer --output $OUTPUT_DIR
+          uv run python -m biodata_schema.utils.json_writer --output $OUTPUT_DIR
       - name: Create example schemas
         run: |
           cd examples

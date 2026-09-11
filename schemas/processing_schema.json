@@ -769,8 +769,8 @@
          "type": "string"
       },
       "describedBy": {
-         "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/processing.py",
-         "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/processing.py",
+         "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/processing.py",
+         "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/processing.py",
          "title": "Describedby",
          "type": "string"
       },

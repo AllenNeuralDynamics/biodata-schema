@@ -11,8 +11,8 @@
                "type": "string"
             },
             "describedBy": {
-               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/acquisition.py",
-               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/acquisition.py",
+               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/acquisition.py",
+               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/acquisition.py",
                "title": "Describedby",
                "type": "string"
             },
@@ -8289,8 +8289,8 @@
                "type": "string"
             },
             "describedBy": {
-               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/data_description.py",
-               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/data_description.py",
+               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/data_description.py",
+               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/data_description.py",
                "title": "Describedby",
                "type": "string"
             },
@@ -20912,8 +20912,8 @@
                "type": "string"
             },
             "describedBy": {
-               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/instrument.py",
-               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/instrument.py",
+               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/instrument.py",
+               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/instrument.py",
                "title": "Describedby",
                "type": "string"
             },
@@ -26670,8 +26670,8 @@
                "type": "string"
             },
             "describedBy": {
-               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/model.py",
-               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/model.py",
+               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/model.py",
+               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/model.py",
                "title": "Describedby",
                "type": "string"
             },
@@ -37245,8 +37245,8 @@
                "type": "string"
             },
             "describedBy": {
-               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/procedures.py",
-               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/procedures.py",
+               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/procedures.py",
+               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/procedures.py",
                "title": "Describedby",
                "type": "string"
             },
@@ -37415,8 +37415,8 @@
                "type": "string"
             },
             "describedBy": {
-               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/processing.py",
-               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/processing.py",
+               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/processing.py",
+               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/processing.py",
                "title": "Describedby",
                "type": "string"
             },
@@ -37845,8 +37845,8 @@
                "type": "string"
             },
             "describedBy": {
-               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/quality_control.py",
-               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/quality_control.py",
+               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/quality_control.py",
+               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/quality_control.py",
                "title": "Describedby",
                "type": "string"
             },
@@ -41705,8 +41705,8 @@
                "type": "string"
             },
             "describedBy": {
-               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/subject.py",
-               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/subject.py",
+               "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/subject.py",
+               "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/subject.py",
                "title": "Describedby",
                "type": "string"
             },
@@ -51568,8 +51568,8 @@
          "type": "string"
       },
       "describedBy": {
-         "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/metadata.py",
-         "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/aind_data_schema/core/metadata.py",
+         "const": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/metadata.py",
+         "default": "https://raw.githubusercontent.com/AllenNeuralDynamics/biodata-schema/main/src/biodata_schema/core/metadata.py",
          "title": "Describedby",
          "type": "string"
       },

@@ -12,17 +12,17 @@ from biodata_models.specimen_procedure_types import SpecimenProcedureType
 from biodata_models.units import ConcentrationUnit, CurrentUnit, SizeUnit, TimeUnit, VolumeUnit
 from pydantic import ValidationError
 
-from aind_data_schema.components.configs import CatheterConfig
-from aind_data_schema.components.coordinates import Origin, Translation
-from aind_data_schema.components.devices import Catheter, Device
-from aind_data_schema.components.injection_procedures import (
+from biodata_schema.components.configs import CatheterConfig
+from biodata_schema.components.coordinates import Origin, Translation
+from biodata_schema.components.devices import Catheter, Device
+from biodata_schema.components.injection_procedures import (
     InjectionDynamics,
     InjectionProfile,
     NonViralMaterial,
     TarsVirusIdentifiers,
     ViralMaterial,
 )
-from aind_data_schema.components.specimen_procedures import (
+from biodata_schema.components.specimen_procedures import (
     HCRSeries,
     PlanarSection,
     PlanarSectioning,
@@ -31,10 +31,10 @@ from aind_data_schema.components.specimen_procedures import (
     SectionOrientation,
     SpecimenProcedure,
 )
-from aind_data_schema.components.subject_procedures import BrainInjection, Injection, Surgery
-from aind_data_schema.components.surgery_procedures import CatheterImplant, Craniotomy, CraniotomyType
-from aind_data_schema.core.procedures import Procedures
-from aind_data_schema.utils.exceptions import OneOfError
+from biodata_schema.components.subject_procedures import BrainInjection, Injection, Surgery
+from biodata_schema.components.surgery_procedures import CatheterImplant, Craniotomy, CraniotomyType
+from biodata_schema.core.procedures import Procedures
+from biodata_schema.utils.exceptions import OneOfError
 from tests.coordinate_systems import BREGMA_ARI, BREGMA_ARID
 
 

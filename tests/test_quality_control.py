@@ -6,7 +6,7 @@ import pytest
 from biodata_models.modalities import Modality
 from pydantic import ValidationError
 
-from aind_data_schema.core.quality_control import (
+from biodata_schema.core.quality_control import (
     QCMetric,
     QCStatus,
     QualityControl,

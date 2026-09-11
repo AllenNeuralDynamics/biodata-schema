@@ -9,7 +9,7 @@ from biodata_models.modalities import Modality
 from biodata_models.stimulus_modality import StimulusModality
 from biodata_models.units import FrequencyUnit, PowerUnit, SizeUnit, TimeUnit, VolumeUnit
 
-from aind_data_schema.components.configs import (
+from biodata_schema.components.configs import (
     Channel,
     DetectorConfig,
     DeviceConfig,
@@ -18,9 +18,9 @@ from aind_data_schema.components.configs import (
     SpeakerConfig,
     TriggerType,
 )
-from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.identifiers import Code
-from aind_data_schema.core.acquisition import (
+from biodata_schema.components.connections import Connection
+from biodata_schema.components.identifiers import Code
+from biodata_schema.core.acquisition import (
     Acquisition,
     AcquisitionSubjectDetails,
     DataStream,

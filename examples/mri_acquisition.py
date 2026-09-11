@@ -9,10 +9,10 @@ from biodata_models.coordinates import AxisName, Direction, Origin
 from biodata_models.modalities import Modality
 from biodata_models.units import MagneticFieldUnit, SizeUnit, TimeUnit
 
-from aind_data_schema.components.configs import MRAcquisitionType, MRIScan, PulseSequenceType, SubjectPosition
-from aind_data_schema.components.coordinates import Affine, Axis, CoordinateSystem, Scale, Translation
-from aind_data_schema.components.devices import Scanner
-from aind_data_schema.core.acquisition import (
+from biodata_schema.components.configs import MRAcquisitionType, MRIScan, PulseSequenceType, SubjectPosition
+from biodata_schema.components.coordinates import Affine, Axis, CoordinateSystem, Scale, Translation
+from biodata_schema.components.devices import Scanner
+from biodata_schema.core.acquisition import (
     Acquisition,
     AcquisitionSubjectDetails,
     DataStream,

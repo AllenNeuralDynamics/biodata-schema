@@ -26,8 +26,8 @@ from biodata_models.modalities import Modality
 from biodata_models.organizations import Organization
 from biodata_models.units import SizeUnit
 
-from aind_data_schema.components.coordinates import Axis, CoordinateSystem
-from aind_data_schema.components.devices import (
+from biodata_schema.components.coordinates import Axis, CoordinateSystem
+from biodata_schema.components.devices import (
     Camera,
     CameraAssembly,
     Computer,
@@ -39,7 +39,7 @@ from aind_data_schema.components.devices import (
     Monitor,
     MotorizedStage,
 )
-from aind_data_schema.core.instrument import Instrument
+from biodata_schema.core.instrument import Instrument
 
 BREGMA_ARI = CoordinateSystem(
     name="BREGMA_ARI",

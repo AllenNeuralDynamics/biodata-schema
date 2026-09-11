@@ -11,7 +11,7 @@ from biodata_models.pid_names import PIDName
 from biodata_models.registries import Registry
 from biodata_models.units import PowerUnit, SizeUnit
 
-from aind_data_schema.components.configs import (
+from biodata_schema.components.configs import (
     Channel,
     DetectorConfig,
     DeviceConfig,
@@ -21,11 +21,11 @@ from aind_data_schema.components.configs import (
     LaserConfig,
     SampleChamberConfig,
 )
-from aind_data_schema.components.coordinates import Axis, CoordinateSystem, Scale, Translation
-from aind_data_schema.components.measurements import Calibration, Maintenance
-from aind_data_schema.components.reagent import Reagent
-from aind_data_schema.components.wrappers import AssetPath
-from aind_data_schema.core.acquisition import Acquisition, DataStream
+from biodata_schema.components.coordinates import Axis, CoordinateSystem, Scale, Translation
+from biodata_schema.components.measurements import Calibration, Maintenance
+from biodata_schema.components.reagent import Reagent
+from biodata_schema.components.wrappers import AssetPath
+from biodata_schema.core.acquisition import Acquisition, DataStream
 
 SPIM_RPI = CoordinateSystem(
     name="SPIM_RPI",

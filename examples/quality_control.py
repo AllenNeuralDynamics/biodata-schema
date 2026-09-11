@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 
 from biodata_models.modalities import Modality
 
-from aind_data_schema.core.quality_control import QCMetric, QCStatus, QualityControl, Stage, Status
+from biodata_schema.core.quality_control import QCMetric, QCStatus, QualityControl, Stage, Status
 
 t = datetime(2022, 11, 22, 0, 0, 0, tzinfo=timezone.utc)
 

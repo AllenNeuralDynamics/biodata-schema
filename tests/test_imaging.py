@@ -7,13 +7,13 @@ from biodata_models.modalities import Modality
 from biodata_models.organizations import Organization
 from pydantic import ValidationError
 
-from aind_data_schema.components.configs import Image
-from aind_data_schema.components.coordinates import Affine, Rotation, Scale, Translation
-from aind_data_schema.components.devices import Laser, Objective, ScanningStage
-from aind_data_schema.components.identifiers import Code
-from aind_data_schema.core.acquisition import Acquisition
-from aind_data_schema.core.instrument import Instrument
-from aind_data_schema.core.processing import DataProcess, ProcessName, ProcessStage
+from biodata_schema.components.configs import Image
+from biodata_schema.components.coordinates import Affine, Rotation, Scale, Translation
+from biodata_schema.components.devices import Laser, Objective, ScanningStage
+from biodata_schema.components.identifiers import Code
+from biodata_schema.core.acquisition import Acquisition
+from biodata_schema.core.instrument import Instrument
+from biodata_schema.core.processing import DataProcess, ProcessName, ProcessStage
 from examples.exaspim_acquisition import acq
 from tests.coordinate_systems import BREGMA_ARI
 

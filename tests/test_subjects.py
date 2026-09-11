@@ -8,7 +8,7 @@ from biodata_models.pid_names import PIDName
 from biodata_models.registries import Registry
 from biodata_models.species import Species, Strain
 
-from aind_data_schema.components.subjects import (
+from biodata_schema.components.subjects import (
     BreedingInfo,
     CalibrationObject,
     Housing,

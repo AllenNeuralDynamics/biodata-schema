@@ -3,7 +3,7 @@
 import pytest
 from pydantic import ValidationError
 
-from aind_data_schema.components.identifiers import Code, DataAsset, Person
+from biodata_schema.components.identifiers import Code, DataAsset, Person
 
 
 class TestExperimenter:
