@@ -72,6 +72,12 @@ class CatheterDesign(str, Enum):
     NA = "N/A"
 
 
+class Assembly(DataModel):
+    """Base class for named assemblies"""
+
+    name: str = Field(..., title="Assembly name")
+
+
 class Device(DataModel):
     """Generic device"""
 
@@ -273,10 +279,9 @@ class Objective(Device):
         return value
 
 
-class CameraAssembly(DevicePosition):
+class CameraAssembly(DevicePosition, Assembly):
     """Named assembly of a camera and lens (and optionally a filter)"""
 
-    name: str = Field(..., title="Camera assembly name")
     target: CameraTarget = Field(..., title="Camera target")
     camera: Camera = Field(..., title="Camera")
     lens: Lens = Field(..., title="Lens")
@@ -375,11 +380,9 @@ class Lamp(Device):
     temperature_unit: Optional[TemperatureUnit] = Field(default=None, title="Temperature unit")
 
 
-class LightAssembly(DataModel):
+class LightAssembly(Assembly):
     """Named assembly of a light source and lens"""
 
-    # required fields
-    name: str = Field(..., title="Light assembly name")
     light: Discriminated[Laser | LightEmittingDiode | Lamp]
     lens: Lens = Field(..., title="Lens")
 
@@ -433,10 +436,9 @@ class FiberPatchCord(Device):
     photobleaching_date: Optional[date] = Field(default=None, title="Photobleaching date")
 
 
-class LaserAssembly(DataModel):
+class LaserAssembly(Assembly):
     """Named assembly combining a manipulator, lasers, collimator, and fibers"""
 
-    name: str = Field(..., title="Laser assembly name")
     manipulator: Manipulator = Field(..., title="Manipulator")
     lasers: List[Laser] = Field(..., title="Lasers connected to this module")
     collimator: Device = Field(..., title="Collimator")
@@ -450,10 +452,9 @@ class EphysProbe(Device):
     headstage: Optional[Device] = Field(default=None, title="Headstage for this probe")
 
 
-class EphysAssembly(DataModel):
+class EphysAssembly(Assembly):
     """Named assembly for combining a manipulator and extracellular ephys probes"""
 
-    name: str = Field(..., title="Ephys assembly name")
     manipulator: Manipulator = Field(..., title="Manipulator")
     probes: List[EphysProbe] = Field(..., title="Probes that are held by this module")
 
@@ -470,18 +471,16 @@ class FiberProbe(Device):
     length_unit: SizeUnit = Field(default=SizeUnit.MM, title="Length unit")
 
 
-class FiberAssembly(DataModel):
+class FiberAssembly(Assembly):
     """Module for inserted fiber photometry recording"""
 
-    name: str = Field(..., title="Fiber assembly name")
     manipulator: Manipulator = Field(..., title="Manipulator")
     fibers: List[FiberProbe] = Field(..., title="Probes that are held by this module")
 
 
-class PatchClampEphysAssembly(DataModel):
+class PatchClampEphysAssembly(Assembly):
     """Assembly combining a manipulator and headstage used for Patch clamp ephys"""
 
-    name: str = Field(..., title="Patch clamp Assembly Name")
     manipulator: Manipulator = Field(..., title="Manipulator")
     headstage: Device = Field(..., title="Headstage")
 
@@ -624,10 +623,9 @@ class LickSpout(Device):
     lick_sensor_type: Optional[LickSensorType] = Field(default=None, title="Lick sensor type")
 
 
-class LickSpoutAssembly(DataModel):
+class LickSpoutAssembly(Assembly):
     """Description of multiple lick spouts, possibly mounted on a stage"""
 
-    name: str = Field(..., title="Lick spout assembly name")
     lick_spouts: List[LickSpout] = Field(..., title="Water spouts")
     motorized_stage: Optional[MotorizedStage] = Field(default=None, title="Motorized stage")
 

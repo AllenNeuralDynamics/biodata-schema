@@ -307,8 +307,10 @@ Give unique names to:
 You can reference one shared object from multiple places. The validator compares object
 values before it reports a duplicate name.
 
-The validator skips `Software` names. You can reuse a package across devices, and a software
-name can match a device name. For example, this remains valid:
+The validator only checks names on `Device` and `Assembly` objects and their subclasses.
+Names on coordinate systems, software, and other non-device/non-assembly objects are
+ignored. You can reuse a package across devices, and a software name can match a device
+name. For example, this remains valid:
 
 ```python
 Software(name="Bonsai", version="2.5")

@@ -13,6 +13,7 @@ from biodata_models.units import FrequencyUnit, PowerUnit
 from pydantic import ValidationError
 
 from biodata_schema.components.connections import Connection
+from biodata_schema.components.coordinates import CoordinateSystem
 from biodata_schema.components.devices import (
     Camera,
     CameraAssembly,
@@ -886,6 +887,29 @@ class TestInstrument:
             connections=[],
             calibrations=[],
         )
+        assert inst.validate_unique_component_names() is inst
+
+    def test_coordinate_system_names_ignored(self):
+        """Names on coordinate systems are not component collisions"""
+        inst = Instrument.model_construct(
+            instrument_id=ephys_instrument.instrument_id,
+            modification_date=ephys_instrument.modification_date,
+            modalities=ephys_instrument.modalities,
+            global_coordinate_system=ephys_instrument.global_coordinate_system,
+            components=[
+                CameraAssembly.model_construct(
+                    name="Camera assembly one",
+                    local_coordinate_system=CoordinateSystem.model_construct(name="Shared coordinate system"),
+                ),
+                CameraAssembly.model_construct(
+                    name="Camera assembly two",
+                    local_coordinate_system=CoordinateSystem.model_construct(name="Shared coordinate system"),
+                ),
+            ],
+            connections=[],
+            calibrations=[],
+        )
+
         assert inst.validate_unique_component_names() is inst
 
     def test_distinct_objects_sharing_a_name_rejected(self):

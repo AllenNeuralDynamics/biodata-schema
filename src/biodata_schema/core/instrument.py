@@ -14,6 +14,7 @@ from biodata_schema.components.devices import (
     AdditionalImagingDevice,
     AirPuffDevice,
     Arena,
+    Assembly,
     Camera,
     CameraAssembly,
     CameraTarget,
@@ -53,7 +54,6 @@ from biodata_schema.components.devices import (
     Tube,
     Wheel,
 )
-from biodata_schema.components.identifiers import Software
 from biodata_schema.components.measurements import CALIBRATIONS
 from biodata_schema.utils.merge import merge_notes, merge_optional_list, merge_str_alphabetical
 from biodata_schema.utils.validators import recursive_get_all_names, recursive_get_named_objects
@@ -203,7 +203,7 @@ class Instrument(DataCoreModel):
 
     @model_validator(mode="after")
     def validate_unique_component_names(self):
-        """Raise if a device name is used more than once
+        """Raise if a Device or Assembly name is used more than once
 
         Component names are how connections and configurations refer to devices, so a
         repeated name is ambiguous. Two things are rejected: two top-level components
@@ -211,21 +211,21 @@ class Instrument(DataCoreModel):
         A single shared object referenced from more than one place is not a collision,
         so objects are compared by value first.
 
-        ``Software`` names are exempt entirely: software is a descriptor rather than an
-        addressable device, and the same package is routinely recorded on several
-        devices at once.
+        Only ``Device`` and ``Assembly`` instances and their subclasses are
+        addressable components. Names on other model types, such as software and
+        coordinate systems, are not considered.
         """
         top_level = [
             component.name
             for component in self.components
-            if getattr(component, "name", None) and not isinstance(component, Software)
+            if isinstance(component, (Device, Assembly)) and getattr(component, "name", None)
         ]
         duplicates = {name for name in top_level if top_level.count(name) > 1}
 
         by_name = {}
         for component in self.components:
             for name, obj in recursive_get_named_objects(component):
-                if isinstance(obj, Software):
+                if not isinstance(obj, (Device, Assembly)):
                     continue
                 distinct = by_name.setdefault(name, [])
                 if not any(obj == other for other in distinct):
