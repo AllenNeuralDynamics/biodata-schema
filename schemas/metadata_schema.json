@@ -4568,6 +4568,10 @@
                "title": "Object Type",
                "type": "string"
             },
+            "name": {
+               "title": "Assembly name",
+               "type": "string"
+            },
             "relative_position": {
                "items": {
                   "$ref": "#/$defs/AnatomicalRelative"
@@ -4625,10 +4629,6 @@
                "description": "Position and orientation of the device in the instrument global coordinate system",
                "title": "Local to global transform"
             },
-            "name": {
-               "title": "Camera assembly name",
-               "type": "string"
-            },
             "target": {
                "$ref": "#/$defs/CameraTarget",
                "title": "Camera target"
@@ -4653,8 +4653,8 @@
             }
          },
          "required": [
-            "relative_position",
             "name",
+            "relative_position",
             "target",
             "camera",
             "lens"
@@ -13189,7 +13189,7 @@
                "type": "string"
             },
             "name": {
-               "title": "Ephys assembly name",
+               "title": "Assembly name",
                "type": "string"
             },
             "manipulator": {
@@ -14033,7 +14033,7 @@
                "type": "string"
             },
             "name": {
-               "title": "Fiber assembly name",
+               "title": "Assembly name",
                "type": "string"
             },
             "manipulator": {
@@ -20919,8 +20919,8 @@
                "type": "string"
             },
             "schema_version": {
-               "const": "3.0.1",
-               "default": "3.0.1",
+               "const": "3.0.2",
+               "default": "3.0.2",
                "title": "Schema Version",
                "type": "string"
             },
@@ -22624,7 +22624,7 @@
                "type": "string"
             },
             "name": {
-               "title": "Laser assembly name",
+               "title": "Assembly name",
                "type": "string"
             },
             "manipulator": {
@@ -23991,7 +23991,7 @@
                "type": "string"
             },
             "name": {
-               "title": "Lick spout assembly name",
+               "title": "Assembly name",
                "type": "string"
             },
             "lick_spouts": {
@@ -34332,7 +34332,7 @@
                "type": "string"
             },
             "name": {
-               "title": "Patch clamp Assembly Name",
+               "title": "Assembly name",
                "type": "string"
             },
             "manipulator": {
@@ -51699,8 +51699,8 @@
          "type": "string"
       },
       "schema_version": {
-         "const": "3.0.2",
-         "default": "3.0.2",
+         "const": "3.0.3",
+         "default": "3.0.3",
          "title": "Schema Version",
          "type": "string"
       },
