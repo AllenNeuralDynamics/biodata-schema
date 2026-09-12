@@ -3,31 +3,55 @@
 import argparse
 import datetime
 
-from aind_data_schema_models.brain_atlas import CCFv3
-from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.pid_names import PIDName
-from aind_data_schema_models.reagent import FluorophoreType, StainType
-from aind_data_schema_models.registries import Registry
-from aind_data_schema_models.species import Species
-from aind_data_schema_models.units import VolumeUnit
+from biodata_models.brain_atlas import CCFv3
+from biodata_models.coordinates import AxisName, Direction, Origin
+from biodata_models.organizations import Organization
+from biodata_models.pid_names import PIDName
+from biodata_models.reagent import FluorophoreType, StainType
+from biodata_models.registries import Registry
+from biodata_models.species import Species
+from biodata_models.units import SizeUnit, VolumeUnit
 
-from aind_data_schema.components.configs import ProbeConfig
-from aind_data_schema.components.coordinates import CoordinateSystemLibrary, Translation
-from aind_data_schema.components.devices import FiberProbe
-from aind_data_schema.components.injection_procedures import InjectionDynamics, InjectionProfile, ViralMaterial
-from aind_data_schema.components.reagent import FluorescentStain, Fluorophore, ProbeReagent, ProteinProbe
-from aind_data_schema.components.surgery_procedures import (
+from biodata_schema.components.configs import ProbeConfig
+from biodata_schema.components.coordinates import Axis, CoordinateSystem, Translation
+from biodata_schema.components.devices import FiberProbe
+from biodata_schema.components.injection_procedures import InjectionDynamics, InjectionProfile, ViralMaterial
+from biodata_schema.components.reagent import FluorescentStain, Fluorophore, ProbeReagent, ProteinProbe
+from biodata_schema.components.surgery_procedures import (
     Anaesthetic,
     BrainInjection,
     Headframe,
     Perfusion,
     ProbeImplant,
 )
-from aind_data_schema.core.procedures import (
+from biodata_schema.core.procedures import (
     Procedures,
     SpecimenProcedure,
     Surgery,
     WaterRestriction,
+)
+
+BREGMA_ARID = CoordinateSystem(
+    name="BREGMA_ARID",
+    origin=Origin.BREGMA,
+    axis_unit=SizeUnit.MM,
+    axes=[
+        Axis(name=AxisName.AP, direction=Direction.PA),
+        Axis(name=AxisName.ML, direction=Direction.LR),
+        Axis(name=AxisName.SI, direction=Direction.SI),
+        Axis(name=AxisName.DEPTH, direction=Direction.UD),
+    ],
+)
+
+MPM_MANIP_RFB = CoordinateSystem(
+    name="MPM_MANIP_RFB",
+    origin=Origin.TIP,
+    axis_unit=SizeUnit.MM,
+    axes=[
+        Axis(name=AxisName.X, direction=Direction.LR),
+        Axis(name=AxisName.Y, direction=Direction.BF),
+        Axis(name=AxisName.Z, direction=Direction.UD),
+    ],
 )
 
 t = datetime.datetime(2022, 7, 12, 7, 00, 00)
@@ -43,7 +67,7 @@ probe = FiberProbe(
 config = ProbeConfig(
     primary_targeted_structure=CCFv3.VTA,
     device_name="Probe A",
-    coordinate_system=CoordinateSystemLibrary.MPM_MANIP_RFB,
+    local_coordinate_system=MPM_MANIP_RFB,
     transform=[
         Translation(
             translation=[-600, -3050, 0, 4200],
@@ -64,7 +88,7 @@ p = Procedures(
             anaesthesia=Anaesthetic(anaesthetic_type="Isoflurane", duration=180, level=1.5),
             workstation_id="SWS 3",
             protocol_id="doi",
-            coordinate_system=CoordinateSystemLibrary.BREGMA_ARID,
+            global_coordinate_system=BREGMA_ARID,
             procedures=[
                 Headframe(
                     protocol_id="2109",
@@ -85,7 +109,7 @@ p = Procedures(
                             titer=20000000000000,
                         )
                     ],
-                    coordinate_system_name=CoordinateSystemLibrary.BREGMA_ARID.name,
+                    coordinate_system_name=BREGMA_ARID.name,
                     coordinates=[
                         [
                             Translation(

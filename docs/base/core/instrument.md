@@ -1,6 +1,6 @@
 # Instrument
 
-[Link to code](https://github.com/AllenNeuralDynamics/biodata-schema/blob/dev/src/aind_data_schema/core/instrument.py)
+[Link to code](https://github.com/AllenNeuralDynamics/biodata-schema/blob/dev/src/biodata_schema/core/instrument.py)
 
 The `instrument.json` collects the components, mostly hardware devices, used to collect data. In general, the instrument schema describes the static state of the data acquisition hardware across sessions. The [Acquisition](acquisition.md) is used to describe the configuration of components for a specific session.
 
@@ -26,7 +26,7 @@ If you need to specify additional information about a device we will need to add
 
 ### Missing organizations
 
-You can find the full list of [Organizations](aind_data_schema_models/organizations.md) in the `aind-data-schema-models` repository. Some device types are restricted to a subset of this full list to simplify the `metadata-entry` app. Please open an [issue](https://github.com/AllenNeuralDynamics/biodata-schema/issues) if you need a manufacturer that isn't available in either the main list or one of the subsets.
+You can find the full list of [Organizations](biodata_models/organizations.md) in the `biodata-models` repository. Some device types are restricted to a subset of this full list to simplify the `metadata-entry` app. Please open an [issue](https://github.com/AllenNeuralDynamics/biodata-schema/issues) if you need a manufacturer that isn't available in either the main list or one of the subsets.
 
 ## Position
 

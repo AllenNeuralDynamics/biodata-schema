@@ -3,17 +3,17 @@
 from datetime import datetime, timezone
 
 import pytest
-from aind_data_schema_models.data_name_patterns import DataLevel
-from aind_data_schema_models.modalities import Modality
-from aind_data_schema_models.organizations import Organization
+from biodata_models.data_name_patterns import DataLevel
+from biodata_models.modalities import Modality
+from biodata_models.organizations import Organization
 
-from aind_data_schema.components.identifiers import Code, Person
-from aind_data_schema.core.data_description import DataDescription, Funding
-from aind_data_schema.core.metadata import Metadata
-from aind_data_schema.core.processing import DataProcess, Processing, ProcessName, ProcessStage
-from aind_data_schema.core.quality_control import QCMetric, QCStatus, QualityControl, Stage, Status
-from aind_data_schema.core.subject import Subject
-from aind_data_schema.utils.inheritance import (
+from biodata_schema.components.identifiers import Code, Person
+from biodata_schema.core.data_description import DataDescription, Funding
+from biodata_schema.core.metadata import Metadata
+from biodata_schema.core.processing import DataProcess, Processing, ProcessName, ProcessStage
+from biodata_schema.core.quality_control import QCMetric, QCStatus, QualityControl, Stage, Status
+from biodata_schema.core.subject import Subject
+from biodata_schema.utils.inheritance import (
     _accumulate_processing,
     _accumulate_quality_control,
     _get_root_asset_name,

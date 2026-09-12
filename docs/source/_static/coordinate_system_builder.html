@@ -867,12 +867,12 @@ function buildExport() {
     }
   }).join('\n');
 
-  const code = `from aind_data_schema.components.coordinates import (
+  const code = `from biodata_schema.components.coordinates import (
     Axis, AxisName, CoordinateSystem, Direction,
     Handedness, Origin, ReferenceCoordinateSystem,
     Rotation, RotationDirection, Scale, SizeUnit, Translation,
 )
-from aind_data_schema_models.units import AngleUnit, SizeUnit
+from biodata_models.units import AngleUnit, SizeUnit
 
 # Instrument global coordinate system
 instrument_cs = CoordinateSystem(

@@ -7,11 +7,11 @@ from zoneinfo import ZoneInfo
 
 import pydantic
 import pytest
-from aind_data_schema_models.brain_atlas import CCFv3
-from aind_data_schema_models.modalities import Modality
+from biodata_models.brain_atlas import CCFv3
+from biodata_models.modalities import Modality
 from pydantic import ValidationError
 
-from aind_data_schema.components.configs import (
+from biodata_schema.components.configs import (
     DeviceConfig,
     EphysAssemblyConfig,
     ImagingConfig,
@@ -21,9 +21,10 @@ from aind_data_schema.components.configs import (
     MRIScan,
     SampleChamberConfig,
 )
-from aind_data_schema.components.connections import Connection
-from aind_data_schema.components.coordinates import CoordinateSystemLibrary, Translation
-from aind_data_schema.core.acquisition import (
+from biodata_schema.components.connections import Connection
+from biodata_schema.components.coordinates import Translation
+from biodata_schema.core.acquisition import (
+    NON_IANA_TIMEZONES,
     Acquisition,
     AcquisitionSubjectDetails,
     DataStream,
@@ -34,6 +35,7 @@ from examples.ephys_acquisition import acquisition as ephys_acquisition
 from examples.exaspim_acquisition import acq as exaspim_acquisition
 from examples.mri_acquisition import acquisition as mri_acquisition
 from examples.mri_acquisition import scan1
+from tests.coordinate_systems import BREGMA_ARID
 
 
 class TestAcquisition:
@@ -125,7 +127,7 @@ class TestAcquisition:
                 subject_details=AcquisitionSubjectDetails(
                     mouse_platform_name="Running wheel",
                 ),
-                coordinate_system=CoordinateSystemLibrary.BREGMA_ARID,
+                global_coordinate_system=BREGMA_ARID,
                 data_streams=[
                     DataStream(
                         stream_start_time=datetime.now(),
@@ -318,7 +320,7 @@ class TestAcquisition:
         """
 
         # Import the calibration and maintenance base classes to exclude them
-        from aind_data_schema.components.measurements import Calibration, Maintenance
+        from biodata_schema.components.measurements import Calibration, Maintenance
 
         # Get all subclasses of DeviceConfig using introspection
         def get_all_subclasses(cls):
@@ -607,3 +609,20 @@ class TestAcquisition:
         assert Acquisition.coerce_fixed_offset_tz_string(None) is None
         assert Acquisition.coerce_fixed_offset_tz_string(-7) == -7
         assert Acquisition.coerce_fixed_offset_tz_string("America/Los_Angeles") == "America/Los_Angeles"
+
+    def test_reject_non_iana_tz(self):
+        """Host timezone artifacts are rejected, real zones and offsets pass through"""
+        for name in NON_IANA_TIMEZONES:
+            with pytest.raises(ValueError) as context:
+                Acquisition.reject_non_iana_tz(name)
+            assert "is not an IANA timezone name" in str(context.value)
+
+        assert Acquisition.reject_non_iana_tz("America/Los_Angeles") == "America/Los_Angeles"
+        assert Acquisition.reject_non_iana_tz(-7) == -7
+        assert Acquisition.reject_non_iana_tz(None) is None
+
+    def test_non_iana_tz_absent_from_schema(self):
+        """The generated enum never advertises host timezone artifacts"""
+        enum = Acquisition.model_json_schema()["properties"]["acquisition_start_tz"]["anyOf"][1]["enum"]
+        assert not NON_IANA_TIMEZONES.intersection(enum)
+        assert "America/Los_Angeles" in enum

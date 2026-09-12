@@ -10,10 +10,10 @@ import pytest
 from pydantic import BaseModel
 from pydantic_extra_types.timezone_name import TimeZoneName
 
-from aind_data_schema.base import AwareDatetimeWithDefault, DataModel
-from aind_data_schema.components.coordinates import Rotation, Scale, Translation
-from aind_data_schema.components.wrappers import AssetPath
-from aind_data_schema.utils.validators import (
+from biodata_schema.base import AwareDatetimeWithDefault, DataModel
+from biodata_schema.components.coordinates import Rotation, Scale, Translation
+from biodata_schema.components.wrappers import AssetPath
+from biodata_schema.utils.validators import (
     TimeValidation,
     _convert_to_comparable,
     _recurse_helper,
@@ -408,7 +408,7 @@ class TestRecursiveCheckPaths:
     """Tests for recursive_check_paths function"""
 
     @patch("pathlib.Path.exists")
-    @patch("aind_data_schema.utils.validators.logger")
+    @patch("biodata_schema.utils.validators.logger")
     def test_path_exists(self, mock_warning: MagicMock, mock_exists: MagicMock):
         """Test when the path exists"""
         mock_exists.return_value = True
@@ -419,7 +419,7 @@ class TestRecursiveCheckPaths:
         mock_warning.warning.assert_not_called()
 
     @patch("pathlib.Path.exists")
-    @patch("aind_data_schema.utils.validators.logger")
+    @patch("biodata_schema.utils.validators.logger")
     def test_path_does_not_exist(self, mock_warning: MagicMock, mock_exists: MagicMock):
         """Test when the path does not exist"""
         mock_exists.return_value = False
@@ -431,7 +431,7 @@ class TestRecursiveCheckPaths:
         )
 
     @patch("pathlib.Path.exists")
-    @patch("aind_data_schema.utils.validators.logger")
+    @patch("biodata_schema.utils.validators.logger")
     def test_nested_paths_in_list(self, mock_warning: MagicMock, mock_exists: MagicMock):
         """Test nested paths in a list"""
         mock_exists.side_effect = [True, False]
@@ -443,7 +443,7 @@ class TestRecursiveCheckPaths:
         )
 
     @patch("pathlib.Path.exists")
-    @patch("aind_data_schema.utils.validators.logger")
+    @patch("biodata_schema.utils.validators.logger")
     def test_nested_paths_in_dict(self, mock_warning: MagicMock, mock_exists: MagicMock):
         """Test nested paths in a dictionary"""
         mock_exists.side_effect = [False, True]
@@ -455,7 +455,7 @@ class TestRecursiveCheckPaths:
         )
 
     @patch("pathlib.Path.exists")
-    @patch("aind_data_schema.utils.validators.logger")
+    @patch("biodata_schema.utils.validators.logger")
     def test_nested_paths_in_object(self, mock_warning: MagicMock, mock_exists: MagicMock):
         """Test nested paths in a custom object"""
 
@@ -476,7 +476,7 @@ class TestRecursiveCheckPaths:
         )
 
     @patch("pathlib.Path.exists")
-    @patch("aind_data_schema.utils.validators.logger")
+    @patch("biodata_schema.utils.validators.logger")
     def test_no_paths(self, mock_warning: MagicMock, mock_exists: MagicMock):
         """Test when no paths are present"""
         data = {"key": "value", "list": [1, 2, 3]}
@@ -485,20 +485,19 @@ class TestRecursiveCheckPaths:
 
     @patch("pathlib.Path.is_absolute")
     @patch("pathlib.Path.exists")
-    @patch("aind_data_schema.utils.validators.logger")
-    def test_absolute_path_warning(self, mock_warning: MagicMock, mock_is_absolute: MagicMock, mock_exists: MagicMock):
+    @patch("biodata_schema.utils.validators.logger")
+    def test_absolute_path_raises(self, mock_warning: MagicMock, mock_is_absolute: MagicMock, mock_exists: MagicMock):
         """Test when the path is absolute"""
         mock_is_absolute.return_value = True
         mock_exists.return_value = True
         test_path = AssetPath("/absolute/path/to/file.txt")
-        recursive_check_paths(test_path, None)
-        mock_warning.warning.assert_called_with(
-            "AssetPath /absolute/path/to/file.txt is absolute, ensure file paths are relative to the metadata directory"
-        )
+        with pytest.raises(ValueError) as context:
+            recursive_check_paths(test_path, None)
+        assert "is absolute" in str(context.value)
 
     @patch("pathlib.Path.is_absolute", return_value=False)
     @patch("pathlib.Path.exists", returns_value=True)
-    @patch("aind_data_schema.utils.validators.logger")
+    @patch("biodata_schema.utils.validators.logger")
     def test_relative_path_no_warning(
         self, mock_warning: MagicMock, mock_is_absolute: MagicMock, mock_exists: MagicMock
     ):

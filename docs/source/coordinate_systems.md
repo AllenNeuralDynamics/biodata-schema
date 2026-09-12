@@ -7,11 +7,11 @@ Unlike many parts of the metadata schema where fields are just floats or strings
 1. Each [Instrument](instrument.md), [Acquisition](acquisition.md), and [Procedures](procedures.md) has its own `.coordinate_system` field. In most assets, the coordinate system is the same in all three files.
 2. Any transform (i.e. a [Translation](components/coordinates.md#translation), [Rotation](components/coordinates.md#rotation), or [Scale](components/coordinates.md#scale)) defined for a device or configuration of a device **must be defined in it's core file's coordinate system**. To help you avoid mistakes, transform fields are paired with a `.coordinate_system_name` field and the coordinate system name must match the name of the coordinate system defined in the core file.
 
-The top-level coordinate systems in the instrument, acquisition, and procedures are generally defined in *in vivo* space, usually relative to an origin on an animal's skull. Often when targeting coordinates in the brain we plan our experiments in a **standardized atlas** like the mouse common coordinate framework. When you encounter a field that that requires an atlas transform (i.e. a point or vector in an atlas), you'll see that an [Atlas](components/coordinates.md#atlas) will have to be defined alongside that transform. An Atlas library is available in `aind_data_schema.components.coordinates.AtlasLibrary` for your convenience.
+The top-level coordinate systems in the instrument, acquisition, and procedures are generally defined in *in vivo* space, usually relative to an origin on an animal's skull. Often when targeting coordinates in the brain we plan our experiments in a **standardized atlas** like the mouse common coordinate framework. When you encounter a field that that requires an atlas transform (i.e. a point or vector in an atlas), you'll see that an [Atlas](components/coordinates.md#atlas) will have to be defined alongside that transform. An Atlas library is available in `biodata_schema.components.coordinates.AtlasLibrary` for your convenience.
 
 ## CoordinateSystem
 
-A [CoordinateSystem](components/coordinates.md#coordinatesystem) is defined by an [Origin](aind_data_schema_models/coordinates.md#origin) and a list of [AxisName](aind_data_schema_models/coordinates.md#axisname) and [Direction](aind_data_schema_models/coordinates.md#direction) pairs. The name of a coordinate system is created by combining the origin and positive directions of the axes. For example, `BREGMA_ARI` is a coordinate system with an origin at bregma and three axes pointing anterior, right, and inferior. This is made explicit in the full definition:
+A [CoordinateSystem](components/coordinates.md#coordinatesystem) is defined by an [Origin](biodata_models/coordinates.md#origin) and a list of [AxisName](biodata_models/coordinates.md#axisname) and [Direction](biodata_models/coordinates.md#direction) pairs. The name of a coordinate system is created by combining the origin and positive directions of the axes. For example, `BREGMA_ARI` is a coordinate system with an origin at bregma and three axes pointing anterior, right, and inferior. This is made explicit in the full definition:
 
 ```{code} python
 CoordinateSystem(
@@ -34,7 +34,7 @@ This matches the image below:
 
 ### Origin
 
-An [Origin](aind_data_schema_models/coordinates.md#origin) is a point in space, often relative to the mouse's anatomy but it can also be a point on a device. Standard anatomical references are positions like Bregma or Lambda
+An [Origin](biodata_models/coordinates.md#origin) is a point in space, often relative to the mouse's anatomy but it can also be a point on a device. Standard anatomical references are positions like Bregma or Lambda
 
 <div align="center">
     <img src="_static/bregma_and_lambda2.png" alt="BREGMA_ARI Coordinate System" width="50%">
@@ -42,7 +42,7 @@ An [Origin](aind_data_schema_models/coordinates.md#origin) is a point in space, 
 
 ### Axis
 
-Each [Axis](components/coordinates.md#axis) is a combination of an [AxisName](aind_data_schema_models/coordinates.md#axisname) and [Direction](aind_data_schema_models/coordinates.md#direction).
+Each [Axis](components/coordinates.md#axis) is a combination of an [AxisName](biodata_models/coordinates.md#axisname) and [Direction](biodata_models/coordinates.md#direction).
 
 ### Units
 
@@ -61,7 +61,7 @@ Note that in general, the process by which you perform an insertion should be re
 We know that allowing complete flexibility with coordinate systems will be a source of confusion. With that in mind, we encourage everybody to use the `CoordinateSystemLibrary` class, which comes with a pre-defined set of standard coordinate systems. For example, you can import the `BREGMA_ARI` coordinate system and then re-use it as follows:
 
 ```{code} python
-from aind_data_schema.components.coordinates import CoordinateSystemLibrary
+from biodata_schema.components.coordinates import CoordinateSystemLibrary
 
 ...
 
@@ -95,7 +95,7 @@ To understand the position and orientation of a **device** in an instrument requ
 
 ### Relative Position
 
-For devices where the exact position is not important or is unknown, simply tell us where the device is *roughly* relative to the origin. By combining several [AnatomicalRelative](aind_data_schema_models/coordinates.md#anatomicalrelative) directions in a list, for example `[AnatomicalRelative.ANTERIOR, AnatomicalRelative.SUPERIOR]`, etc, you can describe the position.
+For devices where the exact position is not important or is unknown, simply tell us where the device is *roughly* relative to the origin. By combining several [AnatomicalRelative](biodata_models/coordinates.md#anatomicalrelative) directions in a list, for example `[AnatomicalRelative.ANTERIOR, AnatomicalRelative.SUPERIOR]`, etc, you can describe the position.
 
 ### Exact Position
 
