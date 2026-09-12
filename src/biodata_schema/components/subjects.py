@@ -7,7 +7,7 @@ from typing import Annotated, List, Optional
 
 from biodata_models.organizations import Organization
 from biodata_models.pid_names import PIDName
-from biodata_models.species import Species, SpeciesModel, Strain
+from biodata_models.species import Species, Strain
 from pydantic import Field, field_validator, model_validator
 from pydantic_core.core_schema import ValidationInfo
 
@@ -141,7 +141,7 @@ class MouseSubject(DataModel):
 class HumanSubject(DataModel):
     """Description of a human subject"""
 
-    species: SpeciesModel = Field(default=Species.HUMAN, title="Species")
+    species: Species.ONE_OF = Field(default=Species.HUMAN, title="Species")
     sex: Sex = Field(..., title="Sex")
     year_of_birth: int = Field(..., title="Year of birth")
     source: Organization.ONE_OF = Field(
@@ -150,7 +150,7 @@ class HumanSubject(DataModel):
         title="Source",
     )
 
-    @field_validator("species", mode="before")
+    @field_validator("species", mode="after")
     def validate_species_is_human(cls, v):
         """Ensure species is always human for HumanSubject"""
         if v != Species.HUMAN:

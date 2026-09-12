@@ -94,6 +94,18 @@ class TestHumanSubject:
         assert subject.year_of_birth == 1990
         assert subject.source == Organization.AI
 
+    def test_validate_species_is_human_from_dict(self):
+        """Test the species validator with a serialized human species"""
+
+        subject = HumanSubject(
+            sex=Sex.FEMALE,
+            species=Species.HUMAN.model_dump(),
+            year_of_birth=1990,
+            source=Organization.AI,
+        )
+
+        assert subject.species == Species.HUMAN
+
 
 class TestNonHumanPrimateSubject:
     """Test the non-human primate subject model"""
