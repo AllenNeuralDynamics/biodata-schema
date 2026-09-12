@@ -764,13 +764,79 @@
                "type": "string"
             },
             "species": {
-               "$ref": "#/$defs/SpeciesModel",
                "default": {
                   "name": "Homo sapiens",
                   "common_name": "Human",
                   "registry": "National Center for Biotechnology Information (NCBI)",
                   "registry_identifier": "NCBI:txid9606"
                },
+               "discriminator": {
+                  "mapping": {
+                     "Callithrix jacchus": "#/$defs/_Callithrix_Jacchus",
+                     "Carpa hircus": "#/$defs/_Carpa_Hircus",
+                     "Cavia porcellus": "#/$defs/_Cavia_Porcellus",
+                     "Equus asinus": "#/$defs/_Equus_Asinus",
+                     "Gallus gallus": "#/$defs/_Gallus_Gallus",
+                     "Homo sapiens": "#/$defs/_Homo_Sapiens",
+                     "Lama glama": "#/$defs/_Lama_Glama",
+                     "Macaca fascicularis": "#/$defs/_Macaca_Fascicularis",
+                     "Macaca mulatta": "#/$defs/_Macaca_Mulatta",
+                     "Macaca nemestrina": "#/$defs/_Macaca_Nemestrina",
+                     "Mus musculus": "#/$defs/_Mus_Musculus",
+                     "Oryctolagus cuniculus": "#/$defs/_Oryctolagus_Cuniculus",
+                     "Rattus norvegicus": "#/$defs/_Rattus_Norvegicus",
+                     "Saimiri sciureus": "#/$defs/_Saimiri_Sciureus",
+                     "Vicuna pacos": "#/$defs/_Vicuna_Pacos"
+                  },
+                  "propertyName": "name"
+               },
+               "oneOf": [
+                  {
+                     "$ref": "#/$defs/_Callithrix_Jacchus"
+                  },
+                  {
+                     "$ref": "#/$defs/_Carpa_Hircus"
+                  },
+                  {
+                     "$ref": "#/$defs/_Cavia_Porcellus"
+                  },
+                  {
+                     "$ref": "#/$defs/_Equus_Asinus"
+                  },
+                  {
+                     "$ref": "#/$defs/_Gallus_Gallus"
+                  },
+                  {
+                     "$ref": "#/$defs/_Homo_Sapiens"
+                  },
+                  {
+                     "$ref": "#/$defs/_Lama_Glama"
+                  },
+                  {
+                     "$ref": "#/$defs/_Macaca_Fascicularis"
+                  },
+                  {
+                     "$ref": "#/$defs/_Macaca_Mulatta"
+                  },
+                  {
+                     "$ref": "#/$defs/_Macaca_Nemestrina"
+                  },
+                  {
+                     "$ref": "#/$defs/_Mus_Musculus"
+                  },
+                  {
+                     "$ref": "#/$defs/_Oryctolagus_Cuniculus"
+                  },
+                  {
+                     "$ref": "#/$defs/_Rattus_Norvegicus"
+                  },
+                  {
+                     "$ref": "#/$defs/_Saimiri_Sciureus"
+                  },
+                  {
+                     "$ref": "#/$defs/_Vicuna_Pacos"
+                  }
+               ],
                "title": "Species"
             },
             "sex": {
@@ -2778,34 +2844,6 @@
          ],
          "title": "Sex",
          "type": "string"
-      },
-      "SpeciesModel": {
-         "description": "Base model for species",
-         "properties": {
-            "name": {
-               "title": "Name",
-               "type": "string"
-            },
-            "common_name": {
-               "title": "Common Name",
-               "type": "string"
-            },
-            "registry": {
-               "$ref": "#/$defs/Registry"
-            },
-            "registry_identifier": {
-               "title": "Registry Identifier",
-               "type": "string"
-            }
-         },
-         "required": [
-            "name",
-            "common_name",
-            "registry",
-            "registry_identifier"
-         ],
-         "title": "SpeciesModel",
-         "type": "object"
       },
       "WellnessReport": {
          "additionalProperties": false,
@@ -8753,8 +8791,8 @@
          "type": "string"
       },
       "schema_version": {
-         "const": "3.0.1",
-         "default": "3.0.1",
+         "const": "3.0.2",
+         "default": "3.0.2",
          "title": "Schema Version",
          "type": "string"
       },
