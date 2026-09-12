@@ -29,34 +29,6 @@ Types of bandpass filters for auditory stim
 | `OTHER` | `Other` |
 
 
-### OlfactometerChannelConfig
-
-**DEPRECATED**: Use OlfactometerConfig in biodata_schema.components.configs
-
-Description of olfactometer channel configurations
-
-| Field | Type | Title (Description) |
-|-------|------|-------------|
-| `channel_index` | `int` | Channel index  |
-| `odorant` | `str` | Odorant  |
-| `odorant_dilution` | `decimal.Decimal` | Odorant dilution  |
-| `odorant_dilution_unit` | [ConcentrationUnit](../biodata_models/units.md#concentrationunit) | Dilution unit  |
-| `notes` | `Optional[str]` | Notes  |
-
-
-### OlfactoryStimulation
-
-**DEPRECATED**: Use StimulusEpoch.stimulus_name and OlfactometerConfig in biodata_schema.components.configs
-
-Description of a olfactory stimulus
-
-| Field | Type | Title (Description) |
-|-------|------|-------------|
-| `stimulus_name` | `str` | Stimulus name  |
-| <del>`channels`</del> | Optional[List[[OlfactometerChannelConfig](#olfactometerchannelconfig)]] | **[DEPRECATED]** Use OlfactometerConfig instead. Channels  |
-| <del>`notes`</del> | `Optional[str]` | **[DEPRECATED]** Use OlfactometerConfig instead. Notes  |
-
-
 ### OptoStimulation
 
 Description of opto stimulation parameters

@@ -39,9 +39,7 @@ Description of an arena
 
 | Field | Type | Title (Description) |
 |-------|------|-------------|
-| <del>`size`</del> | [Scale](coordinates.md#scale) | **[DEPRECATED]** Use shape. 3D Size  |
-| <del>`size_unit`</del> | [SizeUnit](../biodata_models/units.md#sizeunit) | **[DEPRECATED]** Use shape. Size unit  |
-| `shape` | Optional[[Rectangle](geometry.md#rectangle) or [Circle](geometry.md#circle)] | Shape of the arena  |
+| `shape` | [Rectangle](geometry.md#rectangle) or [Circle](geometry.md#circle) | Shape of the arena  |
 | `objects_in_arena` | List[[Device](#device)] | Objects in arena  |
 | `name` | `str` | Device name  |
 | `serial_number` | `Optional[str]` | Serial number  |
@@ -49,6 +47,15 @@ Description of an arena
 | `model` | `Optional[str]` | Model  |
 | `additional_settings` | `Optional[dict]` | Additional parameters  |
 | `notes` | `Optional[str]` | Notes  |
+
+
+### Assembly
+
+Base class for named assemblies
+
+| Field | Type | Title (Description) |
+|-------|------|-------------|
+| `name` | `str` | Assembly name  |
 
 
 ### Camera
@@ -97,15 +104,14 @@ Named assembly of a camera and lens (and optionally a filter)
 
 | Field | Type | Title (Description) |
 |-------|------|-------------|
-| `name` | `str` | Camera assembly name  |
 | `target` | [CameraTarget](../biodata_models/devices.md#cameratarget) | Camera target  |
 | `camera` | [Camera](#camera) | Camera  |
 | `lens` | [Lens](#lens) | Lens  |
 | `filter` | Optional[[Filter](#filter)] | Filter  |
 | `relative_position` | List[[AnatomicalRelative](../biodata_models/coordinates.md#anatomicalrelative)] | Relative position  |
-| <del>`coordinate_system`</del> | Optional[[CoordinateSystem](coordinates.md#coordinatesystem)] | **[DEPRECATED]** Deprecated: use local_coordinate_system instead. Device coordinate system  |
 | `local_coordinate_system` | Optional[[CoordinateSystem](coordinates.md#coordinatesystem)] | Device local coordinate system  |
 | `transform` | Optional[List[[Translation](coordinates.md#translation) or [Rotation](coordinates.md#rotation) or [Scale](coordinates.md#scale) or [Affine](coordinates.md#affine)]] | Local to global transform (Position and orientation of the device in the instrument global coordinate system) |
+| `name` | `str` | Assembly name  |
 
 
 ### Catheter
@@ -181,7 +187,6 @@ Named input or output channel on a DAQ device
 | `channel_name` | `str` | DAQ channel name  |
 | `channel_type` | [DaqChannelType](../biodata_models/devices.md#daqchanneltype) | DAQ channel type  |
 | `port` | `Optional[int]` | DAQ port  |
-| <del>`channel_index`</del> | `Optional[int]` | **[DEPRECATED]** Use DAQChannel.port instead. DAQ channel index  |
 | `sample_rate` | `Optional[decimal.Decimal]` | DAQ channel sample rate (Hz)  |
 | `sample_rate_unit` | Optional[[FrequencyUnit](../biodata_models/units.md#frequencyunit)] | Sample rate unit  |
 | `event_based_sampling` | `Optional[bool]` | Set to true if DAQ channel is sampled at irregular intervals  |
@@ -266,7 +271,6 @@ Position class for devices
 | Field | Type | Title (Description) |
 |-------|------|-------------|
 | `relative_position` | List[[AnatomicalRelative](../biodata_models/coordinates.md#anatomicalrelative)] | Relative position  |
-| <del>`coordinate_system`</del> | Optional[[CoordinateSystem](coordinates.md#coordinatesystem)] | **[DEPRECATED]** Deprecated: use local_coordinate_system instead. Device coordinate system  |
 | `local_coordinate_system` | Optional[[CoordinateSystem](coordinates.md#coordinatesystem)] | Device local coordinate system  |
 | `transform` | Optional[List[[Translation](coordinates.md#translation) or [Rotation](coordinates.md#rotation) or [Scale](coordinates.md#scale) or [Affine](coordinates.md#affine)]] | Local to global transform (Position and orientation of the device in the instrument global coordinate system) |
 
@@ -322,9 +326,7 @@ Description of an enclosure
 
 | Field | Type | Title (Description) |
 |-------|------|-------------|
-| <del>`size`</del> | [Scale](coordinates.md#scale) | **[DEPRECATED]** Use shape. Size  |
-| <del>`size_unit`</del> | [SizeUnit](../biodata_models/units.md#sizeunit) | **[DEPRECATED]** Use shape. Size unit  |
-| `shape` | Optional[[Rectangle](geometry.md#rectangle) or [Circle](geometry.md#circle)] | Shape of the enclosure  |
+| `shape` | [Rectangle](geometry.md#rectangle) or [Circle](geometry.md#circle) | Shape of the enclosure  |
 | `internal_material` | `Optional[str]` | Internal material  |
 | `external_material` | `str` | External material  |
 | `grounded` | `bool` | Grounded  |
@@ -344,9 +346,9 @@ Named assembly for combining a manipulator and extracellular ephys probes
 
 | Field | Type | Title (Description) |
 |-------|------|-------------|
-| `name` | `str` | Ephys assembly name  |
 | `manipulator` | [Manipulator](#manipulator) | Manipulator  |
 | `probes` | List[[EphysProbe](#ephysprobe)] | Probes that are held by this module  |
+| `name` | `str` | Assembly name  |
 
 
 ### EphysProbe
@@ -371,9 +373,9 @@ Module for inserted fiber photometry recording
 
 | Field | Type | Title (Description) |
 |-------|------|-------------|
-| `name` | `str` | Fiber assembly name  |
 | `manipulator` | [Manipulator](#manipulator) | Manipulator  |
 | `fibers` | List[[FiberProbe](#fiberprobe)] | Probes that are held by this module  |
+| `name` | `str` | Assembly name  |
 
 
 ### FiberPatchCord
@@ -499,11 +501,11 @@ Named assembly combining a manipulator, lasers, collimator, and fibers
 
 | Field | Type | Title (Description) |
 |-------|------|-------------|
-| `name` | `str` | Laser assembly name  |
 | `manipulator` | [Manipulator](#manipulator) | Manipulator  |
 | `lasers` | List[[Laser](#laser)] | Lasers connected to this module  |
 | `collimator` | [Device](#device) | Collimator  |
 | `fiber` | [FiberPatchCord](#fiberpatchcord) | Fiber patch  |
+| `name` | `str` | Assembly name  |
 
 
 ### Lens
@@ -545,9 +547,9 @@ Description of multiple lick spouts, possibly mounted on a stage
 
 | Field | Type | Title (Description) |
 |-------|------|-------------|
-| `name` | `str` | Lick spout assembly name  |
 | `lick_spouts` | List[[LickSpout](#lickspout)] | Water spouts  |
 | `motorized_stage` | Optional[[MotorizedStage](#motorizedstage)] | Motorized stage  |
+| `name` | `str` | Assembly name  |
 
 
 ### LightAssembly
@@ -556,10 +558,10 @@ Named assembly of a light source and lens
 
 | Field | Type | Title (Description) |
 |-------|------|-------------|
-| `name` | `str` | Light assembly name  |
 | `light` | [Laser](#laser) or [LightEmittingDiode](#lightemittingdiode) or [Lamp](#lamp) |   |
 | `lens` | [Lens](#lens) | Lens  |
 | `filter` | Optional[[Filter](#filter)] | Filter  |
+| `name` | `str` | Assembly name  |
 
 
 ### LightEmittingDiode
@@ -631,7 +633,6 @@ Description of visual display for visual stimuli
 | `additional_settings` | `Optional[dict]` | Additional parameters  |
 | `notes` | `Optional[str]` | Notes  |
 | `relative_position` | List[[AnatomicalRelative](../biodata_models/coordinates.md#anatomicalrelative)] | Relative position  |
-| <del>`coordinate_system`</del> | Optional[[CoordinateSystem](coordinates.md#coordinatesystem)] | **[DEPRECATED]** Deprecated: use local_coordinate_system instead. Device coordinate system  |
 | `local_coordinate_system` | Optional[[CoordinateSystem](coordinates.md#coordinatesystem)] | Device local coordinate system  |
 | `transform` | Optional[List[[Translation](coordinates.md#translation) or [Rotation](coordinates.md#rotation) or [Scale](coordinates.md#scale) or [Affine](coordinates.md#affine)]] | Local to global transform (Position and orientation of the device in the instrument global coordinate system) |
 
@@ -782,7 +783,7 @@ Multichannel electrophysiology DAQ
 | Field | Type | Title (Description) |
 |-------|------|-------------|
 | `ports` | List[[ProbePort](#probeport)] | Acquisition board ports  |
-| `data_interface` | `"USB"` |   |
+| `data_interface` | `"DataInterface.USB"` |   |
 | `manufacturer` | [Organization](../biodata_models/organizations.md#organization) |   |
 | `channels` | List[[DAQChannel](#daqchannel)] | DAQ channels  |
 | `firmware_version` | `Optional[str]` | Firmware version  |
@@ -800,9 +801,9 @@ Assembly combining a manipulator and headstage used for Patch clamp ephys
 
 | Field | Type | Title (Description) |
 |-------|------|-------------|
-| `name` | `str` | Patch clamp Assembly Name  |
 | `manipulator` | [Manipulator](#manipulator) | Manipulator  |
 | `headstage` | [Device](#device) | Headstage  |
+| `name` | `str` | Assembly name  |
 
 
 ### PockelsCell
@@ -900,7 +901,6 @@ Description of a speaker for auditory stimuli
 | `additional_settings` | `Optional[dict]` | Additional parameters  |
 | `notes` | `Optional[str]` | Notes  |
 | `relative_position` | List[[AnatomicalRelative](../biodata_models/coordinates.md#anatomicalrelative)] | Relative position  |
-| <del>`coordinate_system`</del> | Optional[[CoordinateSystem](coordinates.md#coordinatesystem)] | **[DEPRECATED]** Deprecated: use local_coordinate_system instead. Device coordinate system  |
 | `local_coordinate_system` | Optional[[CoordinateSystem](coordinates.md#coordinatesystem)] | Device local coordinate system  |
 | `transform` | Optional[List[[Translation](coordinates.md#translation) or [Rotation](coordinates.md#rotation) or [Scale](coordinates.md#scale) or [Affine](coordinates.md#affine)]] | Local to global transform (Position and orientation of the device in the instrument global coordinate system) |
 

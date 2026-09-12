@@ -36,7 +36,7 @@ Description of a single processing step
 | Field | Type | Title (Description) |
 |-------|------|-------------|
 | `process_type` | [ProcessName](biodata_models/process_names.md#processname) | Process type  |
-| `name` | `str` | Name (('Unique name of the processing step.', ' If not provided, the type will be used as the name.')) |
+| `name` | `str` | Name (Unique name of the processing step. If not provided, the type will be used as the name.) |
 | `stage` | [ProcessStage](processing.md#processstage) | Processing stage  |
 | `code` | [Code](components/identifiers.md#code) | Code (Code used for processing) |
 | `experimenters` | `List[str]` | Experimenters (People responsible for processing) |

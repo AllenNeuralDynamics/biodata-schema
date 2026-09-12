@@ -11,6 +11,7 @@ Fluorophores types
 | `ALEXA` | `Alexa Fluor` |
 | `ATTO` | `Atto` |
 | `CF` | `CF` |
+| `CORALITE` | `CoraLite` |
 | `CYANINE` | `Cyanine` |
 | `DYLIGHT` | `DyLight` |
 

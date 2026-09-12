@@ -37,7 +37,7 @@ Description of model evaluation
 |-------|------|-------------|
 | `process_type` | [ProcessName](biodata_models/process_names.md#processname) |   |
 | `performance` | List[[PerformanceMetric](model.md#performancemetric)] | Evaluation performance  |
-| `name` | `str` | Name (('Unique name of the processing step.', ' If not provided, the type will be used as the name.')) |
+| `name` | `str` | Name (Unique name of the processing step. If not provided, the type will be used as the name.) |
 | `stage` | [ProcessStage](processing.md#processstage) | Processing stage  |
 | `code` | [Code](components/identifiers.md#code) | Code (Code used for processing) |
 | `experimenters` | `List[str]` | Experimenters (People responsible for processing) |
@@ -69,7 +69,7 @@ Description of model training
 | `train_performance` | List[[PerformanceMetric](model.md#performancemetric)] | Training performance (Performance on training set) |
 | `test_performance` | Optional[List[[PerformanceMetric](model.md#performancemetric)]] | Test performance (Performance on test data, evaluated during training) |
 | `test_evaluation_method` | `Optional[str]` | Test evaluation method (Approach to cross-validation or Train/test splitting) |
-| `name` | `str` | Name (('Unique name of the processing step.', ' If not provided, the type will be used as the name.')) |
+| `name` | `str` | Name (Unique name of the processing step. If not provided, the type will be used as the name.) |
 | `stage` | [ProcessStage](processing.md#processstage) | Processing stage  |
 | `code` | [Code](components/identifiers.md#code) | Code (Code used for processing) |
 | `experimenters` | `List[str]` | Experimenters (People responsible for processing) |

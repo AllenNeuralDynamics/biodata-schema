@@ -8,7 +8,7 @@ Description of an inherently fluorescent marker. Note this class will change nam
 
 | Field | Type | Title (Description) |
 |-------|------|-------------|
-| `stain_type` | [StainType](../biodata_models/reagent.md#staintype) |   |
+| `stain_type` | [StainType](../biodata_models/reagent.md#staintype) | Stain type  |
 | `excitation_wavelength` | `int` | Excitation wavelength (nm)  |
 | `emission_wavelength` | `int` | Emission wavelength (nm)  |
 | `wavelength_unit` | [SizeUnit](../biodata_models/units.md#sizeunit) | Excitation wavelength unit  |

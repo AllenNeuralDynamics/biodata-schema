@@ -213,6 +213,7 @@ Probe model name
 |------|-------|
 | `MI_ULED_PROBE` | `Michigan uLED Probe (Version 1)` |
 | `MP_PHOTONIC_V1` | `MPI Photonic Probe (Version 1)` |
+| `MP_PHOTONIC_V2` | `MPI Photonic Probe (Version 2)` |
 | `NP_OPTO_DEMONSTRATOR` | `Neuropixels Opto (Demonstrator)` |
 | `NP_UHD_FIXED` | `Neuropixels UHD (Fixed)` |
 | `NP_UHD_SWITCHABLE` | `Neuropixels UHD (Switchable)` |
